@@ -118,7 +118,7 @@ body {
 }
 
 #sidebar nav ul li {
-  margin: 5px;
+  margin: 10px;
 }
 #sidebar nav {
   display: flex;
@@ -137,6 +137,11 @@ body {
   padding-right: 20px;
   padding-left: 15px;
 }
+
+header section.deroule {
+  padding-top: 0;
+}
+
 
 
 .profil p {
