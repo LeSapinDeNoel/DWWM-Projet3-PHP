@@ -27,6 +27,10 @@
       <span>Administrateur</span>
       </p>
     </div>
+
+    </div>
+    <div class="">
+      <hr/>
     </div>
       <nav class="mt-5">
             <a href="#" class="m-2"> <i class="fa fa-sign-in-alt"></i> BLABLABL</a>
@@ -36,7 +40,10 @@
             <a href="#" class="m-2"> <i class="fa fa-sign-in-alt"></i> BLABLABL</a>
 
       </nav>
-      <hr/>
+      <div class="">
+        <hr/>
+      </div>
+
   </header>
 </body>
 </html>
