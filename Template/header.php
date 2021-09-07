@@ -15,15 +15,15 @@
 <body>
   <header id="sidebar">
     <div class="text-center">
-      <a href="#">
+      <a href="#" class="mb-2">
         <img src="assets/images/rec.png" alt="" height="70">
       </a>
       <hr/>
     </div>
-    <div class="mt-5 d-flex p-2">
+    <div class="d-flex p-2 profil">
       <img src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg" alt="profil" height="70">
       <div class="d-flex flex-column p-2">
-      <p>Quentin Felbinger
+      <p><a href="#">Quentin Felbinger</a>
       <span>Administrateur</span>
       </p>
     </div>

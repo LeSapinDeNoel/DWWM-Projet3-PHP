@@ -21,10 +21,19 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
 }
 
 
 hr {
   border-bottom: 1px solid #fff;
   z-index: 10;
+}
+
+
+.profil a {
+  color: #fff;
+}
+.profil a:hover {
+  text-decoration: underline;
 }
