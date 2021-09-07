@@ -1,37 +1,71 @@
-#sidebar {
-  position: absolute;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* Menu Burger */
+#sidebar{
   background-color: #171926;
-  font-size: 20px;
 }
 
-#sidebar nav {
-  display: flex;
-  flex-direction: column;
+header nav {
+  text-align: right;
 }
 
-#sidebar nav a  {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+#burger {
   color: #fff;
-  padding: 5px;
-  margin: 5px;
+  font-size: 35px;
+  display: inline-block;
+  text-align: center;
 }
 
-#sidebar nav a:hover {
-  background-color: rgba(255, 255, 255, 0.205);
-  transition: 0.3s;
+header nav ul {
+  font-size: 25px;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+  width: 100%;
+
+}
+
+header nav ul li {
+  margin: 100px;
+}
+
+
+.cache {
+  display: none;
+}
+
+
+header section.show {
+  display: block;
+  /* mettre display block pour qu'il se voit après le click car display:none;plus haut*/
+  position: absolute;
+  top: 65px;
+  right: 0px;
+  left: 0px;
+  z-index: 5;
+}
+
+
+.deroule {
   text-decoration: none;
-  /* border-radius: 5px; */
+  display: block;
+  /*toute la largeur deviens cliquable */
+  line-height: 30px;
+  padding: 10px;
+  background-color: #fff;
+  text-transform: uppercase;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+  letter-spacing: 2px;
+  font-weight: bolder;
+  text-transform: uppercase;
+  background-color: #171926;
+  color: #fff;
 }
 
-#sidebar nav i {
-  padding-right: 20px;
-  padding-left: 15px;
+.deroule a {
+  color: #fff;
 }
 
 hr {
@@ -39,16 +73,14 @@ hr {
   width: 270px;
   position: relative;
   z-index: 10;
-  width: 270px;
+  width: 100%;
 }
 
+.profil{
+  justify-content: center;
+  align-items: center;
+}
 
-.profil a {
-  color: #fff;
-}
-.profil a:hover {
-  text-decoration: underline;
-}
 
 /* @media  screen and (min-width: 1023px) {
 
@@ -66,12 +98,12 @@ hr {
     width: 300px;
     padding: 15px;
   }
-  
+
   #sidebar nav {
     display: flex;
     flex-direction: column;
   }
-  
+
   #sidebar nav a  {
     display: flex;
     flex-direction: row;
@@ -80,14 +112,14 @@ hr {
     padding: 5px;
     margin: 5px;
   }
-  
+
   #sidebar nav a:hover {
     background-color: rgba(255, 255, 255, 0.205);
     transition: 0.3s;
     text-decoration: none;
   }
-  
-  #sidebar nav i {
+
+  /* #sidebar nav i {
     padding-right: 20px;
     padding-left: 15px;
   }
