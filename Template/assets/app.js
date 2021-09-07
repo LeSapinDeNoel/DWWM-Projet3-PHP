@@ -1,3 +1,3 @@
-$("#burger").click(function(){
-  $(".deroule").toggleClass("show");
+$("#header").click(function(){
+  $("div.deroule").toggleClass("show");
 });

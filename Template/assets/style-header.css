@@ -21,20 +21,21 @@ header nav ul {
   padding: 0;
   list-style: none;
   text-align: center;
+  width: 100%;
 
 }
 
 header nav ul li {
-  margin: 20px;
+  margin: 100px;
 }
 
 
-#cache {
-  display: none;
+.cache {
+  display: none!important;
 }
 
 
-header nav ul.show {
+header div.deroule.show {
   display: block;
   /* mettre display block pour qu'il se voit après le click car display:none;plus haut*/
   position: absolute;
@@ -80,152 +81,6 @@ hr {
   align-items: center;
 }
 
-
-
-
-/*
-#sidebar {
-    background: #171926;
-    padding: 15px;
-    box-shadow: 0px 3px 6px #00000029;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 9998;
-}
-
-#burger {
-  color: #fff;
-  background-color: none;
-  font-size: 50px;
-  display: inline-block;
-  text-align: center;
-}
-
-hr {
-  border-bottom: 1px solid #fff;
-  width: 270px;
-  position: relative;
-  z-index: 10;
-  width: 100%;
-}
-
-.profil{
-  justify-content: center;
-  align-items: center;
-
-}
-
-.profil p {
-  color: #fff;
-  font-size: 30px;
-  margin: 4px;
-}
-
-.profil a {
-  color: #fff;
-  font-size: 30px;
-  margin: 4px;
-}
-.profil a:hover {
-  color: #fff;
-  text-decoration: underline;
-}
-
-
-.deroule {
-  display: block;
-  position: absolute;
-  top: 150px;
-  right: 0px;
-  left: 0px;
-  z-index: 5;
-  background-color: #171926;
-
-}
-
-
-header nav {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: left;
-  text-align: left;
-}
-
-header nav a {
-  color: #fff;
-  font-size: 50px;
-  margin: 15px 0;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  text-align: right;
-  line-height: 30px;
-  padding: 10px;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  text-align: center;
-  color: #fff;
-}
-
-header nav a:hover {
-  color: #fff;
-  text-decoration: none;
-}
-
-.show {
-  display: block;
-} */
-
-/* #sidebar {
-  position: absolute;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #171926;
-  font-size: 20px;
-  width: 100%;
-  height: 100%;
-}
-
-#sidebar nav {
-  display: flex;
-  flex-direction: column;
-}
-
-#sidebar nav a  {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  color: #fff;
-  padding: 5px;
-  margin: 5px;
-}
-
-#sidebar nav a:hover {
-  background-color: rgba(255, 255, 255, 0.205);
-  transition: 0.3s;
-  text-decoration: none;
-  /* border-radius: 5px; */
-}
-
-/* #sidebar nav i {
-  padding-right: 20px;
-  padding-left: 15px;
-}
-
-
-
-
-.profil a {
-  color: #fff;
-}
-.profil a:hover {
-  text-decoration: underline;
-} */
 
 /* @media  screen and (min-width: 1023px) {
 
