@@ -1,4 +1,185 @@
+/* Menu Burger */
+#sidebar{
+  background-color: #171926;
+}
+
+header nav {
+  text-align: right;
+}
+
+#burger {
+  color: #fff;
+  font-size: 35px;
+  display: inline-block;
+  text-align: center;
+}
+
+header nav ul {
+  font-size: 25px;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+
+}
+
+header nav ul li {
+  margin: 20px;
+}
+
+
+header nav ul {
+  display: none;
+}
+
+
+header nav ul.show {
+  display: block;
+  /* mettre display block pour qu'il se voit après le click car display:none;plus haut*/
+  position: absolute;
+  top: 65px;
+  right: 0px;
+  left: 0px;
+  z-index: 5;
+}
+
+
+.deroule {
+  text-decoration: none;
+  display: block;
+  /*toute la largeur deviens cliquable */
+  line-height: 30px;
+  padding: 10px;
+  background-color: #fff;
+  text-transform: uppercase;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+  letter-spacing: 2px;
+  font-weight: bolder;
+  text-transform: uppercase;
+  background-color: #171926;
+  color: #fff;
+}
+
+.deroule a {
+  color: #fff;
+}
+
+hr {
+  border-bottom: 1px solid #fff;
+  width: 270px;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+.profil{
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+/*
 #sidebar {
+    background: #171926;
+    padding: 15px;
+    box-shadow: 0px 3px 6px #00000029;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 9998;
+}
+
+#burger {
+  color: #fff;
+  background-color: none;
+  font-size: 50px;
+  display: inline-block;
+  text-align: center;
+}
+
+hr {
+  border-bottom: 1px solid #fff;
+  width: 270px;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+.profil{
+  justify-content: center;
+  align-items: center;
+
+}
+
+.profil p {
+  color: #fff;
+  font-size: 30px;
+  margin: 4px;
+}
+
+.profil a {
+  color: #fff;
+  font-size: 30px;
+  margin: 4px;
+}
+.profil a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+
+.deroule {
+  display: block;
+  position: absolute;
+  top: 150px;
+  right: 0px;
+  left: 0px;
+  z-index: 5;
+  background-color: #171926;
+
+}
+
+
+header nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  text-align: left;
+}
+
+header nav a {
+  color: #fff;
+  font-size: 50px;
+  margin: 15px 0;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  text-align: right;
+  line-height: 30px;
+  padding: 10px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+  color: #fff;
+}
+
+header nav a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.show {
+  display: block;
+} */
+
+/* #sidebar {
   position: absolute;
   color: #fff;
   display: flex;
@@ -6,6 +187,8 @@
   align-items: center;
   background-color: #171926;
   font-size: 20px;
+  width: 100%;
+  height: 100%;
 }
 
 #sidebar nav {
@@ -29,18 +212,12 @@
   /* border-radius: 5px; */
 }
 
-#sidebar nav i {
+/* #sidebar nav i {
   padding-right: 20px;
   padding-left: 15px;
 }
 
-hr {
-  border-bottom: 1px solid #fff;
-  width: 270px;
-  position: relative;
-  z-index: 10;
-  width: 270px;
-}
+
 
 
 .profil a {
@@ -48,7 +225,7 @@ hr {
 }
 .profil a:hover {
   text-decoration: underline;
-}
+} */
 
 /* @media  screen and (min-width: 1023px) {
 
@@ -66,12 +243,12 @@ hr {
     width: 300px;
     padding: 15px;
   }
-  
+
   #sidebar nav {
     display: flex;
     flex-direction: column;
   }
-  
+
   #sidebar nav a  {
     display: flex;
     flex-direction: row;
@@ -80,15 +257,15 @@ hr {
     padding: 5px;
     margin: 5px;
   }
-  
+
   #sidebar nav a:hover {
     background-color: rgba(255, 255, 255, 0.205);
     transition: 0.3s;
     text-decoration: none;
     /* border-radius: 5px; */
   }
-  
-  #sidebar nav i {
+
+  /* #sidebar nav i {
     padding-right: 20px;
     padding-left: 15px;
   }
