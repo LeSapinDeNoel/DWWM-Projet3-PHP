@@ -1,15 +1,11 @@
-body {
-  display: flex;
-}
-
 #sidebar {
+  position: absolute;
   color: #fff;
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: #171926;
-  height: 100vh;
-  width: 300px;
-  padding: 15px;
+  font-size: 20px;
 }
 
 #sidebar nav {
@@ -53,3 +49,48 @@ hr {
 .profil a:hover {
   text-decoration: underline;
 }
+
+/* @media  screen and (min-width: 1023px) {
+
+  body {
+    display: flex;
+  }
+
+  #sidebar {
+    position: static;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    background-color: #171926;
+    height: 100%;
+    width: 300px;
+    padding: 15px;
+  }
+  
+  #sidebar nav {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #sidebar nav a  {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #fff;
+    padding: 5px;
+    margin: 5px;
+  }
+  
+  #sidebar nav a:hover {
+    background-color: rgba(255, 255, 255, 0.205);
+    transition: 0.3s;
+    text-decoration: none;
+    /* border-radius: 5px; */
+  }
+  
+  #sidebar nav i {
+    padding-right: 20px;
+    padding-left: 15px;
+  }
+
+} */

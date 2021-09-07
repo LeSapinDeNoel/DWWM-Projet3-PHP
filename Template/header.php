@@ -35,7 +35,7 @@
       
       <div class="d-flex flex-column p-2">
 
-        <p><a href="#">Quentin Felbinger</a>
+        <p><a href="#">Quentin Felbinger</a><br>
           <span>Administrateur</span>
         </p>
 
