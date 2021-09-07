@@ -45,40 +45,39 @@
 
 <section id="galerie">
 
-  <article>
-    <img src="https://fakeimg.pl/200x150/?text=oui">
-    <h2>Article 1</h2>
-  </article>
+  <div>
 
-  <article>
-    <img src="https://fakeimg.pl/200x150/?text=oui">
-    <h2>Article 1</h2>
-  </article>
+    <article>
+      <img src="https://fakeimg.pl/380x280/?text=oui">
+      <h2>Article 1</h2>
+    </article>
 
-  <article>
-    <img src="https://fakeimg.pl/200x150/?text=oui">
-    <h2>Article 1</h2>
-  </article>
+    <article>
+      <img src="https://fakeimg.pl/380x280/?text=oui">
+      <h2>Article 1</h2>
+    </article>
 
-  <article>
-    <img src="https://fakeimg.pl/200x150/?text=oui">
-    <h2>Article 1</h2>
-  </article>
+    <article>
+      <img src="https://fakeimg.pl/380x280/?text=oui">
+      <h2>Article 1</h2>
+    </article>
 
-  <article>
-    <img src="https://fakeimg.pl/200x150/?text=oui">
-    <h2>Article 1</h2>
-  </article>
+    <article>
+      <img src="https://fakeimg.pl/380x280/?text=oui">
+      <h2>Article 1</h2>
+    </article>
 
-  <article>
-    <img src="https://fakeimg.pl/200x150/?text=oui">
-    <h2>Article 1</h2>
-  </article>
+    <article>
+      <img src="https://fakeimg.pl/380x280/?text=oui">
+      <h2>Article 1</h2>
+    </article>
 
-  <article>
-    <img src="https://fakeimg.pl/200x150/?text=oui">
-    <h2>Article 1</h2>
-  </article>
+    <article>
+      <img src="https://fakeimg.pl/380x280/?text=oui">
+      <h2>Article 1</h2>
+    </article>
+
+  </div>
 
 </section>
 
