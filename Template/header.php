@@ -35,15 +35,22 @@
       <nav class="mt-5">
             <a href="#" class="m-2"> <i class="fa fa-sign-in-alt"></i> BLABLABL</a>
 
+            <hr/>
+
             <a href="#" class="m-2"><i class="fa fa-sign-in-alt"></i> BLABLABL</a>
+
+            <hr/>
 
             <a href="#" class="m-2"> <i class="fa fa-sign-in-alt"></i> BLABLABL</a>
 
       </nav>
+<<<<<<< Updated upstream
       <div class="">
         <hr/>
       </div>
 
+=======
+>>>>>>> Stashed changes
   </header>
 </body>
 </html>
