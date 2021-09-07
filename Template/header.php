@@ -28,7 +28,7 @@
     </div>
     <hr />
     <!-- L'affichage profil si connecté -->
-    <div class="deroule">
+    <div class="deroule" id="cache">
       <div class="d-flex p-2 profil">
 
         <img src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg" alt="profil" height="70">
