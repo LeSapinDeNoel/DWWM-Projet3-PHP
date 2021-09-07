@@ -15,6 +15,8 @@
 <body>
   <header id="sidebar">
 
+  <!-- Le logo -->
+
     <div class="text-center">
 
       <a href="#" class="mb-2">
@@ -24,6 +26,8 @@
       <hr/>
 
     </div>
+
+    <!-- L'affichage profil si connecté -->
 
     <div class="d-flex p-2 profil">
 
@@ -40,6 +44,8 @@
     </div>
 
     <hr/>
+
+    <!-- la navigation entière -->
 
   <nav class="mt-5">
 
@@ -62,5 +68,6 @@
     </nav>
 
   </header>
+  
 </body>
 </html>
