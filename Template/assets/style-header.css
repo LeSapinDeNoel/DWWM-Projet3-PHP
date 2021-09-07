@@ -31,11 +31,11 @@ header nav ul li {
 
 
 .cache {
-  display: none!important;
+  display: none;
 }
 
 
-header div.deroule.show {
+header section.show {
   display: block;
   /* mettre display block pour qu'il se voit après le click car display:none;plus haut*/
   position: absolute;
