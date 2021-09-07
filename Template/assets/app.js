@@ -1,5 +1,7 @@
 $(document).ready(function(){
+
   $("#burger").on("click", menu);
+
   function menu() {
       if($('.deroule').hasClass('cache')) {
         $('.deroule').addClass('show');
@@ -8,5 +10,5 @@ $(document).ready(function(){
         $('.deroule').removeClass('show');
         $('.deroule').addClass('cache');
       }
-
-};
+    }
+});
