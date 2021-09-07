@@ -3,8 +3,6 @@
     // J'affiche le header
 include("header.php");
 
-
-
 ?>
 
 <main>

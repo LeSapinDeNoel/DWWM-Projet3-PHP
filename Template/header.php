@@ -18,8 +18,8 @@
 
     <div class="text-center d-flex flex-direction-row justify-content-around align-items-center">
 
-      <a href="#" class="mb-2">
-        <img src="assets/images/rec.png" alt="" height="70">
+      <a href="#" class="mb-2 mt-4">
+        <img src="assets/images/logo.svg" alt="REC" height="45">
       </a>
       <a href="#" id="burger"> <i class="fas fa-bars"></i></a>
 
