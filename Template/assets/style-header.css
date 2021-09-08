@@ -135,6 +135,8 @@ header section.show {
     height: 50px!important;
 }
 
+/* Page pour moderer les articles */
+
 
 @media  screen and (min-width: 1023px) {
 
@@ -145,7 +147,7 @@ header section.show {
   }
 
   /* Menu/navigation */
-  
+
   .cache {
     display: block;
   }
