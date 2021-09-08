@@ -81,5 +81,9 @@
 
 </section>
 
+<style>
+  /* temporaire */
+</style>
+
 </body>
 </html>
