@@ -61,8 +61,8 @@ header section.show {
   color: #fff;
 }
 
-hr {
-  border-bottom: 1px solid #fff;
+.hr_header {
+  border-bottom: 1px solid #fff!important;
   width: 270px;
   position: relative;
   z-index: 10;
@@ -99,7 +99,7 @@ body {
   flex-direction: column;
   background-color: #171926;
   height: 100vh;
-  width: 270px;
+  width: 350px;
   padding: 3px;
 }
 

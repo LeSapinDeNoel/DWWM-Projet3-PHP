@@ -26,7 +26,7 @@
 
 
     </div>
-    <hr />
+    <hr class="hr_header" />
     <!-- L'affichage profil si connecté -->
     <section class="deroule cache" >
       <div class="d-flex p-2 profil">
@@ -43,12 +43,12 @@
 
       </div>
 
-      <hr />
+      <hr class="hr_header" />
 
 
       <!-- la navigation entière -->
 
-      <nav class="mt-5">
+      <nav class="">
         <ul>
 
           <li> <a href="#"> <i class="far fa-newspaper"></i> Les critiques</a></li>
