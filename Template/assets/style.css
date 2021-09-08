@@ -41,3 +41,12 @@ article {
     margin: 15px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+
+
+
+
+/* PAGE avec tableau des utilisateurs */
+
+.tr_height {
+      height: 50px!important;
+}
