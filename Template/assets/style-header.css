@@ -1,3 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+/* Général */
+
+body {
+    font-family: 'Montserrat';
+}
+
+h1 {
+  text-align: center;
+  margin: 50px 0 10px;
+}
+
+hr {
+  border: solid 1px #171926;
+  width: 150px;
+}
+
 /* Menu Burger */
 #sidebar{
   background-color: #171926;
@@ -78,74 +96,129 @@ header section.show {
   display: none;
 }
 
+/* PAGE home */
+
+#carouselExampleIndicators {
+  /* height: 500px; */
+  overflow: hidden;
+}
+
+#galerie {
+  display: flex;
+  justify-content: center;
+}
+
+#galerie div {
+  width: 1600px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+#galerie article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 380px;
+  height: 380px;
+  margin: 15px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+
+
+
+/* PAGE avec tableau des utilisateurs */
+
+.tr_height {
+    height: 50px!important;
+}
+
+
 @media  screen and (min-width: 1023px) {
 
-.cache {
-  display: block;
+  /* Général */
+
+  main {
+    width: 70%;
+  }
+
+  /* Menu/navigation */
+  
+  .cache {
+    display: block;
+  }
+
+  #burger {
+    display: none;
+  }
+
+  body {
+    display: flex;
+  }
+
+  #sidebar {
+    position: static;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    background-color: #171926;
+    height: 100vh;
+    width: 30%;
+    padding: 3px;
+  }
+
+  #sidebar nav ul li a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #fff;
+    padding: 5px;
+    margin: 5px;
+  }
+
+  #sidebar nav ul {
+    font-size: 15px;
+  }
+
+  #sidebar nav ul li {
+    margin: 10px;
+  }
+  #sidebar nav {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #sidebar nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.205);
+    transition: 0.3s;
+    text-decoration: none;
+  }
+
+    #sidebar nav i {
+    padding-right: 20px;
+    padding-left: 15px;
+  }
+
+  header section.deroule {
+    padding-top: 0;
+  }
+
+  .profil p {
+    font-size: 12px;
+  }
+
 }
 
-#burger {
-  display: none;
-}
+@media  screen and (min-width: 1200px) {
+  /* Général */
 
-body {
-  display: flex;
-}
+  main {
+    width: 80%;
+  }
 
-#sidebar {
-  position: static;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  background-color: #171926;
-  height: 100vh;
-  width: 350px;
-  padding: 3px;
-}
-
-#sidebar nav ul li a{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  color: #fff;
-  padding: 5px;
-  margin: 5px;
-}
-
-
-#sidebar nav ul {
-  font-size: 15px;
-}
-
-#sidebar nav ul li {
-  margin: 10px;
-}
-#sidebar nav {
-  display: flex;
-  flex-direction: column;
-}
-
-
-
-#sidebar nav ul li a:hover {
-  background-color: rgba(255, 255, 255, 0.205);
-  transition: 0.3s;
-  text-decoration: none;
-}
-
-  #sidebar nav i {
-  padding-right: 20px;
-  padding-left: 15px;
-}
-
-header section.deroule {
-  padding-top: 0;
-}
-
-
-
-.profil p {
-  font-size: 12px;
-}
-
+  #sidebar {
+    width: 20%;
+  }
 }
