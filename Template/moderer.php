@@ -26,9 +26,11 @@ include("header.php");
         <td>Table cell</td>
         <td>Table cell</td>
         <td>
-          <div class="form-check form-switch ml-4">
-            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-          </div>
+          <!-- Rounded switch -->
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
         </td>
       </tr>
       <tr class="tr_height">
@@ -36,9 +38,10 @@ include("header.php");
         <td>Table cell</td>
         <td>Table cell</td>
         <td>
-          <div class="form-check form-switch ml-4">
-            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-          </div>
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
         </td>
       </tr>
       <tr class="tr_height">
@@ -46,9 +49,10 @@ include("header.php");
         <td>Table cell</td>
         <td>Table cell</td>
         <td>
-          <div class="form-check form-switch ml-4">
-            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-          </div>
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
         </td>
       </tr>
 
@@ -57,9 +61,10 @@ include("header.php");
         <td>Table cell</td>
         <td>Table cell</td>
         <td>
-          <div class="form-check form-switch ml-4">
-            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-          </div>
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
         </td>
       </tr>
 
@@ -68,9 +73,10 @@ include("header.php");
         <td>Table cell</td>
         <td>Table cell</td>
         <td>
-          <div class="form-check form-switch ml-4">
-            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-          </div>
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
         </td>
       </tr>
 
@@ -79,9 +85,10 @@ include("header.php");
         <td>Table cell</td>
         <td>Table cell</td>
         <td>
-          <div class="form-check form-switch ml-4">
-            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-          </div>
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
         </td>
       </tr>
 
@@ -90,9 +97,10 @@ include("header.php");
         <td>Table cell</td>
         <td>Table cell</td>
         <td>
-          <div class="form-check form-switch ml-4">
-            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-          </div>
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
         </td>
       </tr>
 
@@ -101,9 +109,10 @@ include("header.php");
         <td>Table cell</td>
         <td>Table cell</td>
         <td>
-          <div class="form-check form-switch ml-4">
-            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked
-          </div>
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
         </td>
       </tr>
 
