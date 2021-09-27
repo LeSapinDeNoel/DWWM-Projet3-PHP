@@ -90,4 +90,5 @@ include("header.php");
 
 <?php
     // j'affiche le footer
-// include("footer.php");
+ include("footer.php");
+?>
