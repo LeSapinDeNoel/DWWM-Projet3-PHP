@@ -1,3 +1,14 @@
+/* Formulaire page critic */
+#formulaire_search{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#formulaire_search .form-group{
+  margin: 10px;
+}
+/* Fin formulaire page critic */
 /* Formulaire de contact */
 #formulaire_contact{
   width: 80%;
