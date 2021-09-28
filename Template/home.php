@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html lang="fr" dir="ltr">
+<?php
 
-<head>
-    <meta charset="utf-8">
-    <title>Accueil</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="assets/style.css">
-</head>
+    // J'affiche le header
+include("header.php");
 
-<body>
+?>
+
+<main>
 
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
@@ -48,32 +42,32 @@
   <div>
 
     <article>
-      <img src="https://fakeimg.pl/380x280/?text=oui">
+      <img src="https://fakeimg.pl/320x220/?text=oui">
       <h2>Article 1</h2>
     </article>
 
     <article>
-      <img src="https://fakeimg.pl/380x280/?text=oui">
+      <img src="https://fakeimg.pl/320x220/?text=oui">
       <h2>Article 1</h2>
     </article>
 
     <article>
-      <img src="https://fakeimg.pl/380x280/?text=oui">
+      <img src="https://fakeimg.pl/320x220/?text=oui">
       <h2>Article 1</h2>
     </article>
 
     <article>
-      <img src="https://fakeimg.pl/380x280/?text=oui">
+      <img src="https://fakeimg.pl/320x220/?text=oui">
       <h2>Article 1</h2>
     </article>
 
     <article>
-      <img src="https://fakeimg.pl/380x280/?text=oui">
+      <img src="https://fakeimg.pl/320x220/?text=oui">
       <h2>Article 1</h2>
     </article>
 
     <article>
-      <img src="https://fakeimg.pl/380x280/?text=oui">
+      <img src="https://fakeimg.pl/320x220/?text=oui">
       <h2>Article 1</h2>
     </article>
 
@@ -81,9 +75,11 @@
 
 </section>
 
-<style>
-  /* temporaire */
-</style>
+</main>
 
-</body>
-</html>
+<?php
+
+  // J'affiche le footer
+include("footer.php");
+
+?>
