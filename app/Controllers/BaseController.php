@@ -19,6 +19,7 @@ use Psr\Log\LoggerInterface;
  *
  * For security be sure to declare any new methods as protected or private.
  */
+use Smarty;
 class BaseController extends Controller
 {
     /**
@@ -35,8 +36,9 @@ class BaseController extends Controller
      *
      * @var array
      */
-    protected $helpers = [];
-
+     protected $helpers = [];
+ 	   protected $_data = [];
+ 	   protected $_smarty;
     /**
      * Constructor.
      */
@@ -48,5 +50,22 @@ class BaseController extends Controller
         // Preload any models, libraries, etc, here.
 
         // E.g.: $this->session = \Config\Services::session();
+        require_once(APPPATH.'ThirdParty/smarty/Smarty.class.php');
+          $this->_smarty = new Smarty();
+
+          $this->_smarty->setTemplateDir(APPPATH.'/Views/');
+          $this->_smarty->setCompileDir(WRITEPATH.'cache');
+          $this->_smarty->setCompileDir(WRITEPATH.'/cache/templates_c/');
+          $this->_smarty->setConfigDir(WRITEPATH.'/cache/configs/');
+          $this->_smarty->setCacheDir(WRITEPATH.'/cache/cache/');
+    }
+
+    public function display($strTemplate = 'default.tpl'){
+        // Assignation de toutes les variables au template
+        foreach($this->_data as $key=>$value){
+            $this->_smarty->assign($key, $value);
+        }
+        //$this->_smarty->debugging = true;
+        $this->_smarty->display($strTemplate);
     }
 }
