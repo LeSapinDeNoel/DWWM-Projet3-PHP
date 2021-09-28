@@ -9,57 +9,147 @@
     <hr>
   </div>
 
-  <form method="post">
+<div class="conteneur_profil">
 
-        <label for="nom">Votre nom</label>
-        <input type="Text" name="nom" id="nom" placeholder="Dienger">
 
-        <br>
+	<div class="grid">
+		<div class="form-group a">
+			<label for="name">Nom</label>
+			<input id="name" type="text">
+		</div>
 
-        <label for="prenom">Votre prénom</label>
-        <input type="Text" name="prenom" id="prenom" placeholder="Julie">
+		<div class="form-group b">
+			<label for="first-name">Prénom</label>
+			<input id="first-name" type="text">
+		</div>
 
-        <br>
+		<div class="form-group email-group">
+			<label for="email">Email</label>
+			<input id="email" type="text">
+		</div>
 
-        <label for="email">Votre email</label>
-        <input type="email" name="email" id="email" placeholder="julie.dienger@gmail.com">
+		<div class="form-group">
+			<label for="role">Role</label>
+			<input id="role" type="text">
+		</div>
 
-        <br>
+		<div class="form-group">
+			<label for="pwd">Mots de passe</label>
+			<input id="pwd" type="text">
+		</div>
 
-        <label for="role">Role</label>
-        <input type="Text" name="role" id="role" placeholder="Administrateur">
+		<div class="form-group">
+			<label for="confirm_pwd">Confirmation du mots de passe</label>
+			<input id="confirm_pwd" type="text">
+		</div>
+	</div>
 
-        <br>
 
-        <label for="pwd">Votre mots de passe</label>
-        <input type="Text" name="pwd" id="pwd" placeholder="XXXXXX">
+	<div class="button-container">
+		<button class="button">Enregister les modifications</button>
+	</div>
 
-        <br>
-        <input type="submit" name="show" id="show" class="bouton" value="Envoyer">
-  </form>
-
+</div>
 <style>
 
-form {
-    margin-top: 50px;
-    margin-bottom: 50px;
-    text-align: left;
-    margin: 0 auto;
-    display: block;
+.conteneur_profil {
+  width: 80%;
+  margin: 0 auto;
 }
 
-label {
-  
+
+
+.form-group {
+	margin-top: 25px;
+	display: flex;
+	flex-direction: column;
 }
 
-input {
-    height: 56px;
-    border-bottom: 3px solid #963042;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    margin-top: 15px;
-    width: 400px;
+.form-group [type],
+.textarea-group textarea {
+	border: 1px solid #d2d6db;
+	border-radius: 6px;
+	padding: 15px;
+}
+
+
+
+.button {
+	font-weight: bold;
+	line-height: 19px;
+	background: #5850eb;
+	border: none;
+	padding: 15px 25px;
+	border-radius: 6px;
+	color: white;
+	width: 100%;
+	margin-top: 24px;
+}
+
+.button:hover {
+	background: #6e67ee;
+}
+.button:focus {
+	background: #4239e8;
+}
+
+@media screen and (min-width: 768px) {
+	body {
+		align-items: center;
+		justify-content: center;
+	}
+
+	.container {
+		margin: 2rem;
+		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+		border-radius: 4px;
+		max-width: 32rem;
+		padding: 2rem;
+	}
+}
+@media screen and (min-width: 1024px) {
+	.container {
+		max-width: 80%;
+		width: 100%;
+	}
+
+	.checkboxes {
+		display: flex;
+	}
+	.checkboxes > :not(:first-child) {
+		margin-left: 1rem;
+	}
+
+	.grid {
+		display: grid;
+		grid-gap: 24px;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-auto-rows: 1fr;
+	}
+
+	.email-group {
+		grid-column: 1;
+		grid-row: 2;
+	}
+
+	.phone-group {
+		grid-column: 2;
+		grid-row: 2;
+	}
+
+	.textarea-group {
+		grid-column: 3;
+		grid-row: span 2;
+		margin-right: 2rem;
+	}
+
+	.button-container {
+		text-align: right;
+	}
+
+	.button {
+		width: auto;
+	}
 }
 
 </style>
