@@ -103,6 +103,10 @@ header section.show {
   overflow: hidden;
 }
 
+#carouselExampleIndicators {
+  display: none;
+}
+
 #galerie {
   display: flex;
   justify-content: center;
@@ -324,6 +328,12 @@ header section.show {
 
   .profil p {
     font-size: 12px;
+  }
+
+  /* SLIDER Page Home */
+
+  #carouselExampleIndicators {
+    display: block;
   }
 
 }

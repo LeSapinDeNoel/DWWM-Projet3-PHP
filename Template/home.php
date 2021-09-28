@@ -71,6 +71,16 @@ include("header.php");
       <h2>Article 1</h2>
     </article>
 
+    <article>
+      <img src="https://fakeimg.pl/320x220/?text=oui">
+      <h2>Article 1</h2>
+    </article>
+
+    <article>
+      <img src="https://fakeimg.pl/320x220/?text=oui">
+      <h2>Article 1</h2>
+    </article>
+
   </div>
 
 </section>
