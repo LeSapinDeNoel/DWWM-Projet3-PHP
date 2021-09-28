@@ -77,7 +77,7 @@
 .button {
 	font-weight: bold;
 	line-height: 19px;
-	background: #5850eb;
+	background: #FF1C00;
 	border: none;
 	padding: 15px 25px;
 	border-radius: 6px;
@@ -87,38 +87,19 @@
 }
 
 .button:hover {
-	background: #6e67ee;
+	background: #db1500;
 }
 .button:focus {
-	background: #4239e8;
+	background: #db1500;
 }
 
-@media screen and (min-width: 768px) {
-	body {
-		align-items: center;
-		justify-content: center;
-	}
 
-	.container {
-		margin: 2rem;
-		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-		border-radius: 4px;
-		max-width: 32rem;
-		padding: 2rem;
-	}
-}
 @media screen and (min-width: 1024px) {
-	.container {
-		max-width: 80%;
-		width: 100%;
-	}
 
-	.checkboxes {
-		display: flex;
-	}
-	.checkboxes > :not(:first-child) {
-		margin-left: 1rem;
-	}
+  .conteneur_profil {
+      margin-top: 100px;
+  }
+
 
 	.grid {
 		display: grid;
@@ -127,21 +108,7 @@
 		grid-auto-rows: 1fr;
 	}
 
-	.email-group {
-		grid-column: 1;
-		grid-row: 2;
-	}
 
-	.phone-group {
-		grid-column: 2;
-		grid-row: 2;
-	}
-
-	.textarea-group {
-		grid-column: 3;
-		grid-row: span 2;
-		margin-right: 2rem;
-	}
 
 	.button-container {
 		text-align: right;
