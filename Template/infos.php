@@ -6,7 +6,7 @@ include("header.php");
 ?>
 <main>
   <div class="justify-content-center">
-    <h1>Listes des critiques</h1>
+    <h1>Mentions légales</h1>
     <hr>
   </div>
 <div id="container_info">
