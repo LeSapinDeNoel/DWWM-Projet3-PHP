@@ -18,10 +18,6 @@ include("header.php");
         <input id="keyword" type="text">
       </div>
       <div class="form-group a">
-        <label for="keyword">Catégorie</label>
-        <input id="categorie" type="text">
-      </div>
-      <div class="form-group a">
         <label for="createur">Créateur</label>
         <input id="createur" type="text">
       </div>
