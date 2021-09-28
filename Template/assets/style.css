@@ -1,3 +1,11 @@
+/* Formulaire de contact */
+#formulaire_contact{
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 70px;
+  margin-bottom: 50px;
+}
+/* Fin formulaire de contact */
 /* formulaire login */
 #formulaire_login{
   width: 80%;
@@ -53,7 +61,7 @@ form input[type="file"] {
 /* FIN IMAGES AVATAR */
 
 
-/* Style du formulaire */
+/* Style du formulaire ce style sert pour tout les formulaire du site*/
 
 .conteneur_profil {
   width: 80%;
