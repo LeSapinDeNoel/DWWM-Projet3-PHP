@@ -12,7 +12,7 @@ include("header.php");
 
 <!-- Aide utilisateur -->
 
-<section>
+<section class="container_help">
     <h2>Vous êtes utilisateurs !</h2>
     <p>
         En tant qu'utilisateur, vous avez le pouvoir de créer des critiques.<br>
@@ -23,7 +23,7 @@ include("header.php");
 
 <!-- Aide modo -->
 
-<section>
+<section class="container_help">
     <h2>Vous êtes modérateur !</h2>
     <p>
         En tant que modérateur, vous avez le pouvoir de publier ou dépublier des critiques.<br>
@@ -34,7 +34,7 @@ include("header.php");
 
 <!-- Aide admin -->
 
-<section>
+<section class="container_help">
     <h2>Vous êtes administrateur !</h2>
     <p>
         En tant qu'administrateur, vous avez le pouvoir de gérer tous les utilisateurs.<br>

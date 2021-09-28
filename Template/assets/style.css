@@ -469,12 +469,24 @@ input:checked + .slider:before {
 /* Page pour moderer les articles */
 
 /* Page mentions légales */
-#container_info{
+
+#container_info {
   width: 70%;
   margin: 0 auto;
   margin-top: 80px;
 }
+
 /* fin pages mentions légales */
+
+/* Page aide */
+
+.container_help {
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* Fin page aide */
+
 @media  screen and (min-width: 1023px) {
 
   /* Général */
