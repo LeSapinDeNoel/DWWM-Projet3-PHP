@@ -16,7 +16,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   
   <script src="assets/app.js"></script>
-  <link rel="stylesheet" href="assets/style-header.css">
   <link rel="stylesheet" href="assets/style.css">
 
 </head>
