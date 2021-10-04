@@ -1,13 +1,12 @@
 <?php
 
 namespace App\Controllers;
-use CodeIgniter\Controller;
 
 
 class Page extends BaseController
 {
-	public function infos()
+	public function index()
 	{
-        $this->display( strTemplate: 'infos.tpl');
+        $this->display('hey.tpl');
 	}
 }
