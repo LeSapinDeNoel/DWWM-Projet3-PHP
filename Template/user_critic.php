@@ -38,32 +38,32 @@ include("header.php");
 
       <article>
         <img src="https://fakeimg.pl/320x220/?text=oui">
-        <h2>Article 1</h2>
+        <h2><a href="#" class="DeleteCritic" title="Supprimer"><i class="fas fa-minus-square"></i></a> Article 1</h2>
       </article>
 
       <article>
         <img src="https://fakeimg.pl/320x220/?text=oui">
-        <h2>Article 1</h2>
+        <h2><a href="#" class="DeleteCritic" title="Supprimer"><i class="fas fa-minus-square"></i></a> Article 1</h2>
       </article>
 
       <article>
         <img src="https://fakeimg.pl/320x220/?text=oui">
-        <h2>Article 1</h2>
+        <h2><a href="#" class="DeleteCritic" title="Supprimer"><i class="fas fa-minus-square"></i></a> Article 1</h2>
       </article>
 
       <article>
         <img src="https://fakeimg.pl/320x220/?text=oui">
-        <h2>Article 1</h2>
+        <h2><a href="#" class="DeleteCritic" title="Supprimer"><i class="fas fa-minus-square"></i></a> Article 1</h2>
       </article>
 
       <article>
         <img src="https://fakeimg.pl/320x220/?text=oui">
-        <h2>Article 1</h2>
+        <h2><a href="#" class="DeleteCritic" title="Supprimer"><i class="fas fa-minus-square"></i></a> Article 1</h2>
       </article>
 
       <article>
         <img src="https://fakeimg.pl/320x220/?text=oui">
-        <h2>Article 1</h2>
+        <h2><a href="#" class="DeleteCritic" title="Supprimer"><i class="fas fa-minus-square"></i></a> Article 1</h2>
       </article>
 
     </div>

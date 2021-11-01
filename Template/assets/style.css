@@ -149,6 +149,19 @@ header section.show {
 
 /* Fin PAGE home */
 
+/* PAGE user critic */
+
+.DeleteCritic {
+  color: #db16008c;
+  transition: 0.4s;
+}
+
+.DeleteCritic:hover {
+  color: #db1500;
+}
+
+/* Fin PAGE user critic */
+
 /* Formulaire page critic */
 #formulaire_search{
   width: 100%;
