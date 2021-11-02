@@ -5,6 +5,7 @@ Aled : Page d'une critique / create_critic
 - Infos --> Page/info
 - Help --> Page
 - Contact --> Page/contact
+- Login --> User/login
 # Methods à créer par controller
 
 ## User controller
@@ -17,7 +18,7 @@ Aled : Page d'une critique / create_critic
 - create_account
   - saveUser / VerifMail
 - edit_profile
-  - updateUser / FindUser / getUser
+  - updateUser / findUser / getUser
 - delete_user
   - dropUser 
 - admin_user

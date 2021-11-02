@@ -10,4 +10,10 @@ class User extends BaseController
         $this->display('login.tpl');
 	}
 
+	public function login()
+	{
+        $this->display('login.tpl');
+	}
+
+
 }
