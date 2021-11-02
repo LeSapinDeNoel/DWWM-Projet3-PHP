@@ -1,25 +1,47 @@
 # DWWM-Projet3-PHP
 
-# Features à créer
+Aled : Page d'une critique / create_critic
 
-- Traduire les pages de la template PHP en TPL (Progressivement)
+# Methods à créer par controller
 
-- Critic_class : fonction Hydratation - Getters / Setters
-
-- "Les critiques" (affichage des dernières critiques 12)
-  "Accueil" (affichage des dernières critiques limité 8) 
-    FindCritic (Formulaire) (Manager) - Home / LesCritics (Controller)
-    !FindCritic affiche visibilé!
-
-- Modifier / Ajout / suppression : add_critic / delete_critic / edit_critic
+## User controller
 
 - User_class : fonction Hydratation - Getters / Setters
 
-- Connexion / déco : findUsers / verifUser (Manager) - login / logout (controller)
+- Login
+  - FindUser / verifUser / majSession
+- logout (session_destroy)
+- create_account
+  - saveUser / VerifMail
+- edit_profile
+  - updateUser / FindUser / getUser
+- delete_user
+  - dropUser 
+- admin_user
+  - FindUser
 
-- Inscription : verifMail / saveUser (Manager) - create_account
+## Critic controller
 
-- Gérer son profil : majSession / getUser / updateUser (Manager) - profile (Controller)
+- Critic_class : fonction Hydratation - Getters / Setters
+
+- Home (affichage des dernières critiques limité 8)
+  - findCritics
+- Critics (affichage des dernières critiques 12)
+  - findCritics
+- MyCritics
+  - deleteCritic / editCritic
+!FindCritic affiche visibilé!
+- create_critic
+  - addCritic
+- moderate_critic
+  - findCritics / visibiltyCritic
+
+## Page controller
+
+- Help
+- Contact
+- Errors
+
 
 - Javascript Drag&Drop
 
