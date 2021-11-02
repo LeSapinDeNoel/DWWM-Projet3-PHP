@@ -8,6 +8,7 @@ Aled : Page d'une critique / create_critic
 - Login --> User/login
 - Création de compte --> User/create_account
 - Modifier son profil --> User/edit_profile
+- Liste utilisateurs --> User/admin_user
 # Methods à créer par controller
 
 ## User controller
