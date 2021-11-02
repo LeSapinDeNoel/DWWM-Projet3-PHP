@@ -1,7 +1,10 @@
 # DWWM-Projet3-PHP
 
 Aled : Page d'une critique / create_critic
-
+# Listes des URL
+- Infos --> Page/info
+- Help --> Page
+- Contact --> Page/contact
 # Methods à créer par controller
 
 ## User controller
@@ -39,7 +42,8 @@ Aled : Page d'une critique / create_critic
 ## Page controller
 
 - Help
-- Contact
+- Contact (mail réponse auto)
+- Mentions légales
 - Errors
 
 

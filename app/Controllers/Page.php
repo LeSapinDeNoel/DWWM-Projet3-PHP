@@ -9,4 +9,14 @@ class Page extends BaseController
 	{
         $this->display('help.tpl');
 	}
+
+	public function info()
+	{
+		$this->display('infos.tpl');
+	}
+
+	public function contact()
+	{
+		$this->display('contact.tpl');
+	}
 }

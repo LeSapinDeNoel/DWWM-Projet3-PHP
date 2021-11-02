@@ -1,4 +1,4 @@
-{extends file="views/layout/content.tpl"}
+{extends file="layout/content.tpl"}
 {block name="content"}
 <main>
   <div class="justify-content-center">
