@@ -10,7 +10,7 @@
 
   {* <table class="table table-reflow"> *}
   <table id="admin" class=" table table-bordered table-hover dt-responsive" style="width:100%">
-    {* <thead>
+    <thead>
       <tr>
         <th>#</th>
         <th>Nom</th>
@@ -18,16 +18,7 @@
         <th>E-mail</th>
         <th>Role</th>
       </tr>
-    </thead> *}
-     <thead>
-          <tr>
-            <th>Country</th>
-            <th>Languages</th>
-            <th>Population</th>
-            <th>Median Age</th>
-            <th>Area (Km²)</th>
-          </tr>
-        </thead>
+    </thead> 
         <tbody>
           <tr>
             <td>Argentina</td>
@@ -72,11 +63,7 @@
             <td>449,954</td>
           </tr>
         </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="5" class="text-center">Data retrieved from <a href="http://www.infoplease.com/ipa/A0855611.html" target="_blank">infoplease</a> and <a href="http://www.worldometers.info/world-population/population-by-country/" target="_blank">worldometers</a>.</td>
-          </tr>
-        </tfoot>
+      
   </table>
   </div>
   </div>
@@ -93,7 +80,12 @@
 
   {literal}
     <script> 
-      $('table').DataTable();
+      $('table').DataTable(
+         {
+        language: {
+            url: 'dataTables.french.json'
+        }
+    });
     </script>
   {/literal}
 
