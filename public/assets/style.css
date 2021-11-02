@@ -479,6 +479,12 @@ input:checked + .slider:before {
     height: 50px!important;
 }
 
+
+table.dataTable th,
+table.dataTable td {
+  white-space: nowrap;
+}
+
 /* Page pour moderer les articles */
 
 /* Page mentions légales */
