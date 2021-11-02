@@ -1,6 +1,7 @@
 {extends file="layout/content.tpl"}
 
 {block name="content"}
+
 <main>
   <div class="justify-content-center">
     <h1>Créer un compte</h1>
@@ -11,17 +12,18 @@
 
   <form action="#" method="post" enctype="multipart/form-data">
 
-<div id="image_profil">
+		<div id="image_profil">
 
 
-  <label for="fileToUpload">
-    <div class="profile-pic" style="background-image: url('https://fakeimg.pl/150x150/')">
-       <span></span>
-       <span>Modifier votre avatar</span>
-   </div>
- </label>
- <input type="File" name="fileToUpload" id="fileToUpload">
- </div>
+  			<label for="fileToUpload">
+    			<div class="profile-pic" style="background-image: url('https://fakeimg.pl/150x150/')">
+					<span></span>
+					<span>Modifier votre avatar</span>
+   				</div>
+ 			</label>
+ 			<input type="File" name="fileToUpload" id="fileToUpload">
+ 		</div>
+
     	<div class="grid">
     		<div class="form-group a">
     			<label for="name">Nom</label>
@@ -54,18 +56,12 @@
     		</div>
     	</div>
 
-
     	<div class="button-container">
     		<button class="button">Créer mon compte</button>
     	</div>
   </form>
-
 </div>
 
-<style>
-
-
-</style>
-
 </main>
+
 {/block}

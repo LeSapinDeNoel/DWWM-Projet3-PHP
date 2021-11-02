@@ -1,5 +1,7 @@
 {extends file="layout/content.tpl"}
+
 {block name="content"}
+
 <main>
   <div class="justify-content-center">
     <h1>Nous contacter</h1>
@@ -27,8 +29,6 @@
           <textarea id="message" type="text"></textarea>
         </div>
 
-
-
         <div class="button-container">
           <button class="button">Envoyer</button>
         </div>
@@ -37,5 +37,6 @@
   </div>
 
 </main>
+
 {/block}
 

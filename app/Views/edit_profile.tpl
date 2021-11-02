@@ -1,6 +1,7 @@
 {extends file="layout/content.tpl"}
 
 {block name="content"}
+
 <main>
   <div class="justify-content-center">
     <h1>Mon profil</h1>
@@ -13,16 +14,19 @@
 
       <div id="image_profil">
 
-
         <label for="fileToUpload">
           <div class="profile-pic" style="background-image: url('https://fakeimg.pl/150x150/')">
             <span></span>
             <span>Modifier votre avatar</span>
           </div>
         </label>
+
         <input type="File" name="fileToUpload" id="fileToUpload">
+
       </div>
+
       <div class="grid">
+
         <div class="form-group a">
           <label for="name">Nom</label>
           <input id="name" type="text">
@@ -54,18 +58,13 @@
         </div>
       </div>
 
-
       <div class="button-container">
         <button class="button">Enregister les modifications</button>
       </div>
     </form>
 
   </div>
-
-  <style>
-
-
-  </style>
-
+  
 </main>
+
 {/block}
