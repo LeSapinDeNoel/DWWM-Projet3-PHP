@@ -19,4 +19,9 @@ class User extends BaseController
 	{
         $this->display('edit_profile.tpl');
 	}
+
+	public function admin_user()
+	{
+        $this->display('admin_user.tpl');
+	}
 }
