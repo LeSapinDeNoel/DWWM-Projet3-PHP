@@ -16,7 +16,7 @@ Aled : Page d'une critique / create_critic
   - FindUser / verifUser / majSession
 - logout (session_destroy)
 - create_account
-  - saveUser / VerifMail
+  - saveUser / verifMail
 - edit_profile
   - updateUser / findUser / getUser
 - delete_user

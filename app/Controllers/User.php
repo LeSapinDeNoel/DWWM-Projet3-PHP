@@ -10,9 +10,9 @@ class User extends BaseController
         $this->display('login.tpl');
 	}
 
-	public function login()
+	public function create_account()
 	{
-        $this->display('login.tpl');
+        $this->display('create_account.tpl');
 	}
 
 
