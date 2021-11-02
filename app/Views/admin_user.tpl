@@ -1,73 +1,78 @@
 {extends file="layout/content.tpl"}
 {block name="content"}
-<main>
-  <div class="justify-content-center">
-  <h1>Listes des utilisateurs</h1>
-  <hr />
-  </div>
-<div class="row" style="margin-right: 0; margin-left: 5px;">
-<div class="col-md-12">
 
-  {* <table class="table table-reflow"> *}
-  <table id="admin" class=" table table-bordered table-hover dt-responsive" style="width:100%">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Nom</th>
-        <th>Prenom</th>
-        <th>E-mail</th>
-        <th>Role</th>
-      </tr>
-    </thead> 
-        <tbody>
-          <tr>
-            <td>Argentina</td>
-            <td>Spanish (official), English, Italian, German, French</td>
-            <td>41,803,125</td>
-            <td>31.3</td>
-            <td>2,780,387</td>
-          </tr>
-          <tr>
-            <td>Australia</td>
-            <td>English 79%, native and other languages</td>
-            <td>23,630,169</td>
-            <td>37.3</td>
-            <td>7,739,983</td>
-          </tr>
-          <tr>
-            <td>Greece</td>
-            <td>Greek 99% (official), English, French</td>
-            <td>11,128,404</td>
-            <td>43.2</td>
-            <td>131,956</td>
-          </tr>
-          <tr>
-            <td>Luxembourg</td>
-            <td>Luxermbourgish (national) French, German (both administrative)</td>
-            <td>536,761</td>
-            <td>39.1</td>
-            <td>2,586</td>
-          </tr>
-          <tr>
-            <td>Russia</td>
-            <td>Russian, others</td>
-            <td>142,467,651</td>
-            <td>38.4</td>
-            <td>17,076,310</td>
-          </tr>
-          <tr>
-            <td>Sweden</td>
-            <td>Swedish, small Sami- and Finnish-speaking minorities</td>
-            <td>9,631,261</td>
-            <td>41.1</td>
-            <td>449,954</td>
-          </tr>
-        </tbody>
-      
-  </table>
+<main>
+
+  <div class="justify-content-center">
+    <h1>Listes des utilisateurs</h1>
+    <hr />
   </div>
+
+  <div class="row" style="margin-right: 0; margin-left: 5px;">
+    <div class="col-md-12">
+
+      {* <table class="table table-reflow"> *}
+      <table id="admin" class=" table table-bordered table-hover dt-responsive" style="width:100%">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>E-mail</th>
+            <th>Role</th>
+          </tr>
+        </thead> 
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Felbinger</td>
+                <td>Quentin</td>
+                <td>quentin.felbinger@gmail.com</td>
+                <td>administrateur</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Dienger</td>
+                <td>Julie</td>
+                <td>julie.dienger@gmail.com</td>
+                <td>moderateur</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Antoine</td>
+                <td>Yoan</td>
+                <td>yoan.antoine@gmail.com</td>
+                <td>utilisateur</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Adam</td>
+                <td>Francis</td>
+                <td>francis.adam@gmail.com</td>
+                <td>utilisateur</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Thomas</td>
+                <td>Meg</td>
+                <td>meg.thomas@gmail.com</td>
+                <td>moderateur</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>Dwight</td>
+                <td>Fairfield</td>
+                <td>fairfield.dwight@gmail.com</td>
+                <td>administrateur</td>
+              </tr>
+            </tbody>
+          
+      </table>
+    </div>
   </div>
+
 </main>
+
 {/block}
 
 {block name="js_footer"}
@@ -80,12 +85,11 @@
 
   {literal}
     <script> 
-      $('table').DataTable(
-         {
+      $('table').DataTable({
         language: {
             url: 'dataTables.french.json'
         }
-    });
+      });
     </script>
   {/literal}
 
