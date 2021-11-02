@@ -7,6 +7,6 @@ class Page extends BaseController
 {
 	public function index()
 	{
-        $this->display('hey.tpl');
+        $this->display('help.tpl');
 	}
 }
