@@ -13,32 +13,32 @@ Aled : Page d'une critique / create_critic
 - User_class : fonction Hydratation - Getters / Setters
 
 - Login
-  - FindUser / verifUser / majSession
+  - find_user / verif_user / maj_session
 - logout (session_destroy)
 - create_account
-  - saveUser / verifMail
+  - save_user / verif_mail
 - edit_profile
-  - updateUser / findUser / getUser
+  - update_user / find_user / get_user
 - delete_user
-  - dropUser 
+  - drop_user 
 - admin_user
-  - FindUser
+  - find_user
 
 ## Critic controller
 
 - Critic_class : fonction Hydratation - Getters / Setters
 
-- Home (affichage des dernières critiques limité 8)
-  - findCritics
-- Critics (affichage des dernières critiques 12)
-  - findCritics
-- MyCritics
-  - deleteCritic / editCritic
+- home (affichage des dernières critiques limité 8)
+  - find_critics
+- critics (affichage des dernières critiques 12)
+  - find_critics
+- my_critics
+  - delete_critic / edit_critic
 !FindCritic affiche visibilé!
 - create_critic
-  - addCritic
+  - add_critic
 - moderate_critic
-  - findCritics / visibiltyCritic
+  - find_critics / visibilty_critic
 
 ## Page controller
 
