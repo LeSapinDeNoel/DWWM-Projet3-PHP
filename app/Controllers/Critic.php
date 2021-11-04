@@ -17,4 +17,8 @@ class Critic extends BaseController
 	{
         $this->display('critic_moderate.tpl');
 	}
+	public function user_critic()
+	{
+        $this->display('user_critic.tpl');
+	}
 }
