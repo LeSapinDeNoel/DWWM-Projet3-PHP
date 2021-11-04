@@ -10,7 +10,8 @@ Aled : Page d'une critique / create_critic
 - Modifier son profil --> User/edit_profile
 - Liste utilisateurs --> User/admin_user
 - Home --> Critic/home
-
+- Critic --> Critic/
+- Liste des critics --> critic/critic_moderate
 # Methods à créer par controller
 
 ## User controller
