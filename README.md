@@ -12,6 +12,9 @@ Aled : Page d'une critique / create_critic
 - Home --> Critic/home
 - Critic --> Critic/
 - Liste des critics --> critic/critic_moderate
+- Mes critic --> critic/user_critic
+- Affichage d'une critic --> critic/critic_details
+
 # Methods à créer par controller
 
 ## User controller
