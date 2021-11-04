@@ -9,4 +9,8 @@ class Critic extends BaseController
 	{
         $this->display('home.tpl');
 	}
+	public function index()
+	{
+        $this->display('critic.tpl');
+	}
 }

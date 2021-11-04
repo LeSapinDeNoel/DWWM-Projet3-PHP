@@ -9,6 +9,8 @@ Aled : Page d'une critique / create_critic
 - Création de compte --> User/create_account
 - Modifier son profil --> User/edit_profile
 - Liste utilisateurs --> User/admin_user
+- Home --> Critic/home
+
 # Methods à créer par controller
 
 ## User controller
@@ -23,7 +25,7 @@ Aled : Page d'une critique / create_critic
 - edit_profile
   - update_user / find_user / get_user
 - delete_user
-  - drop_user 
+  - drop_user
 - admin_user
   - find_user
 
