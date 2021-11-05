@@ -7,6 +7,33 @@
   <h1>{$title}</h1>
   <hr>
 
+  <div id="formulaire_search">
+  {$form_open}
+  <div class="form-group a">
+    {$label_keyword}
+    {$form_keyword}
+  </div>
+  <div class="form-group a">
+    {$label_creator}
+    {$form_creator}
+  </div>
+  <div class="form-group a">
+    {$label_date}
+    {$form_date}
+  </div>
+  <div class="form-group a">
+    {$label_startdate}
+    {$form_startdate}
+  </div>
+  <div class="form-group a">
+    {$label_enddate}
+    {$form_enddate}
+  </div>
+
+  {$form_close}
+  </div>
+
+
   <form action="#" method="post">
     <div id="formulaire_search">
 
@@ -31,6 +58,7 @@
         <input id="enddate" type="date" name="enddate" />
       </div>
     </div>
+    <button type="submit">ENVOYER</button>
   </form>
 
   <section id="galerie">
