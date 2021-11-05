@@ -32,18 +32,7 @@ class Critic extends BaseController
 			//Instancier l'objet
 			$objCriticModel       				= new Critic_model();
 
-			//Recherche de formulaire
-			if (count($this->request->getPost()) > 0){
-					$objCritic = new \App\Entities\Critic_entity();
-					$objCritic->keyword   = $this->request->getPost('keyword');
-					$objCritic->creator   = $this->request->getPost('creator');
-					$objCritic->date  	  = $this->request->getPost('date');
-					$objCritic->startdate = $this->request->getPost('startdate');
-					$objCritic->enddate   = $this->request->getPost('enddate');
 
-					$objCriticModel->save($objCritic);
-					return redirect()->to('/critic');
-				}
 
 			//Données de la page
 			$this->_data['title']         = "Les critiques";
