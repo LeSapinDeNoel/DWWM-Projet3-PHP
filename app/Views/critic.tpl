@@ -7,34 +7,34 @@
   <h1>{$title}</h1>
   <hr>
 
-  <div id="formulaire_search">
   {$form_open}
-  <div class="form-group a">
-    {$label_keyword}
-    {$form_keyword}
-  </div>
-  <div class="form-group a">
-    {$label_creator}
-    {$form_creator}
-  </div>
-  <div class="form-group a">
-    {$label_date}
-    {$form_date}
-  </div>
-  <div class="form-group a">
-    {$label_startdate}
-    {$form_startdate}
-  </div>
-  <div class="form-group a">
-    {$label_enddate}
-    {$form_enddate}
-  </div>
-
+    <div id="formulaire_search">
+      <div class="form-group a">
+        {$label_keyword}
+        {$form_keyword}
+      </div>
+      <div class="form-group a">
+        {$label_creator}
+        {$form_creator}
+      </div>
+      <div class="form-group a">
+        {$label_date}
+        {$form_date}
+      </div>
+      <div class="form-group a">
+        {$label_startdate}
+        {$form_startdate}
+      </div>
+      <div class="form-group a">
+        {$label_enddate}
+        {$form_enddate}
+      </div>
+    </div>
   {$form_close}
-  </div>
 
 
-  <form action="#" method="post">
+
+  <!-- <form action="#" method="post">
     <div id="formulaire_search">
 
       <div class="form-group a">
@@ -59,7 +59,7 @@
       </div>
     </div>
     <button type="submit">ENVOYER</button>
-  </form>
+  </form> -->
 
   <section id="galerie">
 

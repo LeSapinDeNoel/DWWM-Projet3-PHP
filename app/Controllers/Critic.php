@@ -18,6 +18,14 @@ class Critic extends BaseController
 			$this->_data['form_open']     = form_open('critic/index');
 			$this->_data['label_keyword']	= form_label('Mot clé');
 	    $this->_data['form_keyword']  = form_input('keyword');
+			$this->_data['label_creator']	= form_label('Créateur');
+			$this->_data['form_creator']  = form_input('creator');
+			$this->_data['label_date']	= form_label('Date exact');
+			$this->_data['form_date']  = form_input('date');
+			$this->_data['label_startdate']	= form_label('Date de début');
+			$this->_data['form_startdate']  = form_input('startdate');
+			$this->_data['label_enddate']	= form_label('Date de fin');
+			$this->_data['form_enddate']  = form_input('enddate');
 			$this->_data['form_close']    = form_close();
 
 
