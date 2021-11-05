@@ -134,8 +134,21 @@ header section.show {
 }
 
 #galerie article h2 {
-  font-size: 25px;
-  padding-top: 8%;
+  font-size: 18px;
+  padding-top: 5%;
+}
+
+#galerie article a:hover h2 {
+  text-decoration: underline;
+}
+
+#galerie article .cat{
+  font-size:12px;
+  text-decoration:none!important;
+}
+
+#galerie article a:hover{
+  text-decoration: none;
 }
 
 #galerie article:hover img {
