@@ -36,39 +36,9 @@
   <section id="galerie">
 
     <div>
-
-      <article>
-        <a href="#" class="text-center text-dark">
-          <img src="https://fakeimg.pl/320x220/?text=oui">
-          <h2>Article 1</h2>
-        </a>
-      </article>
-
-      <article>
-        <img src="https://fakeimg.pl/320x220/?text=oui">
-        <h2>Article 1</h2>
-      </article>
-
-      <article>
-        <img src="https://fakeimg.pl/320x220/?text=oui">
-        <h2>Article 1</h2>
-      </article>
-
-      <article>
-        <img src="https://fakeimg.pl/320x220/?text=oui">
-        <h2>Article 1</h2>
-      </article>
-
-      <article>
-        <img src="https://fakeimg.pl/320x220/?text=oui">
-        <h2>Article 1</h2>
-      </article>
-
-      <article>
-        <img src="https://fakeimg.pl/320x220/?text=oui">
-        <h2>Article 1</h2>
-      </article>
-
+      {foreach from=$arrCritics item=$objCritic}
+        {include file="critic_card.tpl"}
+      {/foreach}
     </div>
 
   </section>
