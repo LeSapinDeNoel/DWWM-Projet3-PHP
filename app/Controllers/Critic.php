@@ -15,7 +15,7 @@ class Critic extends BaseController
 	public function index()
 	{
 			$objCriticModel       				= new Critic_model();
-			//$data['title']          = "Liste des clients";
+			$this->_data['title']         = "Les critiques";
 			$this->_data['arrCritics']   	= $objCriticModel->findAll();
 			$this->display('critic.tpl');
 	}

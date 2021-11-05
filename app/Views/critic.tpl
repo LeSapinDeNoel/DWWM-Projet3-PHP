@@ -1,10 +1,10 @@
 {extends file="layout/content.tpl"}
-
+{block name=title append}{$title}{/block}
 {block name="content"}
 
 <main>
 
-  <h1>Les critiques</h1>
+  <h1>{$title}</h1>
   <hr>
 
   <form action="#" method="post">
