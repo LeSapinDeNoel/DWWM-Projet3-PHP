@@ -12,6 +12,10 @@ class Critic_model extends Model
     protected $returnType    = 'App\Entities\critic_entity';
     protected $useTimestamps = true;
 
+    public function findAllWithCat(){
+        $this->join('category', 'cat_id = critic_cat');
+        return $this->findAll();
+    }
 
     // protected $createdField = 'cust_createdate';
     // protected $updatedField = 'cust_updatedate';

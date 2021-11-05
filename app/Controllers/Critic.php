@@ -16,7 +16,7 @@ class Critic extends BaseController
 	{
 			$objCriticModel       				= new Critic_model();
 			$this->_data['title']         = "Les critiques";
-			$this->_data['arrCritics']   	= $objCriticModel->findAll();
+			$this->_data['arrCritics']   	= $objCriticModel->findAllWithCat();
 			$this->display('critic.tpl');
 	}
 
