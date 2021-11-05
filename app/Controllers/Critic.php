@@ -15,23 +15,37 @@ class Critic extends BaseController
 	public function index()
 	{
 			// Création du formulaire_search
-			$this->_data['form_open']     = form_open('critic/index');
-			$this->_data['label_keyword']	= form_label('Mot clé');
-	    $this->_data['form_keyword']  = form_input('keyword');
-			$this->_data['label_creator']	= form_label('Créateur');
-			$this->_data['form_creator']  = form_input('creator');
-			$this->_data['label_date']	= form_label('Date exact');
-			$this->_data['form_date']  = form_input('date');
-			$this->_data['label_startdate']	= form_label('Date de début');
-			$this->_data['form_startdate']  = form_input('startdate');
-			$this->_data['label_enddate']	= form_label('Date de fin');
-			$this->_data['form_enddate']  = form_input('enddate');
-			$this->_data['form_close']    = form_close();
+			$this->_data['form_open']    				  = form_open('critic/index');
+			$this->_data['label_keyword']			  	= form_label('Mot clé');
+	    $this->_data['form_keyword'] 				  = form_input('keyword');
+			$this->_data['label_creator']					= form_label('Créateur');
+			$this->_data['form_creator'] 				  = form_input('creator');
+			$this->_data['label_date']						= form_label('Date exact');
+			$this->_data['form_date'] 					  = form_input(array('name'=>'date','type'=>'date'));
+			$this->_data['label_startdate']				= form_label('Date de début');
+			$this->_data['form_startdate'] 			  = form_input(array('name'=>'startdate','type'=>'date'));
+			$this->_data['label_enddate']					= form_label('Date de fin');
+			$this->_data['form_enddate']  				= form_input(array('name'=>'enddate','type'=>'date'));
+			$this->_data['form_submit']    				= form_submit('envoyer', 'envoyer');
+			$this->_data['form_close']    				= form_close();
 
-
-
-
+			//Instancier l'objet
 			$objCriticModel       				= new Critic_model();
+
+			//Recherche de formulaire
+			if (count($this->request->getPost()) > 0){
+					$objCritic = new \App\Entities\Critic_entity();
+					$objCritic->keyword   = $this->request->getPost('keyword');
+					$objCritic->creator   = $this->request->getPost('creator');
+					$objCritic->date  	  = $this->request->getPost('date');
+					$objCritic->startdate = $this->request->getPost('startdate');
+					$objCritic->enddate   = $this->request->getPost('enddate');
+
+					$objCriticModel->save($objCritic);
+					return redirect()->to('/critic');
+				}
+
+			//Données de la page
 			$this->_data['title']         = "Les critiques";
 			$this->_data['arrCritics']   	= $objCriticModel->findAllWithCat();
 			$this->display('critic.tpl');

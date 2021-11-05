@@ -30,6 +30,8 @@
         {$form_enddate}
       </div>
     </div>
+    {$form_submit}
+
   {$form_close}
 
 
