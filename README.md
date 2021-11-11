@@ -1,6 +1,6 @@
 # DWWM-Projet3-PHP
 
-Aled : Page d'une critique / create_critic
+Aled : Page d'une critique / create_critic 
 # Listes des URL
 - Infos --> Page/info
 - Help --> Page
