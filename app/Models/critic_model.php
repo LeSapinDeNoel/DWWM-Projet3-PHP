@@ -16,14 +16,15 @@ class Critic_model extends Model
         $this->join('category', 'cat_id = critic_cat');
         //Recherche de formulaire
         //TODO Faire la recherche avec des where
-        // if (count($this->request->getPost()) > 0){
-        //     $objCritic = new \App\Entities\Critic_entity();
-        //     $objCritic->keyword   = $this->request->getPost('keyword');
-        //     $objCritic->creator   = $this->request->getPost('creator');
-        //     $objCritic->date  	  = $this->request->getPost('date');
-        //     $objCritic->startdate = $this->request->getPost('startdate');
-        //     $objCritic->enddate   = $this->request->getPost('enddate');
-        //   }
+
+        if (count($this->request->getPost()) > 0){
+            $objCritic = new \App\Entities\Critic_entity();
+            $objCritic->keyword   = $this->request->getPost('keyword');
+            $objCritic->creator   = $this->request->getPost('creator');
+            $objCritic->date  	  = $this->request->getPost('date');
+            $objCritic->startdate = $this->request->getPost('startdate');
+            $objCritic->enddate   = $this->request->getPost('enddate');
+          }
         return $this->findAll();
     }
 

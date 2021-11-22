@@ -17,17 +17,17 @@ class Critic extends BaseController
 			// Création du formulaire_search
 			$this->_data['form_open']    			= form_open('critic/index');
 			$this->_data['label_keyword']			= form_label('Mot clé');
-	    	$this->_data['form_keyword'] 			= form_input('keyword');
+	    $this->_data['form_keyword'] 			= form_input('keyword');
 			$this->_data['label_creator']			= form_label('Créateur');
 			$this->_data['form_creator'] 			= form_input('creator');
 			$this->_data['label_date']				= form_label('Date exact');
 			$this->_data['form_date'] 				= form_input(array('name'=>'date','type'=>'date'));
-			$this->_data['label_startdate']			= form_label('Date de début');
-			$this->_data['form_startdate'] 			= form_input(array('name'=>'startdate','type'=>'date'));
+			$this->_data['label_startdate']		= form_label('Date de début');
+			$this->_data['form_startdate'] 		= form_input(array('name'=>'startdate','type'=>'date'));
 			$this->_data['label_enddate']			= form_label('Date de fin');
-			$this->_data['form_enddate']  			= form_input(array('name'=>'enddate','type'=>'date'));
-			$this->_data['form_submit']    			= form_submit('envoyer', 'envoyer');
-			$this->_data['form_close']    			= form_close();
+			$this->_data['form_enddate']  		= form_input(array('name'=>'enddate','type'=>'date'));
+			$this->_data['form_submit']    		= form_submit('envoyer', 'envoyer');
+			$this->_data['form_close']    		= form_close();
 
 			//Instancier l'objet
 			$objCriticModel       			= new Critic_model();
