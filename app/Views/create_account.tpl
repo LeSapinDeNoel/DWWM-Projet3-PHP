@@ -10,6 +10,12 @@
 
 	<div class="conteneur_profil">
 
+	{if isset($validation)}
+		<div class="alert alert-danger">
+			{$validation->listErrors()}
+		</div>
+	{/if}
+
 		{$form_open}
 
 			<div id="image_profil">
@@ -100,6 +106,12 @@
 				</div>
 		</form> *}
 	</div>
+
+	{if count($smarty.post) > 0}
+	<pre>
+	{$smarty.post|var_dump}
+	</pre>
+	{/if}
 
 </main>
 
