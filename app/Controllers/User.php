@@ -32,10 +32,10 @@ class User extends BaseController
 														 'id'    => 'fileToUpload'));
 
 		$this->_data['label_nom']			= form_label('Nom');
-		$this->_data['form_nom'] 			= form_input('name');
+		$this->_data['form_nom'] 			= form_input('name',set_value('name'));
 
 		$this->_data['label_prenom']		= form_label('Prénom');
-		$this->_data['form_prenom'] 		= form_input('first_name');
+		$this->_data['form_prenom'] 		= form_input('first_name',set_value('first_name'));
 
 		$this->_data['label_email']			= form_label('Email');
 		$this->_data['form_email'] 			= form_input(array('type'  => 'email',
