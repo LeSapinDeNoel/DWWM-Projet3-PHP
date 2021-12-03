@@ -13,6 +13,7 @@ class Critic_model extends Model
     protected $useTimestamps = true;
 
     public function findAllWithCat(){
+
         $this->join('category', 'cat_id = critic_cat');
         //Recherche de formulaire
         //TODO Faire la recherche avec des where
@@ -28,9 +29,11 @@ class Critic_model extends Model
             $objCritic->date  	  = $request->getPost('date');
             $objCritic->startdate = $request->getPost('startdate');
             $objCritic->enddate   = $request->getPost('enddate');
-            return $this->where('critic_title', $objCritic->keyword)->find();
+            //affichage de la recherche par titre
+            //method like permet de 
+            return $this->like('critic_title', $objCritic->keyword)->find();
           }
-          //var_dump($this->findAll());
+
         return $this->findAll();
 
     }
