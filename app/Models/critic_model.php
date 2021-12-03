@@ -30,8 +30,10 @@ class Critic_model extends Model
             $objCritic->startdate = $request->getPost('startdate');
             $objCritic->enddate   = $request->getPost('enddate');
             //affichage de la recherche par titre
-            //method like permet de 
-            return $this->like('critic_title', $objCritic->keyword)->find();
+            //method like permet de
+            //return $this->like('critic_title', $objCritic->keyword)->find();
+            return $this->join('users', 'critics.critic_creator=users.user_id')->like('user_name', $objCritic->creator)->find();
+
           }
 
         return $this->findAll();
