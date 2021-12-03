@@ -28,7 +28,9 @@ class Critic_model extends Model
             $objCritic->date  	  = $request->getPost('date');
             $objCritic->startdate = $request->getPost('startdate');
             $objCritic->enddate   = $request->getPost('enddate');
+            return $this->where('critic_title', $objCritic->keyword)->find();
           }
+          //var_dump($this->findAll());
         return $this->findAll();
 
     }
