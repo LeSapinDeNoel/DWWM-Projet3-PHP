@@ -46,7 +46,7 @@ class Critic_model extends Model
             //recherche par date
             if($request->getPost('date')){
               //recherche par date
-              return $this->where('critic_createdate', $request->getPost('date'));
+              return $this->where('critic_createdate', $request->getPost('date'))->find();
             }
           }
 
