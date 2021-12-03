@@ -48,14 +48,17 @@ class Critic_model extends Model
               //recherche par date
               return $this->where('critic_createdate', $request->getPost('date'))->find();
             }
+            //
+            // //recherche par date de début
+            // if($request->getPost('startdate') && ){
+            //   return $this->where('critic_createdate >=', $request->getPost('startdate'))->find();
+            // }
 
-            //recherche par date de début
-            if($request->getPost('startdate')){
-              return $this->where('critic_createdate >=', $request->getPost('startdate'))->find();
-            }
             //recherche par date de fin
             if($request->getPost('startdate') && $request->getPost('enddate')){
+              //var_dump($request->getPost('enddate'));
               $data = ['critic_createdate >=' => $request->getPost('startdate'), 'critic_createdate <=' => $request->getPost('enddate')];
+
               return $this->where($data)->find();
             }
           }
