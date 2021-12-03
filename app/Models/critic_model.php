@@ -39,9 +39,14 @@ class Critic_model extends Model
             }
             if($request->getPost('creator')){
               //recherche par créateur
-              $where = 'like'
-              return $this->join('users', 'critics.critic_creator=users.user_id')->like('user_name', $objCritic->creator)->find();
-
+              //$where = "user_name LIKE '${$request->getPost('creator')}%'";
+              return $this->join('users', 'critics.critic_creator=users.user_id')->like('user_name', $objCritic->creator)->orLike('user_firstname', $objCritic->creator)->find();
+              //return $this->join('users', 'critics.critic_creator=users.user_id')->where($where)->find();
+            }
+            //recherche par date
+            if($request->getPost('date')){
+              //recherche par date
+              return $this->where('critic_createdate', $request->getPost('date'));
             }
           }
 
