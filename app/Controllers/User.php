@@ -38,8 +38,9 @@ class User extends BaseController
 		$this->_data['form_prenom'] 		= form_input('first_name',set_value('first_name'));
 
 		$this->_data['label_email']			= form_label('Email');
-		$this->_data['form_email'] 			= form_input(array('type'  => 'email',
-													'id'    => 'email'));
+		$this->_data['form_email'] 			= form_input(array('type'  => 'text',
+													'name' => 'email',
+													'id'    => 'email'),set_value('email'));
 
 		$this->_data['label_mdp']			= form_label('Mot de passe');
 		$this->_data['form_mdp'] 			= form_input(array('type'  => 'password',
@@ -54,12 +55,44 @@ class User extends BaseController
 
 		if($this->request->getMethod() == 'post') {
 			$rules = [
-				'fileToUpload' => 'required',
-				'name' => 'required',
-				'first_name' => 'required',
-				'email' => 'required',
-				'pwd' => 'required',
-				'confirm_pwd' => 'required'
+				'fileToUpload' => [
+					'rules'  => 'required',
+					'errors' => [
+						'required' => 'Il vous faut une image de profil.',
+					],
+				],
+				'name' => [
+					'rules'  => 'required',
+					'errors' => [
+						'required' => 'Veuillez renseigner votre nom.',
+					],
+				],
+				'first_name' => [
+					'rules'  => 'required',
+					'errors' => [
+						'required' => 'Veuillez renseigner votre prénom.',
+					],
+				],
+				'email' => [
+					'rules'  => 'required|valid_email',
+					'errors' => [
+						'required' => 'Veuillez renseigner votre email.',
+						'valid_email' => 'Veuillez renseigner un email valide.',
+					],
+				],
+				'pwd' => [
+					'rules'  => 'required',
+					'errors' => [
+						'required' => 'Veuillez renseigner votre mot de passe.',
+					],
+				],
+				'confirm_pwd' => [
+					'rules'  => 'required|matches[pwd]',
+					'errors' => [
+						'required' => 'Veuillez renseigner la confirmation de votre mot de passe.',
+						'matches[pwd]' => 'Le mot de passe et la confirmation doivent être identiques.',
+					],
+				]
 			];
 
 			if($this->validate($rules)) {
