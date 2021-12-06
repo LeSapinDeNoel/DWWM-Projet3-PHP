@@ -8,6 +8,11 @@ use App\Models\Category_model;
 
 class Critic extends BaseController
 {
+
+
+
+
+
 	public function home()
 	{
 		//Instancier l'objet
@@ -18,6 +23,12 @@ class Critic extends BaseController
       $this->display('home.tpl');
 
 	}
+
+
+
+
+
+
 
 	public function index()
 	{
@@ -57,13 +68,23 @@ class Critic extends BaseController
 	{
 			$this->display('critic_details.tpl');
 	}
+
+
+
+
+
+
+
+
 	public function critic_create()
 	{
-			$objCatModel	= new Category_model();
+			//instancier l'objet category
+			$objCatModel			= new Category_model();
+			$options 					= $objCatModel->findAllCatForSelect();
+			//instancier l'objet critic
+			$objCriticModel  	= new Critic_model();
 
-			$options = $objCatModel->findAllCatForSelect();
-
-			// Création du formulaire_search
+			// Création du formulaire de création de critic
 			$this->_data['form_open']    			= form_open('critic/critic_create');
 			$this->_data['label_title']				= form_label('Titre');
 			$this->_data['form_title'] 				= form_input('title', set_value('title'));
@@ -101,6 +122,15 @@ class Critic extends BaseController
             ];
             if($this->validate($rules)) {
                 //Il faudra insérer dans la BDD ici
+								//Ajout d'une critic dans le BDD on utilise la method insert
+
+								$arrData = [
+								'critic_title'		=> $this->request->getVar('title'),
+								'critic_content'	=> $this->request->getVar('content'),
+								'critic_cat'			=> $this->request->getVar('cat')];
+								var_dump($arrData);
+
+								$objCriticModel->save([$arrData]);
             }else {
                 $this->_data['validation'] = $this->validator;
             }
