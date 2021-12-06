@@ -45,7 +45,6 @@ class Critic_model extends Model
             }
             //recherche par date
             if($request->getPost('date')){
-              //recherche par date
               return $this->where('critic_createdate', $request->getPost('date'))->find();
             }
 
@@ -63,8 +62,7 @@ class Critic_model extends Model
               $data ['critic_createdate <='] = $request->getPost('enddate');
               return $this->where($data)->find();
             }
-
-            //if($request->getPost('startdate'))
+            //faire une recherche par date de début & date de fin --> a terminer
 
           }
 
