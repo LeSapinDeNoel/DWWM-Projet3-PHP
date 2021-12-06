@@ -11,7 +11,7 @@
 	<div class="conteneur_profil">
 
 	{if isset($validation)}
-		<div class="alert alert-danger">
+		<div class="alert alert-danger" role="alert">
 			{$validation->listErrors()}
 		</div>
 	{/if}
@@ -116,7 +116,7 @@
 	{$smarty.post|var_dump}
 	</pre>
 	{/if}
-
+	
 </main>
 
 {/block}

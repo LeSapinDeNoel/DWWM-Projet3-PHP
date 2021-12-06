@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 
+use CodeIgniter\Controller;
+use App\Models\User_model;
+
 
 class User extends BaseController
 {
@@ -35,7 +38,7 @@ class User extends BaseController
 		$this->_data['form_nom'] 			= form_input('name',set_value('name'));
 
 		$this->_data['label_prenom']		= form_label('Prénom');
-		$this->_data['form_prenom'] 		= form_input('first_name',set_value('first_name'));
+		$this->_data['form_prenom'] 		= form_input('first_name', set_value('first_name'));
 
 		$this->_data['label_email']			= form_label('Email');
 		$this->_data['form_email'] 			= form_input(array('type'  => 'text',
@@ -83,7 +86,7 @@ class User extends BaseController
 					],
 				],
 				'pwd' => [
-					'rules'  => 'required|min_length[8]',
+					'rules'  => 'required|min_length[6]',
 					'errors' => [
 						'required' => 'Veuillez renseigner votre mot de passe.',
 						'min_length' => 'Votre mot de passe doit faire au moins 8 caractères',
@@ -98,11 +101,38 @@ class User extends BaseController
 				]
 			];
 
-			if($this->validate($rules)) {
-				//Il faudra insérer dans la BD
-				//Login user				
-			}else {
+			if(!$this->validate($rules)) {
+
 				$this->_data['validation'] = $this->validator;
+
+			}else {
+
+					// On instancie l'objet
+				$user_model = new User_model();
+				
+				// On prend les informations à sauvegarder
+					//Image par défault si aucune ajoutée
+
+				if($this->request->getVar('fileToUpload') == ""){
+					$AvatarDefault = "avatarDefault.jpg";
+				}else {
+					$AvatarDefault = $this->request->getVar('fileToUpload');
+				}
+
+				$newData = [
+					'user_avatar' => $AvatarDefault,
+					'user_name' => $this->request->getVar('name'),
+					'user_firstname' => $this->request->getVar('first_name'),
+					'user_mail' => $this->request->getVar('email'),
+					'user_pwd' => $this->request->getVar('pwd'),
+					'user_role' => 3,
+				];
+
+				$user_model->save($newData);
+				$session = session();
+				$session->setFlashdata('success', 'Inscription réussie');
+				return redirect()->to('user/login');
+
 			}
 		};
 

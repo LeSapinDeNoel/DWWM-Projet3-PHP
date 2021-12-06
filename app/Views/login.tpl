@@ -9,6 +9,12 @@
     <h1>{$title}</h1>
     <hr>
 
+    {if session()->get('success')}
+      <div class="alert alert-success" role="alert">
+        {session()->get('success')}
+      </div>
+	  {/if}
+
     {$form_open}
 
         <div id="formulaire_login">
