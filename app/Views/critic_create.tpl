@@ -37,8 +37,8 @@
 
 
         <div class="form-group">
-          {*$label_content}
-          {$form_content*}
+          {$label_content}
+          {$form_content}
         </div>
 
       </div>

@@ -13,11 +13,12 @@ class Category_model extends Model
 
     public function findAllCatForSelect(){
 
-      $this->findAll();
+      $arrAllCat = $this->findAll();
       $arrCatList = array();
+      $arrCatList[] = '--';
       // var_dump($this->findAll());
-      foreach ($this->findAll() as $key => $value) {
-        
+      foreach ($arrAllCat as $arrDetCat) {
+        $arrCatList[$arrDetCat['cat_id']] = $arrDetCat['cat_name'];
       }
       return $arrCatList;
     }

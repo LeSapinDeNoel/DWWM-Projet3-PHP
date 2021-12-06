@@ -64,12 +64,14 @@ class Critic extends BaseController
 			$options = $objCatModel->findAllCatForSelect();
 
 			// Création du formulaire_search
-			$this->_data['form_open']    			= form_open('critic/index');
+			$this->_data['form_open']    			= form_open('critic/critic_create');
 			$this->_data['label_title']				= form_label('Titre');
-			$this->_data['form_title'] 				= form_input('title', set_value('keyword'));
+			$this->_data['form_title'] 				= form_input('title');
 			$this->_data['label_cat']					= form_label('Catégories');
-			$this->_data['form_cat'] 					= form_dropdown('cat', $options );
-			$this->_data['form_submit']    		= form_submit('envoyer', 'envoyer');
+			$this->_data['form_cat'] 					= form_dropdown('cat', $options, 'Catégories');
+			$this->_data['label_content']			=	form_label('Contenu');
+			$this->_data['form_content']			=	form_textarea('content');
+			$this->_data['form_submit']    		= form_submit('envoyer', 'envoyer', "class = 'button mb-5 mr-5'");
 			$this->_data['form_close']    		= form_close();
 
 
