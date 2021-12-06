@@ -66,5 +66,9 @@ class Critic_model extends Model
         return $this->findAll();
 
     }
+      //Fonction pour créer une nouvelle critique
+      // public function addCritic(){
+      //
+      // }
 
 }

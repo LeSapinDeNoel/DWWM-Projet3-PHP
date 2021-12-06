@@ -74,7 +74,37 @@ class Critic extends BaseController
 			$this->_data['form_submit']    		= form_submit('envoyer', 'envoyer', "class = 'button mb-5 mr-5'");
 			$this->_data['form_close']    		= form_close();
 
+			if($this->request->getMethod() == 'post') {
+                // Initialisation des règles et de la personnalisation des erreur.
+            $rules = [
+                'title' => [
+                    'rules'  => 'required|max_length[200]',
+                    'errors' => [
+                        'required' => 'Veuillez renseigner votre titre.',
+                        'max_length' => 'Votre titre est trop long :).',
+                    ],
+                ],
 
+								'cat' => [
+										'rules'  => 'required',
+										'errors' => [
+												'required' => 'Veuillez renseigner une catégorie.',
+										],
+								],
+								'content' => [
+										'rules'  => 'required|max_length[1200]',
+										'errors' => [
+											'required' => 'Veuillez renseigner votre contenu.',
+											'max_length' => 'Votre contenu est trop long :).',
+										],
+								],
+            ];
+            if($this->validate($rules)) {
+                //Il faudra insérer dans la BDD ici
+            }else {
+                $this->_data['validation'] = $this->validator;
+            }
+        };
 
 			//Données de la page
 			$this->_data['title']         = "Nouvelle Critique";

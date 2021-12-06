@@ -9,7 +9,11 @@
   </div>
 
   <div class="conteneur_critic">
-
+    {if isset($validation)}
+        <div class="alert alert-danger">
+            {$validation->listErrors()}
+        </div>
+    {/if}
     {$form_open}
       <div id="image_critic">
 
