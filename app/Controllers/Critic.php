@@ -9,6 +9,11 @@ class Critic extends BaseController
 {
 	public function home()
 	{
+		//Instancier l'objet
+			$objCriticModel       				= new Critic_model();
+		//Données de la page
+			$this->_data['title']         = "Accueil";
+			$this->_data['arrCritics']   	= $objCriticModel->findAllWithCat();
       $this->display('home.tpl');
 
 	}

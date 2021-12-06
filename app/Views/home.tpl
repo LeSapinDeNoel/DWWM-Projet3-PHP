@@ -1,5 +1,5 @@
 {extends file="layout/content.tpl"}
-
+{block name=title append}{$title}{/block}
 {block name="content"}
 
 <main>
@@ -37,47 +37,9 @@
 <section id="galerie">
 
   <div>
-
-    <article>
-      <img src="https://fakeimg.pl/320x220/?text=oui">
-      <h2>Article 1</h2>
-    </article>
-
-    <article>
-      <img src="https://fakeimg.pl/320x220/?text=oui">
-      <h2>Article 1</h2>
-    </article>
-
-    <article>
-      <img src="https://fakeimg.pl/320x220/?text=oui">
-      <h2>Article 1</h2>
-    </article>
-
-    <article>
-      <img src="https://fakeimg.pl/320x220/?text=oui">
-      <h2>Article 1</h2>
-    </article>
-
-    <article>
-      <img src="https://fakeimg.pl/320x220/?text=oui">
-      <h2>Article 1</h2>
-    </article>
-
-    <article>
-      <img src="https://fakeimg.pl/320x220/?text=oui">
-      <h2>Article 1</h2>
-    </article>
-
-    <article>
-      <img src="https://fakeimg.pl/320x220/?text=oui">
-      <h2>Article 1</h2>
-    </article>
-
-    <article>
-      <img src="https://fakeimg.pl/320x220/?text=oui">
-      <h2>Article 1</h2>
-    </article>
-
+    {foreach from=$arrCritics item=$objCritic}
+      {include file="critic_card.tpl"}
+    {/foreach}
   </div>
 
 </section>
