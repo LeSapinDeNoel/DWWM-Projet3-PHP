@@ -5,28 +5,35 @@ use CodeIgniter\Model;
 
 class User_model extends Model
 {
-    protected $table         = 'users';
-    protected $primaryKey    = 'user_id';
-    protected $allowedFields = ['user_name', 'user_firstname', 'user_mail', 'user_pwd', 'user_avatar', 'user_role'];
+    protected $table            = 'users';
+    protected $primaryKey       = 'user_id';
+   
+    protected $useAutoIncrement = true;
+    
+    protected $allowedFields    = ['user_name', 'user_firstname', 'user_mail', 'user_pwd', 'user_avatar', 'user_role'];
 
-    protected $returnType    = 'App\Entities\user_entity';
+    protected $returnType       = 'App\Entities\user_entity';
+    protected $beforeInsert     = ['beforeInsert'];
+    protected $beforeUpdate     = ['beforeUpdate'];
 
-    public function findAllWithCat(){
-        $this->join('category', 'cat_id = critic_cat');
-        //Recherche de formulaire
-        //TODO Faire la recherche avec des where
-        // if (count($this->request->getPost()) > 0){
-        //     $objCritic = new \App\Entities\Critic_entity();
-        //     $objCritic->keyword   = $this->request->getPost('keyword');
-        //     $objCritic->creator   = $this->request->getPost('creator');
-        //     $objCritic->date  	  = $this->request->getPost('date');
-        //     $objCritic->startdate = $this->request->getPost('startdate');
-        //     $objCritic->enddate   = $this->request->getPost('enddate');
-        //   }
-        return $this->findAll();
+    protected function beforeInsert(array $data) {
+        $this->_data = $this->passwordHash($this->data);
+
+        return $this->_data;
     }
 
-    // protected $createdField = 'cust_createdate';
-    // protected $updatedField = 'cust_updatedate';
-    // protected $deletedField = 'cust_deletedate';
+    protected function beforeUpdate(array $data) {
+        $this->_data = $this->passwordHash($this->data);
+
+        return $this->_data;
+    }
+
+    protected function passwordHash(array $data) {
+        if(!isset($this->_data['data']['password'])) {
+            $this->_data['data']['password'] = password_hash($this->_data['data']['password']. PASSWORD_DEFAULT);
+        }
+
+        return $this->_data;
+    }
+
 }
