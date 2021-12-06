@@ -74,11 +74,12 @@ class User extends BaseController
 					],
 				],
 				'email' => [
-					'rules'  => 'required|valid_email|max_length[100]',
+					'rules'  => 'required|valid_email|max_length[100]|is_unique[users.user_mail]',
 					'errors' => [
 						'required' => 'Veuillez renseigner votre email.',
 						'valid_email' => 'Veuillez renseigner un email valide.',
 						'max_length' => 'Votre email est trop long.',
+						'is_unique' => 'L\'email est déjà utilisé.',
 					],
 				],
 				'pwd' => [

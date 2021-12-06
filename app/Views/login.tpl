@@ -24,7 +24,12 @@
             {$form_submit}
           </div>
           <div>
-            <a href="{site_url('user/create_account')}" class="btn btn-light">Vous n'êtes pas inscrit ?</a>
+            <p>
+              <a href="#" class="btn btn-light">Mot de passe oublié ?</a>
+            </p>
+            <p>
+              <a href="{site_url('user/create_account')}" class="btn btn-light">Vous n'êtes pas inscrit ?</a>
+            </p>
           </div>
         </div>
 
