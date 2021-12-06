@@ -24,7 +24,6 @@ class Critic_model extends Model
             //echo "coucou";
             $objCritic = new \App\Entities\Critic_entity();
             $objCritic->keyword   = $request->getPost('keyword');
-
             $objCritic->creator   = $request->getPost('creator');
             $objCritic->date  	  = $request->getPost('date');
             $objCritic->startdate = $request->getPost('startdate');
@@ -47,7 +46,7 @@ class Critic_model extends Model
             if($request->getPost('date')){
               return $this->where('critic_createdate', $request->getPost('date'))->find();
             }
-
+            //on créer un tableau pour stocker les dates récupérer du formulaire
             $data = [];
 
             // //recherche par date de début
