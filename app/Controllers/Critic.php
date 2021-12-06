@@ -86,9 +86,10 @@ class Critic extends BaseController
 
 			// Création du formulaire de création de critic
 			$this->_data['form_open']    			= form_open('critic/critic_create');
-			$this->_data['form_img']					=	form_input(array('type'  -> 'file',
-																														'name' -> 'fileToUpload',
-																														'id'	 -> 'fileToUpload'));
+			$this->_data['form_img']					=	form_input(array('type'  => 'file',
+																														'name' => 'fileToUpload',
+																														'id'	 => 'fileToUpload'));
+
 			$this->_data['label_title']				= form_label('Titre');
 			$this->_data['form_title'] 				= form_input('title', set_value('title'));
 			$this->_data['label_cat']					= form_label('Catégories');
@@ -126,20 +127,27 @@ class Critic extends BaseController
             if($this->validate($rules)) {
                 //Il faudra insérer dans la BDD ici
 								//Ajout d'une critic dans le BDD on utilise la method insert
+
+
 								if($this->request->getVar('fileToUpload') == ""){
 									$imageDefault = "img-default.jpg";
 								}
 								else{
 									$imageDefault = $this->request->getVar('fileToUpload');
 								}
+
+
 								$arrData = [
+								'critic_img'			=> $imageDefault,
 								'critic_title'		=> $this->request->getVar('title'),
 								'critic_content'	=> $this->request->getVar('content'),
 								'critic_cat'			=> $this->request->getVar('cat')];
+								//var_dump($arrData);
+								$objCriticModel->insert($arrData);
 
-								$objCriticModel->insert([$arrData]);
+            }
 
-            }else {
+						else {
                 $this->_data['validation'] = $this->validator;
             }
         };
