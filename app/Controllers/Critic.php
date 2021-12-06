@@ -56,4 +56,12 @@ class Critic extends BaseController
 	{
 			$this->display('critic_details.tpl');
 	}
+	public function critic_details()
+	{
+			$this->display('critic_details.tpl');
+	}
+	public function critic_create()
+	{
+			$this->display('critic_create.tpl');
+	}
 }

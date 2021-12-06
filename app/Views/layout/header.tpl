@@ -47,7 +47,7 @@
     <section class="deroule cache" >
       <div class="d-flex p-2 profil">
 
-        <img src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg" alt="profil" height="70">
+        <img src="https://oasys.ch/wp-content/uploads/2019/03/photo-avatar-profil.png" alt="profil" height="70">
 
         <div class="d-flex flex-column p-2">
 
@@ -81,6 +81,8 @@
           <li> <a href="#"> <i class="fas fa-sign-out-alt"></i> Se déconnecter</a></li>
 
           <li> <a href="#"> <i class="fas fa-users"></i> Nous contacter</a></li>
+
+          <li> <a href="#"><i class="far fa-sticky-note"></i> Ecrire une critique</a></li>
         </ul>
       </nav>
     </div>
