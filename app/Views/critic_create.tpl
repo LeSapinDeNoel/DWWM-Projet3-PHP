@@ -24,8 +24,7 @@
           </div>
         </label>
 
-        <input type="File" name="fileToUpload" id="fileToUpload">
-
+        {$form_img}
       </div>
 
 
