@@ -100,12 +100,11 @@ class User extends BaseController
 
 			if($this->validate($rules)) {
 				//Il faudra insérer dans la BD
-				//Login user
-				echo "happy";
+				//Login user				
 			}else {
 				$this->_data['validation'] = $this->validator;
 			}
-		}
+		};
 
 		//Données de la page
 		$this->_data['title']	= "Créer un compte";

@@ -13,7 +13,6 @@
 	{if isset($validation)}
 		<div class="alert alert-danger">
 			{$validation->listErrors()}
-			{*$validation*}
 		</div>
 	{/if}
 
