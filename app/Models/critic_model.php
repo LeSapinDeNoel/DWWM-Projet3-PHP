@@ -68,8 +68,4 @@ class Critic_model extends Model
         return $this->findAll();
 
     }
-
-    // protected $createdField = 'cust_createdate';
-    // protected $updatedField = 'cust_updatedate';
-    // protected $deletedField = 'cust_deletedate';
 }

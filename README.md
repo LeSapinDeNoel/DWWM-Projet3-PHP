@@ -37,7 +37,7 @@ Aled : Page d'une critique / create_critic
 
 - Critic_class : fonction Hydratation - Getters / Setters
 
-- home (affichage des dernières critiques limité 8)
+- home (affichage des dernières critiques limité 8) 
   - find_critics
 - critics (affichage des dernières critiques 12)
   - find_critics
