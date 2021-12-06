@@ -247,6 +247,51 @@ form input[type="file"] {
 
 /* FIN IMAGES AVATAR */
 
+/* IMAGES CRITIC  */
+#image_critic{
+text-align: center;
+}
+/* mises en form de l'images */
+.profile-pic-critic {
+  /* border-radius: 50%; */
+  height: 250px;
+  width: 400px;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+  vertical-align: middle;
+  text-align: center;
+  color: transparent;
+  transition: all .3s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* images qui devient sombre au hover */
+.profile-pic-critic:hover {
+  background-color: rgba(0,0,0,.5);
+  z-index: 10000;
+  color: #fff;
+  transition: all .3s ease;
+  text-decoration: none;
+}
+
+/* texte changement d'images */
+.profile-pic-critic span {
+  display: inline-block;
+  padding-top:25%;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+/* Pour faire disparaitre le "choisir un fichier" */
+form input[type="file"] {
+      display: none;
+      cursor: pointer;
+}
+
+
+/* FIN IMAGES AVATAR */
 
 /* Style du formulaire ce style sert pour tout les formulaire du site*/
 
@@ -292,6 +337,10 @@ background: #db1500;
 background: #db1500;
 }
 
+.conteneur_critic{
+  margin: 0 auto;
+  width: 40%;
+}
 
 /* Fin Style du formulaire */
 

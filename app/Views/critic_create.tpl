@@ -8,16 +8,16 @@
     <hr>
   </div>
 
-  <div class="conteneur_profil">
+  <div class="conteneur_critic">
 
     <form action="#" method="post" enctype="multipart/form-data">
 
-      <div id="image_profil">
+      <div id="image_critic">
 
         <label for="fileToUpload">
-          <div class="profile-pic" style="background-image: url('https://fakeimg.pl/150x150/')">
+          <div class="profile-pic-critic" style="background-image: url('https://fakeimg.pl/150x150/')">
             <span></span>
-            <span>Modifier votre avatar</span>
+            <span>Modifier votre image</span>
           </div>
         </label>
 
@@ -25,45 +25,31 @@
 
       </div>
 
-      <div class="grid">
 
-        <div class="form-group a">
-          <label for="name">Nom</label>
-          <input id="name" type="text">
-        </div>
-
-        <div class="form-group b">
-          <label for="first-name">Prénom</label>
-          <input id="first-name" type="text">
-        </div>
-
-        <div class="form-group email-group">
-          <label for="email">Email</label>
-          <input id="email" type="text">
+        <div class="form-group ">
+          <label for="title">Titre</label>
+          <input id="title" type="text">
         </div>
 
         <div class="form-group">
-          <label for="role">Role</label>
-          <input id="role" type="text">
+          <label for="cat">Catégorie</label>
+          <input id="cat" type="text">
         </div>
 
         <div class="form-group">
-          <label for="pwd">Mots de passe</label>
-          <input id="pwd" type="text">
+          <label for="content">Content</label>
+          <textarea id="content" name="content"
+          rows="5" cols="50">
+          </textarea>
         </div>
 
-        <div class="form-group">
-          <label for="confirm_pwd">Confirmation du mots de passe</label>
-          <input id="confirm_pwd" type="text">
-        </div>
       </div>
 
       <div class="button-container">
-        <button class="button">Enregister les modifications</button>
+        <button class="button mb-5 mr-5">Créer ma Critique</button>
       </div>
     </form>
 
-  </div>
 
 </main>
 
