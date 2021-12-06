@@ -24,7 +24,7 @@ class User extends BaseController
 
 	public function create_account()
 	{
-		// Création du formulaire_connexion
+		// Création du formulaire_inscription
 		$this->_data['form_open']    		= form_open('user/create_account');
 
 		$this->_data['form_img'] 			= form_input(array('type'  => 'file',
@@ -44,53 +44,55 @@ class User extends BaseController
 
 		$this->_data['label_mdp']			= form_label('Mot de passe');
 		$this->_data['form_mdp'] 			= form_input(array('type'  => 'password',
+													'name' => 'pwd',
 													'id'    => 'pwd'));
 
 		$this->_data['label_confirm_pwd']	= form_label('Confirmation du mot de passe');
 		$this->_data['form_confirm_pwd'] 	= form_input(array('type'  => 'password',
+													'name' => 'confirm_pwd',
 													'id'    => 'confirm_pwd'));
 
 		$this->_data['form_submit']    		= form_submit('envoyer', 'Créer mon compte','class = "button"');
 		$this->_data['form_close']    		= form_close();
 
 		if($this->request->getMethod() == 'post') {
+
+				// Initialisation des règles et de la personnalisation des erreur.
 			$rules = [
-				'fileToUpload' => [
-					'rules'  => 'required',
-					'errors' => [
-						'required' => 'Il vous faut une image de profil.',
-					],
-				],
 				'name' => [
-					'rules'  => 'required',
+					'rules'  => 'required|max_length[25]',
 					'errors' => [
 						'required' => 'Veuillez renseigner votre nom.',
+						'max_length' => 'Votre nom est trop long :).',
 					],
 				],
 				'first_name' => [
-					'rules'  => 'required',
+					'rules'  => 'required|max_length[20]',
 					'errors' => [
 						'required' => 'Veuillez renseigner votre prénom.',
+						'max_length' => 'Votre prénom est trop long :).',
 					],
 				],
 				'email' => [
-					'rules'  => 'required|valid_email',
+					'rules'  => 'required|valid_email|max_length[100]',
 					'errors' => [
 						'required' => 'Veuillez renseigner votre email.',
 						'valid_email' => 'Veuillez renseigner un email valide.',
+						'max_length' => 'Votre email est trop long.',
 					],
 				],
 				'pwd' => [
-					'rules'  => 'required',
+					'rules'  => 'required|min_length[8]',
 					'errors' => [
 						'required' => 'Veuillez renseigner votre mot de passe.',
+						'min_length' => 'Votre mot de passe doit faire au moins 8 caractères',
 					],
 				],
 				'confirm_pwd' => [
 					'rules'  => 'required|matches[pwd]',
 					'errors' => [
 						'required' => 'Veuillez renseigner la confirmation de votre mot de passe.',
-						'matches[pwd]' => 'Le mot de passe et la confirmation doivent être identiques.',
+						'matches' => 'Le mot de passe et la confirmation doivent être identiques.',
 					],
 				]
 			];
