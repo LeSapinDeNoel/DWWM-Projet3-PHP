@@ -58,6 +58,10 @@
 
 		{$form_close}
 
+		<div>
+			<a href="{site_url('user/login')}" class="btn btn-light">Déjà inscrit ?</a>
+		</div>
+
 		{* <form action="#" method="post" enctype="multipart/form-data">
 
 				<div id="image_profil">

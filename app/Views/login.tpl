@@ -23,9 +23,13 @@
           <div class="button-container">
             {$form_submit}
           </div>
+          <div>
+            <a href="{site_url('user/create_account')}" class="btn btn-light">Vous n'êtes pas inscrit ?</a>
+          </div>
         </div>
 
     {$form_close}
+
 
   </div>
 
