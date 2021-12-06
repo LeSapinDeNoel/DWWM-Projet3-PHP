@@ -66,11 +66,11 @@ class Critic extends BaseController
 			// Création du formulaire_search
 			$this->_data['form_open']    			= form_open('critic/critic_create');
 			$this->_data['label_title']				= form_label('Titre');
-			$this->_data['form_title'] 				= form_input('title');
+			$this->_data['form_title'] 				= form_input('title', set_value('title'));
 			$this->_data['label_cat']					= form_label('Catégories');
-			$this->_data['form_cat'] 					= form_dropdown('cat', $options, 'Catégories');
+			$this->_data['form_cat'] 					= form_dropdown('cat', $options, set_value('cat'));
 			$this->_data['label_content']			=	form_label('Contenu');
-			$this->_data['form_content']			=	form_textarea('content');
+			$this->_data['form_content']			=	form_textarea('content', set_value('content'));
 			$this->_data['form_submit']    		= form_submit('envoyer', 'envoyer', "class = 'button mb-5 mr-5'");
 			$this->_data['form_close']    		= form_close();
 
@@ -86,9 +86,9 @@ class Critic extends BaseController
                 ],
 
 								'cat' => [
-										'rules'  => 'required',
+										'rules'  => 'greater_than[1]',
 										'errors' => [
-												'required' => 'Veuillez renseigner une catégorie.',
+												'greater_than' => 'Veuillez renseigner une catégorie valide.',
 										],
 								],
 								'content' => [
