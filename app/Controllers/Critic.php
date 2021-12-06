@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\Critic_model;
+use App\Models\Category_model;
 
 class Critic extends BaseController
 {
@@ -58,6 +59,20 @@ class Critic extends BaseController
 	}
 	public function critic_create()
 	{
+			$objCatModel	= new Category_model();
+
+			$options = $objCatModel->findAllCatForSelect();
+
+			// Création du formulaire_search
+			$this->_data['form_open']    			= form_open('critic/index');
+			$this->_data['label_title']				= form_label('Titre');
+			$this->_data['form_title'] 				= form_input('title', set_value('keyword'));
+			$this->_data['label_cat']					= form_label('Catégories');
+			$this->_data['form_cat'] 					= form_dropdown('cat', $options );
+			$this->_data['form_submit']    		= form_submit('envoyer', 'envoyer');
+			$this->_data['form_close']    		= form_close();
+
+
 
 			//Données de la page
 			$this->_data['title']         = "Nouvelle Critique";

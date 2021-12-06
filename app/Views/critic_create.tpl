@@ -10,8 +10,7 @@
 
   <div class="conteneur_critic">
 
-    <form action="#" method="post" enctype="multipart/form-data">
-
+    {$form_open}
       <div id="image_critic">
 
         <label for="fileToUpload">
@@ -27,28 +26,27 @@
 
 
         <div class="form-group ">
-          <label for="title">Titre</label>
-          <input id="title" type="text">
+          {$label_title}
+          {$form_title}
         </div>
 
         <div class="form-group">
-          <label for="cat">Catégorie</label>
-          <input id="cat" type="text">
+          {$label_cat}
+          {$form_cat}
         </div>
 
+
         <div class="form-group">
-          <label for="content">Content</label>
-          <textarea id="content" name="content"
-          rows="5" cols="50">
-          </textarea>
+          {*$label_content}
+          {$form_content*}
         </div>
 
       </div>
 
       <div class="button-container">
-        <button class="button mb-5 mr-5">Créer ma Critique</button>
+      {$form_submit}
       </div>
-    </form>
+    {$form_close}
 
 
 </main>

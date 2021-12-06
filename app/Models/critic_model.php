@@ -66,4 +66,5 @@ class Critic_model extends Model
         return $this->findAll();
 
     }
+
 }
