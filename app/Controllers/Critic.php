@@ -10,6 +10,7 @@ class Critic extends BaseController
 	public function home()
 	{
       $this->display('home.tpl');
+
 	}
 
 	public function index()
@@ -30,10 +31,10 @@ class Critic extends BaseController
 			$this->_data['form_close']    		= form_close();
 
 			//Instancier l'objet
-			$objCriticModel       			= new Critic_model();
+			$objCriticModel       				= new Critic_model();
 
 			//Données de la page
-			$this->_data['title']         	= "Les critiques";
+			$this->_data['title']         = "Les critiques";
 			$this->_data['arrCritics']   	= $objCriticModel->findAllWithCat();
 			$this->display('critic.tpl');
 	}

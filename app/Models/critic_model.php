@@ -21,7 +21,7 @@ class Critic_model extends Model
         $request  = service('request');
         //quand event déclancher entre dans if
         if ($request->getPost('envoyer')){
-            //echo "coucou";
+
             $objCritic = new \App\Entities\Critic_entity();
             $objCritic->keyword   = $request->getPost('keyword');
             $objCritic->creator   = $request->getPost('creator');
@@ -29,9 +29,7 @@ class Critic_model extends Model
             $objCritic->startdate = $request->getPost('startdate');
             $objCritic->enddate   = $request->getPost('enddate');
             //affichage de la recherche par titre
-            //method like permet de....
-
-            //recherche par name
+            //recherche par mots dans le titre
             if($request->getPost('keyword')){
               //recherche par mots clés
               return $this->like('critic_title', $objCritic->keyword)->find();
