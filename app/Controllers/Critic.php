@@ -149,6 +149,7 @@ class Critic extends BaseController
 								//var_dump($arrData);
 								$objCriticModel->insert($arrData);
 
+								//Modification de l'article
 								$arrData = [
 								'critic_img'			=> $imageDefault,
 								'critic_title'		=> $this->request->getVar('title'),

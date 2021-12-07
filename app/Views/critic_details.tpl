@@ -19,7 +19,7 @@
           <li class="m-3">Catégorie</li>
         </ul>
     </article>
-    
+
   </section>
 
 
