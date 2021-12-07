@@ -32,18 +32,19 @@ class Critic extends BaseController
 //PAGE QUI AFFICHE TOUTE LES CRITIQUES
 	public function index()
 	{
+			//instancier l'objet category
+			$objCatModel			= new Category_model();
+			$options 					= $objCatModel->findAllCatForSelect();
 			// Création du formulaire_search
 			$this->_data['form_open']    			= form_open('critic/index');
 			$this->_data['label_keyword']			= form_label('Mot clé');
 	    $this->_data['form_keyword'] 			= form_input('keyword', set_value('keyword'));
 			$this->_data['label_creator']			= form_label('Créateur');
 			$this->_data['form_creator'] 			= form_input('creator' , set_value('creator'));
-			$this->_data['label_date']				= form_label('Date exact');
+			$this->_data['label_cat']					= form_label('Catégories');
+			$this->_data['form_cat'] 					= form_dropdown('cat', $options, set_value('cat'));
+			$this->_data['label_date']					= form_label('Date exact');
 			$this->_data['form_date'] 				= form_input(array('name'=>'date','type'=>'date'), set_value('date'));
-			$this->_data['label_startdate']		= form_label('Date de début');
-			$this->_data['form_startdate'] 		= form_input(array('name'=>'startdate','type'=>'date'), set_value('startdate'));
-			$this->_data['label_enddate']			= form_label('Date de fin');
-			$this->_data['form_enddate']  		= form_input(array('name'=>'enddate','type'=>'date'), set_value('enddate') );
 			$this->_data['form_submit']    		= form_submit('envoyer', 'envoyer');
 			$this->_data['form_close']    		= form_close();
 
@@ -70,11 +71,6 @@ class Critic extends BaseController
 	}
 
 
-
-
-
-
-
 //PAGE DE CREATION DE CRITIC
 	public function critic_create()
 	{
@@ -89,7 +85,6 @@ class Critic extends BaseController
 			$this->_data['form_img']					=	form_input(array('type'  => 'file',
 																														'name' => 'fileToUpload',
 																														'id'	 => 'fileToUpload'));
-
 			$this->_data['label_title']				= form_label('Titre');
 			$this->_data['form_title'] 				= form_input('title', set_value('title'));
 			$this->_data['label_cat']					= form_label('Catégories');
@@ -124,6 +119,7 @@ class Critic extends BaseController
 										],
 								],
             ];
+
             if($this->validate($rules)) {
                 //Il faudra insérer dans la BDD ici
 								//Ajout d'une critic dans le BDD on utilise la method insert
@@ -141,11 +137,18 @@ class Critic extends BaseController
 								'critic_img'			=> $imageDefault,
 								'critic_title'		=> $this->request->getVar('title'),
 								'critic_content'	=> $this->request->getVar('content'),
-								'critic_cat'			=> $this->request->getVar('cat')];
+								'critic_cat'			=> $this->request->getVar('cat'),
+								//Fonction php qui affiche la date du jour
+								'critic_date'			=> date("Y-m-d"),
+								//A modifier plus tard => une fois que la session sera ok
+								'critic_creator'	=> 1,
+								'critic_status'		=> 1
+							];
+
 								//var_dump($arrData);
 								$objCriticModel->insert($arrData);
-
             }
+
 
 						else {
                 $this->_data['validation'] = $this->validator;
@@ -153,7 +156,7 @@ class Critic extends BaseController
         };
 
 			//Données de la page
-			$this->_data['title']         = "Nouvelle Critique";
+			$this->_data['title']  = "Nouvelle Critique";
 			$this->display('critic_create.tpl');
 	}
 }

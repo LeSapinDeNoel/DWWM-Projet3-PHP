@@ -18,16 +18,12 @@
         {$form_creator}
       </div>
       <div class="form-group a">
+        {$label_cat}
+        {$form_cat}
+      </div>
+      <div class="form-group a">
         {$label_date}
         {$form_date}
-      </div>
-      <div class="form-group a">
-        {$label_startdate}
-        {$form_startdate}
-      </div>
-      <div class="form-group a">
-        {$label_enddate}
-        {$form_enddate}
       </div>
     </div>
     {$form_submit}
