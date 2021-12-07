@@ -26,8 +26,8 @@ class Critic_model extends Model
             $objCritic->keyword   = $request->getPost('keyword');
             $objCritic->creator   = $request->getPost('creator');
             $objCritic->date  	  = $request->getPost('date');
-            $objCritic->startdate = $request->getPost('startdate');
-            $objCritic->enddate   = $request->getPost('enddate');
+            $objCritic->cat   	  = $request->getPost('cat');
+
             //affichage de la recherche par titre
             //recherche par mots dans le titre
             if($request->getPost('keyword')){
@@ -36,30 +36,18 @@ class Critic_model extends Model
             }
             if($request->getPost('creator')){
               //recherche par créateur
-              //$where = "user_name LIKE '${$request->getPost('creator')}%'";
               return $this->join('users', 'critics.critic_creator=users.user_id')->like('user_name', $objCritic->creator)->orLike('user_firstname', $objCritic->creator)->find();
-              //return $this->join('users', 'critics.critic_creator=users.user_id')->where($where)->find();
             }
+
             //recherche par date
             if($request->getPost('date')){
               return $this->where('critic_createdate', $request->getPost('date'))->find();
             }
-            //on créer un tableau pour stocker les dates récupérer du formulaire
-            $data = [];
 
-            // //recherche par date de début
-            if($request->getPost('startdate')){
-              $data['critic_createdate >='] =$request->getPost('startdate');
-              return $this->where('critic_createdate >=', $request->getPost('startdate'))->find();
+            if($request->getPost('cat')){
+              //recherche par Catégories
+              return $this->where('critic_cat', $request->getPost('cat'))->find();
             }
-
-            //recherche par date de fin
-            if($request->getPost('enddate')){
-              //var_dump($request->getPost('enddate'));
-              $data ['critic_createdate <='] = $request->getPost('enddate');
-              return $this->where($data)->find();
-            }
-            //faire une recherche par date de début & date de fin --> a terminer
 
           }
 

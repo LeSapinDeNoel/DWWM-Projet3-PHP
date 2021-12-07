@@ -35,6 +35,8 @@ class Critic extends BaseController
 			//instancier l'objet category
 			$objCatModel			= new Category_model();
 			$options 					= $objCatModel->findAllCatForSelect();
+
+
 			// Création du formulaire_search
 			$this->_data['form_open']    			= form_open('critic/index');
 			$this->_data['label_keyword']			= form_label('Mot clé');
