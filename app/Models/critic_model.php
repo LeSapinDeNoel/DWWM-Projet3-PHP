@@ -10,7 +10,7 @@ class Critic_model extends Model
     protected $allowedFields = ['critic_creator', 'critic_title', 'critic_content', 'critic_createdate', 'critic_img', 'critic_status', 'critic_cat'];
 
     protected $returnType    = 'App\Entities\critic_entity';
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
 
     public function findAllWithCat(){
 
