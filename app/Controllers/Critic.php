@@ -126,7 +126,6 @@ class Critic extends BaseController
                 //Il faudra insérer dans la BDD ici
 								//Ajout d'une critic dans le BDD on utilise la method insert
 
-
 								if($this->request->getVar('fileToUpload') == ""){
 									$imageDefault = "img-default.jpg";
 								}
@@ -149,6 +148,20 @@ class Critic extends BaseController
 
 								//var_dump($arrData);
 								$objCriticModel->insert($arrData);
+
+								$arrData = [
+								'critic_img'			=> $imageDefault,
+								'critic_title'		=> $this->request->getVar('title'),
+								'critic_content'	=> $this->request->getVar('content'),
+								'critic_cat'			=> $this->request->getVar('cat'),
+								//Fonction php qui affiche la date du jour
+								'critic_date'			=> date("Y-m-d"),
+								//A modifier plus tard => une fois que la session sera ok
+								'critic_creator'	=> 1,
+								'critic_status'		=> 1
+							];
+
+							$objCriticModel->update(critic_id, $arrData);
             }
 
 
