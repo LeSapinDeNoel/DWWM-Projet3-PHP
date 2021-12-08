@@ -69,7 +69,7 @@ class Critic extends BaseController
 	}
 	public function critic_details()
 	{
-		$objCriticModel       				= new Critic_model();
+			$objCriticModel       				= new Critic_model();
 			//Données de la page
 			$this->_data['arrCritics']   	= $objCriticModel->findAllWithCat();
 			// echo "<pre>";
