@@ -69,7 +69,16 @@ class Critic extends BaseController
 	}
 	public function critic_details()
 	{
+		$objCriticModel       				= new Critic_model();
+			//Données de la page
+			$this->_data['arrCritics']   	= $objCriticModel->findAllWithCat();
+			// echo "<pre>";
+			// var_dump($this->_data['arrCritics']);
+			// echo "</pre>";
+			//$this->_data['title']         = $this->_data['arrCritics']['title'];
+
 			$this->display('critic_details.tpl');
+
 	}
 
 

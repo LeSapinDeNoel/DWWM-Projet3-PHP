@@ -51,6 +51,8 @@ class Critic_model extends Model
 
           }
 
+          //$this->where('critic_id', 4)->find();
+
         return $this->findAll();
 
     }
