@@ -10,11 +10,11 @@
 
 	<div class="conteneur_profil">
 
-	{if isset($validation)}
+	{* {if isset($validation)}
 		<div class="alert alert-danger" role="alert">
 			{$validation->listErrors()}
 		</div>
-	{/if}
+	{/if} *}
 
 		{$form_open}
 
@@ -32,22 +32,57 @@
 				<div class="form-group a">
 					{$label_nom}
 					{$form_nom}
+
+					{if isset($validation)}
+						<span class="text-danger" role="alert">
+							{display_error($validation,'name')}
+						</span>
+					{/if}
+
 				</div>
 				<div class="form-group b">
 					{$label_prenom}
 					{$form_prenom}
+
+					{if isset($validation)}
+						<span class="text-danger" role="alert">
+							{display_error($validation,'first_name')}
+						</span>
+					{/if}
+
 				</div>
 				<div class="form-group email-group">
 					{$label_email}
 					{$form_email}
+
+					{if isset($validation)}
+						<span class="text-danger" role="alert">
+							{display_error($validation,'email')}
+						</span>
+					{/if}
+
 				</div>
 				<div class="form-group">
 					{$label_mdp}
 					{$form_mdp}
+
+					{if isset($validation)}
+						<span class="text-danger" role="alert">
+							{display_error($validation,'pwd')}
+						</span>
+					{/if}
+
 				</div>
 				<div class="form-group">
 					{$label_confirm_pwd}
 					{$form_confirm_pwd}
+
+					{if isset($validation)}
+						<span class="text-danger" role="alert">
+							{display_error($validation,'confirm_pwd')}
+						</span>
+					{/if}
+
 				</div>
 				<div class="button-container">
 					<p></p>
