@@ -10,10 +10,10 @@
 
 	<div class="conteneur_profil">
 
-	{* {if isset($validation)}
-		<div class="alert alert-danger" role="alert">
-			{$validation->listErrors()}
-		</div>
+	{* {if !empty(session()->getFlashdata('success'))}
+      <div class="alert alert-success" role="alert">
+        {session()->getFlashdata('success')}
+      </div>
 	{/if} *}
 
 		{$form_open}

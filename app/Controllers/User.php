@@ -128,10 +128,17 @@ class User extends BaseController
 					'user_role' => 3,
 				];
 
-				$user_model->save($newData);
-				$session = session();
-				$session->setFlashdata('success', 'Inscription réussie');
-				return redirect()->to('user/login');
+				// var_dump($newData);die();
+
+				$query = $user_model->insert($newData);
+				if (!$query) {
+					return redirect()->back()->with('fail','Quelque choses s\'est mal passé');
+				}else {
+					return redirect()->to('create_account')->with('success', 'Inscription réussie');
+				}
+				// $session = session();
+				// $session->setFlashdata('success', 'Inscription réussie');
+				// return redirect()->to('user/login');
 
 			}
 		};

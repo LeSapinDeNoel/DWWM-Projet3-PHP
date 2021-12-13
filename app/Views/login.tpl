@@ -9,9 +9,9 @@
     <h1>{$title}</h1>
     <hr>
 
-    {if isset($smarty.session.success)}
+    {if !empty(session()->getFlashdata('success'))}
       <div class="alert alert-success" role="alert">
-        {$smarty.session.success}
+        {session()->getFlashdata('success')}
       </div>
 	  {/if}
 
