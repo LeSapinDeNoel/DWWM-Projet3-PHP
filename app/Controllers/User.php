@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\User_model;
+use App\Libraries\Hash;
 
 
 class User extends BaseController
@@ -124,7 +125,7 @@ class User extends BaseController
 					'user_name' => $this->request->getVar('name'),
 					'user_firstname' => $this->request->getVar('first_name'),
 					'user_mail' => $this->request->getVar('email'),
-					'user_pwd' => $this->request->getVar('pwd'),
+					'user_pwd' => Hash::make($this->request->getVar('pwd')),
 					'user_role' => 3,
 				];
 
