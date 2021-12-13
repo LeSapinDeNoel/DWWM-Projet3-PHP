@@ -130,15 +130,7 @@ class User extends BaseController
 
 				// var_dump($newData);die();
 
-				$query = $user_model->insert($newData);
-				if (!$query) {
-					return redirect()->back()->with('fail','Quelque choses s\'est mal passé');
-				}else {
-					return redirect()->to('create_account')->with('success', 'Inscription réussie');
-				}
-				// $session = session();
-				// $session->setFlashdata('success', 'Inscription réussie');
-				// return redirect()->to('user/login');
+				$user_model->save($newData);
 
 			}
 		};
@@ -147,6 +139,7 @@ class User extends BaseController
 		$this->_data['title']	= "Créer un compte";
 
         $this->display('create_account.tpl');
+		
 	}
 
 	public function edit_profile()

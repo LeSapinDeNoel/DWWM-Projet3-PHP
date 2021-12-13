@@ -10,13 +10,14 @@
 
 	<div class="conteneur_profil">
 
-	{* {if !empty(session()->getFlashdata('success'))}
-      <div class="alert alert-success" role="alert">
-        {session()->getFlashdata('success')}
-      </div>
-	{/if} *}
+		{* {if isset($smarty.session)}
+			<div class="alert alert-success" role="alert">
+			{$smarty.session.success}
+			</div>
+		{/if} *}
 
 		{$form_open}
+		{csrf_field()}
 
 			<div id="image_profil">
 				<label for="fileToUpload">
@@ -93,7 +94,7 @@
 		{$form_close}
 
 		<div>
-			<a href="{site_url('user/login')}" class="btn btn-light">Déjà inscrit ?</a>
+			<a href="{base_url('user/login')}" class="btn btn-light">Déjà inscrit ?</a>
 		</div>
 
 		{* <form action="#" method="post" enctype="multipart/form-data">

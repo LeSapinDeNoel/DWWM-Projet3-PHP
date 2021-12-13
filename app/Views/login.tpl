@@ -9,11 +9,11 @@
     <h1>{$title}</h1>
     <hr>
 
-    {if !empty(session()->getFlashdata('success'))}
+    {* {if isset($smarty.session)}
       <div class="alert alert-success" role="alert">
-        {session()->getFlashdata('success')}
+        {$smarty.session.success}
       </div>
-	  {/if}
+	  {/if} *}
 
     {$form_open}
 
@@ -34,7 +34,7 @@
               <a href="#" class="btn btn-light">Mot de passe oublié ?</a>
             </p>
             <p>
-              <a href="{site_url('user/create_account')}" class="btn btn-light">Vous n'êtes pas inscrit ?</a>
+              <a href="{base_url('user/create_account')}" class="btn btn-light">Vous n'êtes pas inscrit ?</a>
             </p>
           </div>
         </div>
