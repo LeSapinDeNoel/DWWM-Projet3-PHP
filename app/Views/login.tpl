@@ -15,7 +15,7 @@
 
         <div id="formulaire_login">
 
-          {if isset($validation, 'email')}
+          {* {if isset($validation, 'email')}
             <div class="alert alert-danger" role="alert">
               {display_error($validation,'email')}
             </div>
@@ -25,16 +25,26 @@
             <div class="alert alert-danger" role="alert">
               {display_error($validation,'pwd')}
             </div>
-          {/if}
+          {/if} *}
           
           <div class="form-group a">
             {$label_email}
             {$form_email}
+            {if isset($validation)}
+              <span class="text-danger" role="alert">
+                {display_error($validation,'email')}
+              </span>
+					  {/if}
           </div>
 
           <div class="form-group a">
             {$label_mdp}
-            {$form_mdp}            
+            {$form_mdp}
+            {if isset($validation)}
+              <span class="text-danger" role="alert">
+                {display_error($validation,'pwd')}
+              </span>
+					  {/if}
           </div>
 
           <div class="button-container">
