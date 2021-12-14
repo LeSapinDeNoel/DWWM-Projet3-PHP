@@ -9,11 +9,11 @@
     <h1>{$title}</h1>
     <hr>
 
-    {* {if isset($smarty.session)}
+    {if isset($smarty.session.success)}
       <div class="alert alert-success" role="alert">
         {$smarty.session.success}
       </div>
-	  {/if} *}
+	  {/if}
 
     {$form_open}
 

@@ -10,12 +10,6 @@
 
 	<div class="conteneur_profil">
 
-		{* {if isset($smarty.session)}
-			<div class="alert alert-success" role="alert">
-			{$smarty.session.success}
-			</div>
-		{/if} *}
-
 		{$form_open}
 		{csrf_field()}
 
