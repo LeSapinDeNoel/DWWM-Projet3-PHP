@@ -12,7 +12,7 @@ class User extends BaseController
 	public function login()
 	{
 		// Création du formulaire_connexion
-		$this->_data['form_open']    		= form_open('user/login');
+		$this->_data['form_open']    		= form_open('user/check');
 
 		$this->_data['label_email']			= form_label('Email');
 		$this->_data['form_email'] 			= form_input(array('type'  => 'email',
@@ -27,42 +27,40 @@ class User extends BaseController
 		$this->_data['form_submit']    		= form_submit('envoyer', 'Se connecter','class = "button"');
 		$this->_data['form_close']    		= form_close();
 
-		if($this->request->getMethod() == 'post') {
-
-				// Initialisation des règles et de la personnalisation des erreur.
-			$rulesLogin = [
-				'email' => [
-					'rules'  => 'required|valid_email|is_not_unique[users.user_mail]',
-					'errors' => [
-						'required' => 'Veuillez renseigner des identifiants valides.R',
-						'valid_email' => 'Veuillez renseigner des identifiants valides.V',
-						'is_not_unique' => 'Vous n\'êtes pas inscrit.',
-					],
-				],
-				'pwd' => [
-					'rules'  => 'required|matches[users.user_pwd]',
-					'errors' => [
-						'required' => 'Veuillez renseigner des identifiants valides.RM',
-						'matches' => 'Veuillez renseigner des identifiants valides.VM',
-					],
-				]
-			];
-
-			if(!$this->validate($rulesLogin)) {
-
-				$this->_data['validation'] = $this->validator;
-
-			}else {
-
-					echo "YES";
-
-			}
-		};
-
 		//Données de la page
 		$this->_data['title']	= "Se connecter";
 
         $this->display('login.tpl');
+	}
+
+	public function check()
+	{
+			// Initialisation des règles et de la personnalisation des erreur.
+		$rulesLogin = [
+			'email' => [
+				'rules'  => 'required|valid_email|is_not_unique[users.user_mail]',
+				'errors' => [
+					'required' => 'Veuillez renseigner votre email',
+					'valid_email' => 'Veuillez renseigner des identifiants valides.',
+					'is_not_unique' => 'Vous n\'êtes pas inscrit.'
+				],
+			],
+			'pwd' => [
+				'rules'  => 'required',
+				'errors' => [
+					'required' => 'Veuillez renseigner votre mot de passe.'
+				]
+			]
+		];
+
+		if(!$this->validate($rulesLogin)) {
+
+			$this->_data['validation'] = $this->validator;
+			return $this->display('login.tpl');
+
+		}else {
+				echo "YES";
+		}
 	}
 
 	public function create_account()

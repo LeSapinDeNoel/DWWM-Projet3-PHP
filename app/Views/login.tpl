@@ -11,6 +11,7 @@
 
 
     {$form_open}
+    {csrf_field()}
 
         <div id="formulaire_login">
 
