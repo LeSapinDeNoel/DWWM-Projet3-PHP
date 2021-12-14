@@ -15,13 +15,49 @@ class User extends BaseController
 		$this->_data['form_open']    		= form_open('user/login');
 
 		$this->_data['label_email']			= form_label('Email');
-		$this->_data['form_email'] 			= form_input('email');
+		$this->_data['form_email'] 			= form_input(array('type'  => 'email',
+															'name' => 'email',
+															'id'    => 'email'),set_value('email'));
 
 		$this->_data['label_mdp']			= form_label('Mot de passe');
-		$this->_data['form_mdp'] 			= form_input('pwd');
-		
+		$this->_data['form_mdp'] 			= form_input(array('type'  => 'password',
+															'name' => 'pwd',
+															'id'    => 'pwd'));
+
 		$this->_data['form_submit']    		= form_submit('envoyer', 'Se connecter','class = "button"');
 		$this->_data['form_close']    		= form_close();
+
+		if($this->request->getMethod() == 'post') {
+
+				// Initialisation des règles et de la personnalisation des erreur.
+			$rulesLogin = [
+				'email' => [
+					'rules'  => 'required|valid_email|is_not_unique[users.user_mail]',
+					'errors' => [
+						'required' => 'Veuillez renseigner des identifiants valides.R',
+						'valid_email' => 'Veuillez renseigner des identifiants valides.V',
+						'is_not_unique' => 'Vous n\'êtes pas inscrit.',
+					],
+				],
+				'pwd' => [
+					'rules'  => 'required|matches[users.user_pwd]',
+					'errors' => [
+						'required' => 'Veuillez renseigner des identifiants valides.RM',
+						'matches' => 'Veuillez renseigner des identifiants valides.VM',
+					],
+				]
+			];
+
+			if(!$this->validate($rulesLogin)) {
+
+				$this->_data['validation'] = $this->validator;
+
+			}else {
+
+					echo "YES";
+
+			}
+		};
 
 		//Données de la page
 		$this->_data['title']	= "Se connecter";
@@ -45,7 +81,7 @@ class User extends BaseController
 		$this->_data['form_prenom'] 		= form_input('first_name', set_value('first_name'));
 
 		$this->_data['label_email']			= form_label('Email');
-		$this->_data['form_email'] 			= form_input(array('type'  => 'text',
+		$this->_data['form_email'] 			= form_input(array('type'  => 'email',
 													'name' => 'email',
 													'id'    => 'email'),set_value('email'));
 
