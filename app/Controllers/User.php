@@ -30,7 +30,7 @@ class User extends BaseController
 		if($this->request->getMethod() == 'post') {
 			
 			// Initialisation des règles et de la personnalisation des erreur.
-			$rulesLogin = [
+			$arrRulesLogin = [
 				'email' => [
 					'rules'  => 'required|valid_email|is_not_unique[users.user_mail]',
 					'errors' => [
@@ -47,12 +47,20 @@ class User extends BaseController
 				]
 			];
 	
-			if(!$this->validate($rulesLogin)) {
+			if(!$this->validate($rarrRulesLogin)) {
 	
 				$this->_data['validation'] = $this->validator;
 	
 			}else {
-					echo "YES";
+
+					// On récupère les valeurs du formulaire
+				$strEmail = $this->request->getVar('email');
+				$strPwd = $this->request->getVar('pwd');
+
+					// On instancie l'objet
+				$objUser_model = new User_model();
+
+				$strUserInfo = $objUser_model->where('user_email', $strEmail)->first();
 			}
 		}
 
@@ -98,7 +106,7 @@ class User extends BaseController
 		if($this->request->getMethod() == 'post') {
 
 				// Initialisation des règles et de la personnalisation des erreur.
-			$rules = [
+			$arrRules = [
 				'name' => [
 					'rules'  => 'required|max_length[25]',
 					'errors' => [
@@ -138,26 +146,26 @@ class User extends BaseController
 				]
 			];
 
-			if(!$this->validate($rules)) {
+			if(!$this->validate($arrRules)) {
 
 				$this->_data['validation'] = $this->validator;
 
 			}else {
 
 					// On instancie l'objet
-				$user_model = new User_model();
+				$objUser_model = new User_model();
 				
 				// On prend les informations à sauvegarder
 					//Image par défault si aucune ajoutée
 
 				if($this->request->getVar('fileToUpload') == ""){
-					$AvatarDefault = "avatarDefault.jpg";
+					$strAvatarDefault = "avatarDefault.jpg";
 				}else {
-					$AvatarDefault = $this->request->getVar('fileToUpload');
+					$strAvatarDefault = $this->request->getVar('fileToUpload');
 				}
 
 				$newData = [
-					'user_avatar' => $AvatarDefault,
+					'user_avatar' => $strAvatarDefault,
 					'user_name' => $this->request->getVar('name'),
 					'user_firstname' => $this->request->getVar('first_name'),
 					'user_mail' => $this->request->getVar('email'),
@@ -167,7 +175,7 @@ class User extends BaseController
 
 				// var_dump($newData);die();
 
-				$user_model->save($newData);
+				$objUser_model->save($newData);
 				$session = session();
 				$session->setFlashdata('success', 'Inscription réussie');
 				return redirect()->to('User/login');
