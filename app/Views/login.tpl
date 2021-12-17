@@ -9,6 +9,11 @@
     <h1>{$title}</h1>
     <hr>
 
+    {if isset($smarty.session)}
+      <div class="alert alert-danger" role="alert">
+        {$smarty.session.fail}
+      </div>
+    {/if}
 
     {$form_open}
     {csrf_field()}

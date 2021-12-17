@@ -47,7 +47,7 @@ class User extends BaseController
 				]
 			];
 	
-			if(!$this->validate($rarrRulesLogin)) {
+			if(!$this->validate($arrRulesLogin)) {
 	
 				$this->_data['validation'] = $this->validator;
 	
@@ -60,7 +60,13 @@ class User extends BaseController
 					// On instancie l'objet
 				$objUser_model = new User_model();
 
-				$strUserInfo = $objUser_model->where('user_email', $strEmail)->first();
+				$UserInfo = $objUser_model->where('user_mail', $strEmail)->first();
+				$check_pwd = Hash::check($strPwd, $UserInfo['user_pwd']);
+
+				if(!$check_pwd) {
+					session()->setFlashdata('fail', 'Mot de passe incorrect');
+					return redirect()->to('/login')->withInput();
+				}
 			}
 		}
 
