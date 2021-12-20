@@ -67,11 +67,10 @@ class User extends BaseController
 					session()->setFlashdata('fail', 'Mot de passe incorrect');
 					return redirect()->to('user/login')->withInput();
 				}else {
-					// $intUserId = $arrUserInfo['user_id'];
-					// session()->set('loggedUser', $intUserId);
-					// return redirect()->to('user/edit_profile');
-
-					echo "Yes !"; die();
+					$intUserId = $arrUserInfo['user_id'];
+					session()->set('loggedUser', $intUserId);
+					session()->setFlashdata('success', 'Connexion réussi !');
+					return redirect()->to('user/edit_profile');
 				}
 			}
 		}
@@ -190,7 +189,7 @@ class User extends BaseController
 				$objUser_model->save($newData);
 				$session = session();
 				$session->setFlashdata('success', 'Inscription réussie');
-				return redirect()->to('User/login');
+				return redirect()->to('user/login');
 
 			}
 		};
@@ -204,11 +203,27 @@ class User extends BaseController
 
 	public function edit_profile()
 	{
+		echo "yes !<pre>";
+		var_dump(session());
+		echo "</pre>";die();
+		//Données de la page
+		$this->_data['title']	= "Mon profil";
+
         $this->display('edit_profile.tpl');
 	}
 
 	public function admin_user()
 	{
         $this->display('admin_user.tpl');
+	}
+
+	public function logout()
+	{
+        session()->destroy();
+		echo "yes !<pre>";
+		var_dump(session());
+		echo "</pre>";die();
+
+		return redirect()->to('user/login');
 	}
 }

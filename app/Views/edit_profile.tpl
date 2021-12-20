@@ -4,7 +4,7 @@
 
 <main>
   <div class="justify-content-center">
-    <h1>Mon profil</h1>
+    <h1>{$title}</h1>
     <hr>
   </div>
 
