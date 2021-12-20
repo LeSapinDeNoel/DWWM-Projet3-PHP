@@ -9,11 +9,11 @@
     <h1>{$title}</h1>
     <hr>
 
-    {if isset($smarty.session)}
+    {* {if isset($session)}
       <div class="alert alert-danger" role="alert">
-        {$smarty.session.fail}
+        {$session->getFlashdata('fail')}
       </div>
-    {/if}
+    {/if} *}
 
     {$form_open}
     {csrf_field()}
@@ -77,6 +77,13 @@
 			{$smarty.post|var_dump}
 		</pre>
 	{/if}
+
+  {* {if isset($session)}
+    <pre>
+      {$session|var_dump}
+      {* var_dump(session()->getFlashdata()); *}
+    </pre>
+  {/if} *}
 
 </main>
 

@@ -64,12 +64,19 @@ class User extends BaseController
 				$check_pwd = Hash::check($strPwd, $arrUserInfo['user_pwd']);
 
 				if(!$check_pwd) {
-					session()->setFlashdata('fail', 'Mot de passe incorrect');
+					$session = session();
+					$session->setFlashdata('fail', 'Mot de passe incorrect');
+
+					// echo "yes !<pre>";
+					// var_dump(session()->get());
+					// echo "</pre>";die();
+					
 					return redirect()->to('user/login')->withInput();
 				}else {
 					$intUserId = $arrUserInfo['user_id'];
-					session()->set('loggedUser', $intUserId);
-					session()->setFlashdata('success', 'Connexion réussi !');
+					$session = session();
+					$session->set('loggedUser', $intUserId);
+					$session->setFlashdata('success', 'Connexion réussi !');
 					return redirect()->to('user/edit_profile');
 				}
 			}
@@ -204,8 +211,9 @@ class User extends BaseController
 	public function edit_profile()
 	{
 		echo "yes !<pre>";
-		var_dump(session());
+		var_dump(session()->get());
 		echo "</pre>";die();
+
 		//Données de la page
 		$this->_data['title']	= "Mon profil";
 
@@ -219,9 +227,11 @@ class User extends BaseController
 
 	public function logout()
 	{
-        session()->destroy();
+		$session = session();
+        $session->destroy();
+		
 		echo "yes !<pre>";
-		var_dump(session());
+		var_dump($session->get());
 		echo "</pre>";die();
 
 		return redirect()->to('user/login');
