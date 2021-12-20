@@ -60,12 +60,18 @@ class User extends BaseController
 					// On instancie l'objet
 				$objUser_model = new User_model();
 
-				$UserInfo = $objUser_model->where('user_mail', $strEmail)->first();
-				$check_pwd = Hash::check($strPwd, $UserInfo['user_pwd']);
+				$arrUserInfo = json_decode(json_encode($objUser_model->where('user_mail', $strEmail)->first()), true);
+				$check_pwd = Hash::check($strPwd, $arrUserInfo['user_pwd']);
 
 				if(!$check_pwd) {
 					session()->setFlashdata('fail', 'Mot de passe incorrect');
-					return redirect()->to('/login')->withInput();
+					return redirect()->to('user/login')->withInput();
+				}else {
+					// $intUserId = $arrUserInfo['user_id'];
+					// session()->set('loggedUser', $intUserId);
+					// return redirect()->to('user/edit_profile');
+
+					echo "Yes !"; die();
 				}
 			}
 		}
