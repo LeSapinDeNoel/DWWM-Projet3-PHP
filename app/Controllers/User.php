@@ -53,26 +53,32 @@ class User extends BaseController
 	
 			}else {
 
+				// On instancie l'objet
+			$objUser_model = new User_model();
+
 					// On récupère les valeurs du formulaire
 				$strEmail = $this->request->getVar('email');
 				$strPwd = $this->request->getVar('pwd');
 
-					// On instancie l'objet
-				$objUser_model = new User_model();
 
 				$arrUserInfo = json_decode(json_encode($objUser_model->where('user_mail', $strEmail)->first()), true);
+
 				$check_pwd = Hash::check($strPwd, $arrUserInfo['user_pwd']);
 
 				if(!$check_pwd) {
 					$session = session();
-					$session->setFlashdata('fail', 'Mot de passe incorrect');
+					
+					session()->setFlashdata('fail', 'Mot de passe incorrect');
 					
 					return redirect()->to('user/login')->withInput();
 				}else {
 					$intUserId = $arrUserInfo['user_id'];
+
 					$session = session();
+
 					$session->set('loggedUser', $intUserId);
 					$session->setFlashdata('success', 'Connexion réussi !');
+
 					return redirect()->to('user/edit_profile');
 				}
 			}
@@ -206,10 +212,6 @@ class User extends BaseController
 
 	public function edit_profile()
 	{
-		echo "yes !<pre>";
-		var_dump(session()->get());
-		echo "</pre>";die();
-
 		//Données de la page
 		$this->_data['title']	= "Mon profil";
 
@@ -223,13 +225,14 @@ class User extends BaseController
 
 	public function logout()
 	{
-		$session = session();
-        $session->destroy();
-		
-		echo "yes !<pre>";
-		var_dump($session->get());
-		echo "</pre>";die();
+		if(session()->has('loggedUser')){
+			$session = session();
+			$session->remove('loggedUser');
 
-		return redirect()->to('user/login');
+			$session->setFlashdata('deco', 'Vous êtes déconnectez.');
+			
+			return redirect()->to('user/login');
+		}
+
 	}
 }

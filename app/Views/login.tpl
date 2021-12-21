@@ -25,6 +25,11 @@
               {session('success')}
             </div>
           {/if}
+          {if isset(session('deco'))}
+            <div class="alert alert-info" role="alert">
+              {session('deco')}
+            </div>
+          {/if}
           
           <div class="form-group a">
             {$label_email}

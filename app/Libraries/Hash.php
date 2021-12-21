@@ -16,12 +16,6 @@ class Hash
         }else {
             return false;
         }
-
-        // if($strPwd == $db_pwd) {
-        //     return true;
-        // }else {
-        //     return false;
-        // }
     }
 }
 
