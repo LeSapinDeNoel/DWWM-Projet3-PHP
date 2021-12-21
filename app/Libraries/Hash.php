@@ -9,19 +9,19 @@ class Hash
         return password_hash($password, PASSWORD_BCRYPT);
     }
 
-    public static function check($form_pwd, $db_pwd)
+    public static function check($strPwd, $db_pwd)
     {
-        // if(password_verify($form_pwd, $db_pwd)) {
-        //     return true;
-        // }else {
-        //     return false;
-        // }
-
-        if($form_pwd == $db_pwd) {
+        if(password_verify($strPwd, $db_pwd)) {
             return true;
         }else {
             return false;
         }
+
+        // if($strPwd == $db_pwd) {
+        //     return true;
+        // }else {
+        //     return false;
+        // }
     }
 }
 

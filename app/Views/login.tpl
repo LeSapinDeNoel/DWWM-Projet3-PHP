@@ -9,28 +9,22 @@
     <h1>{$title}</h1>
     <hr>
 
-    {* {if isset($session)}
-      <div class="alert alert-danger" role="alert">
-        {$session->getFlashdata('fail')}
-      </div>
-    {/if} *}
 
     {$form_open}
     {csrf_field()}
 
         <div id="formulaire_login">
 
-          {* {if isset($validation, 'email')}
+          {if isset(session('fail'))}
             <div class="alert alert-danger" role="alert">
-              {display_error($validation,'email')}
+              {session('fail')}
             </div>
           {/if}
-
-          {if isset($validation, 'pwd')}
-            <div class="alert alert-danger" role="alert">
-              {display_error($validation,'pwd')}
+          {if isset(session('success'))}
+            <div class="alert alert-success" role="alert">
+              {session('success')}
             </div>
-          {/if} *}
+          {/if}
           
           <div class="form-group a">
             {$label_email}
@@ -78,12 +72,7 @@
 		</pre>
 	{/if}
 
-  {* {if isset($session)}
-    <pre>
-      {$session|var_dump}
-      {* var_dump(session()->getFlashdata()); *}
-    </pre>
-  {/if} *}
+  
 
 </main>
 

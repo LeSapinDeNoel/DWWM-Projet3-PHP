@@ -10,6 +10,12 @@
 
   <div class="conteneur_profil">
 
+    {if isset(session('success'))}
+      <div class="alert alert-success" role="alert">
+        {session('success')}
+      </div>
+    {/if}
+
     <form action="#" method="post" enctype="multipart/form-data">
 
       <div id="image_profil">
