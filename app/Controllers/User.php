@@ -72,15 +72,14 @@ class User extends BaseController
 					
 					return redirect()->to('user/login')->withInput();
 				}else {
-					$intUserId = $arrUserInfo['user_id'];
-
 					$session = session();
 
 					$strUserfullname = $arrUserInfo['user_firstname'] . " ". $arrUserInfo['user_name'];
 
 					$session->set([
-						'loggedUser' 	=> 	$intUserId,
+						'loggedUser' 	=> 	$arrUserInfo['user_id'],
 						'user' 			=> 	$strUserfullname,
+						'user_mail' 	=> 	$arrUserInfo['mail'],
 						'user_avatar' 	=> 	$arrUserInfo['user_avatar'],
 						'user_role' 	=> 	$arrUserInfo['user_role']
 					]);
