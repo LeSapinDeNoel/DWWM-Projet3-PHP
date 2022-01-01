@@ -77,11 +77,13 @@ class User extends BaseController
 					$strUserfullname = $arrUserInfo['user_firstname'] . " ". $arrUserInfo['user_name'];
 
 					$session->set([
-						'loggedUser' 	=> 	$arrUserInfo['user_id'],
-						'user' 			=> 	$strUserfullname,
-						'user_mail' 	=> 	$arrUserInfo['mail'],
-						'user_avatar' 	=> 	$arrUserInfo['user_avatar'],
-						'user_role' 	=> 	$arrUserInfo['user_role']
+						'loggedUser' 		=> 	$arrUserInfo['user_id'],
+						'user' 				=> 	$strUserfullname,
+						'user_name' 		=> 	$arrUserInfo['user_name'],
+						'user_firstname'	=> 	$arrUserInfo['user_firstname'],
+						'user_mail' 		=> 	$arrUserInfo['user_mail'],
+						'user_avatar' 		=> 	$arrUserInfo['user_avatar'],
+						'user_role' 		=> 	$arrUserInfo['user_role']
 					]);
 
 					$session->setFlashdata('success', 'Connexion réussi !');
@@ -161,7 +163,7 @@ class User extends BaseController
 					'rules'  => 'required|min_length[6]',
 					'errors' => [
 						'required' => 'Veuillez renseigner votre mot de passe.',
-						'min_length' => 'Votre mot de passe doit faire au moins 8 caractères',
+						'min_length' => 'Votre mot de passe doit faire au moins 6 caractères',
 					],
 				],
 				'confirm_pwd' => [
@@ -219,13 +221,128 @@ class User extends BaseController
 
 	public function edit_profile()
 	{
+
+		if(session()->get('loggedUser') == '') {
+			return redirect()->to('user/login');
+		}
+
+			// Création du formulaire_inscription
+		$this->_data['form_open']    		= form_open('user/edit_profile');
+
+		$this->_data['form_img'] 			= form_input(array('type'  => 'file',
+														 'name'  => 'fileToUpload',
+														 'id'    => 'fileToUpload',
+														 'value'    => session()->get('user_avatar')));
+
+		$this->_data['label_nom']			= form_label('Nom');
+		$this->_data['form_nom'] 			= form_input(array('type'  => 'text',
+														'name' => 'name',
+														'id'    => 'name',
+														'value'    => session()->get('user_name')));
+
+		$this->_data['label_prenom']		= form_label('Prénom');
+		$this->_data['form_prenom'] 		= form_input(array('type'  => 'text',
+														'name' => 'first_name',
+														'id'    => 'first_name',
+														'value'    => session()->get('user_firstname')));
+
+		$this->_data['label_mdp']			= form_label('Mot de passe');
+		$this->_data['form_mdp'] 			= form_input(array('type'  => 'password',
+													'name' => 'pwd',
+													'id'    => 'pwd'));
+
+		$this->_data['label_confirm_pwd']	= form_label('Confirmation du mot de passe');
+		$this->_data['form_confirm_pwd'] 	= form_input(array('type'  => 'password',
+													'name' => 'confirm_pwd',
+													'id'    => 'confirm_pwd'));
+
+		$this->_data['form_submit']    		= form_submit('envoyer', 'Modifier mon profil','class = "button"');
+		$this->_data['form_close']    		= form_close();
+
+		if($this->request->getMethod() == 'post') {
+
+				// Initialisation des règles et de la personnalisation des erreur.
+			$arrRules = [
+				'name' => [
+					'rules'  => 'required|max_length[25]',
+					'errors' => [
+						'required' => 'Veuillez renseigner votre nom.',
+						'max_length' => 'Votre nom est trop long :).',
+					],
+				],
+				'first_name' => [
+					'rules'  => 'required|max_length[20]',
+					'errors' => [
+						'required' => 'Veuillez renseigner votre prénom.',
+						'max_length' => 'Votre prénom est trop long :).',
+					],
+				],
+				'confirm_pwd' => [
+					'rules'  => 'matches[pwd]',
+					'errors' => [
+						'matches' => 'Le mot de passe et la confirmation doivent être identiques.',
+					],
+				]
+			];
+			if(!$this->validate($arrRules)) {
+
+				$this->_data['validation'] = $this->validator;
+
+			}else {
+
+					// On instancie l'objet
+				$objUser_model = new User_model();
+				
+				// On prend les informations à sauvegarder
+					//Image par défault si aucune ajoutée
+
+				if($this->request->getVar('fileToUpload') == ""){
+					$strAvatarDefault = "avatarDefault.jpg";
+				}else {
+					$strAvatarDefault = $this->request->getVar('fileToUpload');
+				}
+
+				if($this->request->getVar('pwd') == "") {
+	
+					$newData = [
+						'user_avatar' => $strAvatarDefault,
+						'user_name' => $this->request->getVar('name'),
+						'user_firstname' => $this->request->getVar('first_name'),
+					];
+
+				}else {
+	
+					$newData = [
+						'user_avatar' => $strAvatarDefault,
+						'user_name' => $this->request->getVar('name'),
+						'user_firstname' => $this->request->getVar('first_name'),
+						'user_pwd' => Hash::make($this->request->getVar('pwd')),
+					];
+				}
+
+				$objUser_model->set($newData);
+				$objUser_model->where('user_id', session()->get('loggedUser'));
+				$objUser_model->update();
+				
+
+				$strUserfullname = $this->request->getVar('first_name') . " ". $this->request->getVar('name');
+				session()->set([
+						'user' 				=> 	$strUserfullname,
+						'user_name' 		=> 	$this->request->getVar('name'),
+						'user_firstname'	=> 	$this->request->getVar('first_name'),
+				]);
+
+				session()->setFlashdata('success', 'Modification réussie');
+				return redirect()->to('user/edit_profile');
+
+			}
+		};
+
 		//Données de la page
 		$this->_data['title']	= "Mon profil";
 
-        $this->display('edit_profile.tpl');
-		echo "<pre>";
-		var_dump(session()->get());
-		echo "</pre>";
+		$this->display('edit_profile.tpl');
+
 	}
 
 	public function admin_user()

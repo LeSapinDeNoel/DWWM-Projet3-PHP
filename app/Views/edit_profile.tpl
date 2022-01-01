@@ -16,58 +16,83 @@
       </div>
     {/if}
 
-    <form action="#" method="post" enctype="multipart/form-data">
+    {$form_open}
+
+      {csrf_field()}
 
       <div id="image_profil">
-
         <label for="fileToUpload">
           <div class="profile-pic" style="background-image: url('https://fakeimg.pl/150x150/')">
             <span></span>
             <span>Modifier votre avatar</span>
           </div>
         </label>
-
-        <input type="File" name="fileToUpload" id="fileToUpload">
-
+        {$form_img}
       </div>
 
       <div class="grid">
 
         <div class="form-group a">
-          <label for="name">Nom</label>
-          <input id="name" type="text">
+          {$label_nom}
+          {$form_nom}
+
+          {if isset($validation)}
+            <span class="text-danger" role="alert">
+              {display_error($validation,'name')}
+            </span>
+          {/if}
+
         </div>
 
         <div class="form-group b">
-          <label for="first-name">Prénom</label>
-          <input id="first-name" type="text">
-        </div>
+          {$label_prenom}
+          {$form_prenom}
 
-        <div class="form-group email-group">
-          <label for="email">Email</label>
-          <input id="email" type="text">
-        </div>
+          {if isset($validation)}
+						<span class="text-danger" role="alert">
+							{display_error($validation,'first_name')}
+						</span>
+					{/if}
 
-        <div class="form-group">
-          <label for="role">Role</label>
-          <input id="role" type="text">
         </div>
 
         <div class="form-group">
-          <label for="pwd">Mots de passe</label>
-          <input id="pwd" type="text">
+          <h5>Votre rôle :</h5>
+          <p>
+            {if session('user_role') == 1}
+              Administrateur
+            {elseif session('user_role') == 2}
+              Modérateur
+            {else}
+              Utilisateur
+            {/if}
+          </p>
         </div>
 
         <div class="form-group">
-          <label for="confirm_pwd">Confirmation du mots de passe</label>
-          <input id="confirm_pwd" type="text">
+          {$label_mdp}
+          {$form_mdp}
+				</div>
+
+				<div class="form-group">
+					{$label_confirm_pwd}
+					{$form_confirm_pwd}
+
+					{if isset($validation)}
+						<span class="text-danger" role="alert">
+							{display_error($validation,'confirm_pwd')}
+						</span>
+					{/if}
+				</div>
+
+        <div class="button-container">
+          <p></p>
+          {$form_submit}
         </div>
+
       </div>
 
-      <div class="button-container">
-        <button class="button">Enregister les modifications</button>
-      </div>
-    </form>
+	      {$form_close}
 
   </div>
   
