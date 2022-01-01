@@ -46,7 +46,7 @@
     <!-- L'affichage profil si connecté -->
     <section class="deroule cache" >
 
-    {if isset(session('id'))}
+    {if isset(session('loggedUser'))}
 
       <div class="d-flex p-2 profil">
 
@@ -54,8 +54,16 @@
 
         <div class="d-flex flex-column p-2">
 
-          <p><a href="#">{*$smarty.session.user.user_name*}</a><br>
-            <span>Administrateur</span>
+          <p><a href="{base_url('user/edit_profile')}">{session('user')}</a><br>
+            <span>
+              {if session('user_role') == 1}
+                Administrateur
+              {elseif session('user_role') == 2}
+                Modérateur
+              {else}
+                Utilisateur
+              {/if}
+            </span>
           </p>
 
         </div>
@@ -73,22 +81,28 @@
         <ul>
 
           <li> <a href="#"> <i class="far fa-newspaper"></i> Les critiques</a></li>
+          
+          <li> <a href="{base_url('page/contact')}"> <i class="fas fa-users"></i> Nous contacter</a></li>
 
-          <li> <a href="#"> <i class="fas fa-user"></i> Se connecter</a></li>
-
-          <li> <a href="#"> <i class="fas fa-sign-in-alt"></i> S'inscrire</a></li>
-
-          <li> <a href="#"> <i class="far fa-sticky-note"></i> Mes critiques</a></li>
-
-          <li> <a href="#"> <i class="fas fa-toggle-on"></i> Modération</a></li>
-
-          <li> <a href="#"> <i class="fas fa-users"></i> Les utilisateurs</a></li>
-
-          <li> <a href="#"> <i class="fas fa-sign-out-alt"></i> Se déconnecter</a></li>
-
-          <li> <a href="#"> <i class="fas fa-users"></i> Nous contacter</a></li>
-
+          {if isset(session('loggedUser'))}
+          
+          <li> <a href="{base_url('critic/user_critic')}"> <i class="far fa-sticky-note"></i> Mes critiques</a></li>
+          
+          <li> <a href="{base_url('critic/critic_moderate')}"> <i class="fas fa-toggle-on"></i> Modération</a></li>
+          
+          <li> <a href="{base_url('user/admin_user')}"> <i class="fas fa-users"></i> Les utilisateurs</a></li>
+          
           <li> <a href="#"><i class="far fa-sticky-note"></i> Ecrire une critique</a></li>
+
+          <li> <a href="{base_url('user/logout')}"> <i class="fas fa-sign-out-alt"></i> Se déconnecter</a></li>
+          
+          {else}
+
+          <li> <a href="{base_url('user/login')}"> <i class="fas fa-user"></i> Se connecter</a></li>
+          
+          <li> <a href="{base_url('user/create_account')}"> <i class="fas fa-sign-in-alt"></i> S'inscrire</a></li>
+          
+          {/if}
 
         </ul>
       </nav>
