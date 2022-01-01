@@ -62,7 +62,7 @@ class User extends BaseController
 
 
 				$arrUserInfo = json_decode(json_encode($objUser_model->where('user_mail', $strEmail)->first()), true);
-
+			
 				$check_pwd = Hash::check($strPwd, $arrUserInfo['user_pwd']);
 
 				if(!$check_pwd) {
@@ -76,7 +76,15 @@ class User extends BaseController
 
 					$session = session();
 
-					$session->set('loggedUser', $intUserId);
+					$strUserfullname = $arrUserInfo['user_firstname'] . " ". $arrUserInfo['user_name'];
+
+					$session->set([
+						'loggedUser' 	=> 	$intUserId,
+						'user' 			=> 	$strUserfullname,
+						'user_avatar' 	=> 	$arrUserInfo['user_avatar'],
+						'user_role' 	=> 	$arrUserInfo['user_role']
+					]);
+
 					$session->setFlashdata('success', 'Connexion réussi !');
 
 					return redirect()->to('user/edit_profile');
@@ -216,6 +224,9 @@ class User extends BaseController
 		$this->_data['title']	= "Mon profil";
 
         $this->display('edit_profile.tpl');
+		echo "<pre>";
+		var_dump(session()->get());
+		echo "</pre>";
 	}
 
 	public function admin_user()
@@ -227,7 +238,7 @@ class User extends BaseController
 	{
 		if(session()->has('loggedUser')){
 			$session = session();
-			$session->remove('loggedUser');
+			$session->remove('loggedUser', 'user', 'user_avatar', 'user_role');
 
 			$session->setFlashdata('deco', 'Vous êtes déconnectez.');
 			
