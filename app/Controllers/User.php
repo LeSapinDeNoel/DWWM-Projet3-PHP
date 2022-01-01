@@ -240,7 +240,7 @@ class User extends BaseController
 			$session = session();
 			$session->remove('loggedUser', 'user', 'user_avatar', 'user_role');
 
-			$session->setFlashdata('deco', 'Vous êtes déconnectez.');
+			$session->setFlashdata('deco', 'Vous êtes déconnecté.');
 			
 			return redirect()->to('user/login');
 		}
