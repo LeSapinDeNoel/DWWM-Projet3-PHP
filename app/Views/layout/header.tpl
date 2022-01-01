@@ -45,6 +45,9 @@
     <hr class="hr_header" />
     <!-- L'affichage profil si connecté -->
     <section class="deroule cache" >
+
+    {if isset(session('id'))}
+
       <div class="d-flex p-2 profil">
 
         <img src="https://oasys.ch/wp-content/uploads/2019/03/photo-avatar-profil.png" alt="profil" height="70">
@@ -60,6 +63,9 @@
       </div>
 
       <hr class="hr_header" />
+
+    {/if}
+
 
       <!-- la navigation entière -->
 
