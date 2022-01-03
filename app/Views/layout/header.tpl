@@ -50,7 +50,7 @@
 
       <div class="d-flex p-2 profil">
 
-        <img src="https://oasys.ch/wp-content/uploads/2019/03/photo-avatar-profil.png" alt="profil" height="70">
+        <img src="{base_url("assets/images")}/{session('user_avatar')}" alt="profil" height="70">
 
         <div class="d-flex flex-column p-2">
 

@@ -22,7 +22,7 @@
 
       <div id="image_profil">
         <label for="fileToUpload">
-          <div class="profile-pic" style="background-image: url('https://fakeimg.pl/150x150/')">
+          <div class="profile-pic" style="background-image: url('{base_url("assets/images")}/{session('user_avatar')}')">
             <span></span>
             <span>Modifier votre avatar</span>
           </div>
