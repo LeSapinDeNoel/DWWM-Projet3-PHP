@@ -377,7 +377,7 @@ class User extends BaseController
 	{
 		if(session()->has('loggedUser')){
 			$session = session();
-			$session->remove('loggedUser', 'user', 'user_avatar', 'user_role');
+			$session->destroy();
 
 			$session->setFlashdata('deco', 'Vous êtes déconnecté.');
 			
