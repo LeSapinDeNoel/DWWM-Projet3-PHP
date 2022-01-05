@@ -346,8 +346,8 @@ class User extends BaseController
 				$strUserfullname = $this->request->getVar('first_name') . " ". $this->request->getVar('name');
 				session()->set([
 						'user' 				=> 	$strUserfullname,
-						'user_name' 		=> 	$newData['name'],
-						'user_firstname'	=> 	$newData['first_name'],
+						'user_name' 		=> 	$newData['user_name'],
+						'user_firstname'	=> 	$newData['user_firstname'],
 				]);
 
 				session()->setFlashdata('success', 'Modification réussie');
