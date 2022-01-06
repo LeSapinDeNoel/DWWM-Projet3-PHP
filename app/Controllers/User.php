@@ -332,8 +332,8 @@ class User extends BaseController
 					if($file->getName() == ""){
 						$strAvatarDefault = session()->get('user_avatar');
 					}else {
-						$strAvatarDefault = $file->getName();
-						$file->move('./assets/images');
+						$strAvatarDefault = 'avatar'. session()->get('user_name'). "." . $file->getExtension();
+						$file->move('./assets/images', 'avatar'. session()->get('user_name'). "." . $file->getExtension());
 					}
 
 				} else {
