@@ -29,6 +29,11 @@
         </label>
         {$form_img}
       </div>
+      {if isset($validation)}
+        <span class="text-danger" role="alert">
+          {display_error($validation,'fileToUpload')}
+        </span>
+      {/if}
 
       <div class="grid">
 

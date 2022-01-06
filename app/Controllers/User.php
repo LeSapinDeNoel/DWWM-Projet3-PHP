@@ -113,7 +113,7 @@ class User extends BaseController
 	public function create_account()
 	{
 		// Création du formulaire_inscription.
-		$this->_data['form_open']    		= form_open('user/create_account');
+		$this->_data['form_open']    		= form_open('user/create_account',array('enctype' => 'multipart/form-data'));
 
 		$this->_data['form_img'] 			= form_input(array('type'  => 'file',
 														 'name'  => 'fileToUpload',
@@ -243,7 +243,7 @@ class User extends BaseController
 		}
 
 			// Création du formulaire_inscription
-		$this->_data['form_open']    		= form_open('user/edit_profile');
+		$this->_data['form_open']    		= form_open('user/edit_profile',array('enctype' => 'multipart/form-data'));
 
 		$this->_data['form_img'] 			= form_input(array('type'  => 'file',
 														 'name'  => 'fileToUpload',
@@ -300,6 +300,22 @@ class User extends BaseController
 					],
 				]
 			];
+
+			$file = $this->request->getFile('fileToUpload');
+			
+			if ($file->getName() != "" || $file->isValid() && !$file->hasMoved()) {
+				$arrRules['fileToUpload'] = [
+					'rules' => 'is_image[fileToUpload]|max_size[fileToUpload, 200]|ext_in[fileToUpload,jpg]|max_dims[fileToUpload,500,500]',
+					'label' => 'The File',
+					'errors' => [
+						'is_image' => 'Vous devez envoyer une image.',
+						'max_size' => 'Votre image est trop volumineuse (200ko max).',
+						'ext_in' => 'Votre image doit être au format jpg.',
+						'max_dims' => 'Votre image doit être d\'une dimension maximale de 500px par 500px.'
+					],
+				];
+			}
+
 			if(!$this->validate($arrRules)) {
 
 					// permet d'afficher les erreurs.
@@ -310,11 +326,18 @@ class User extends BaseController
 					// On instancie l'objet.
 				$objUser_model = new User_model();
 				
-					//Image par défault si aucune n'est upload.
-				if($this->request->getVar('fileToUpload') == ""){
-					$strAvatarDefault = "avatarDefault.jpg";
-				}else {
-					$strAvatarDefault = $this->request->getVar('fileToUpload');
+					//Image par défault si aucune ajoutée
+				if($file->isValid() && !$file->hasMoved()) {
+
+					if($file->getName() == ""){
+						$strAvatarDefault = session()->get('user_avatar');
+					}else {
+						$strAvatarDefault = $file->getName();
+						$file->move('./assets/images');
+					}
+
+				} else {
+					$strAvatarDefault = session()->get('user_avatar');
 				}
 
 					// On vérifie si l'utilisateur souhaite modifier son mdp ou non.
@@ -348,6 +371,7 @@ class User extends BaseController
 						'user' 				=> 	$strUserfullname,
 						'user_name' 		=> 	$newData['user_name'],
 						'user_firstname'	=> 	$newData['user_firstname'],
+						'user_avatar'	=> 	$newData['user_avatar'],
 				]);
 
 				session()->setFlashdata('success', 'Modification réussie');
@@ -361,6 +385,7 @@ class User extends BaseController
 
 		$this->display('edit_profile.tpl');
 
+		var_dump($this->request->getFile('fileToUpload'));
 	}
 
 	public function admin_user()
