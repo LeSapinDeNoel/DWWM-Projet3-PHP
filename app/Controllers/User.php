@@ -200,13 +200,13 @@ class User extends BaseController
 					//Image par défault si aucune ajoutée
 
 				if($this->request->getVar('fileToUpload') == ""){
-					$strAvatarDefault = "avatarDefault.jpg";
+					$strAvatarName = "avatarDefault.jpg";
 				}else {
-					$strAvatarDefault = $this->request->getVar('fileToUpload');
+					$strAvatarName = $this->request->getVar('fileToUpload');
 				}
 
 				$newData = [
-					'user_avatar' => $strAvatarDefault,
+					'user_avatar' => $strAvatarName,
 					'user_name' => $this->request->getVar('name'),
 					'user_firstname' => $this->request->getVar('first_name'),
 					'user_mail' => $this->request->getVar('email'),
@@ -331,22 +331,25 @@ class User extends BaseController
 				if($file->isValid() && !$file->hasMoved()) {
 
 					if($file->getName() == ""){
-						$strAvatarDefault = session()->get('user_avatar');
+						$strAvatarName = session()->get('user_avatar');
 					}else {
 						
-						$strAvatarDefault = 'avatar'. session()->get('user_name') . session()->get('loggedUser') . "." . $file->getExtension();
-						$file->move('./assets/images', $strAvatarDefault);
+						$strAvatarName = 'avatar'. session()->get('user_name') . session()->get('loggedUser') . "." . $file->getExtension();
+						$image = \Config\Services::image()
+							->withFile($file)
+							->fit(150, 150, 'center')
+							->save('./assets/images/'. $strAvatarName);
 					}
 
 				} else {
-					$strAvatarDefault = session()->get('user_avatar');
+					$strAvatarName = session()->get('user_avatar');
 				}
 
 					// On vérifie si l'utilisateur souhaite modifier son mdp ou non.
 				if($this->request->getVar('pwd') == "") {
 	
 					$newData = [
-						'user_avatar' => $strAvatarDefault,
+						'user_avatar' => $strAvatarName,
 						'user_name' => $this->request->getVar('name'),
 						'user_firstname' => $this->request->getVar('first_name'),
 					];
@@ -354,7 +357,7 @@ class User extends BaseController
 				}else {
 	
 					$newData = [
-						'user_avatar' => $strAvatarDefault,
+						'user_avatar' => $strAvatarName,
 						'user_name' => $this->request->getVar('name'),
 						'user_firstname' => $this->request->getVar('first_name'),
 						'user_pwd' => Hash::make($this->request->getVar('pwd')),

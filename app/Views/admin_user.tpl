@@ -23,6 +23,15 @@
           </tr>
         </thead> 
             <tbody>
+              {foreach from=$arrCritics item=$objCritic}
+                <tr>
+                  <td>1</td>
+                  <td>Felbinger</td>
+                  <td>Quentin</td>
+                  <td>quentin.felbinger@gmail.com</td>
+                  <td>administrateur</td>
+                </tr>
+              {/foreach}
               <tr>
                 <td>1</td>
                 <td>Felbinger</td>
