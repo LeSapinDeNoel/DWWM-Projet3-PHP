@@ -12,7 +12,11 @@ class Critic extends BaseController
 
 
 
-//PAGE D'ACCUEIL
+	/**
+	 * Page d'accueil qui affiche les dernières critics
+	 * @return display
+	 * @author Julie Dienger
+	 */
 	public function home()
 	{
 		//Instancier l'objet
@@ -28,8 +32,11 @@ class Critic extends BaseController
 
 
 
-
-//PAGE QUI AFFICHE TOUTE LES CRITIQUES
+	/**
+	 * Page qui affiche toutes les critics
+	 * @return display
+	 * @author Julie Dienger
+	 */
 	public function index()
 	{
 			//instancier l'objet category
@@ -67,20 +74,33 @@ class Critic extends BaseController
 	{
       $this->display('user_critic.tpl');
 	}
+
+
+
+	/**
+	 * Page qui affiche le details d'une critics
+	 * @return display
+	 * @author Julie Dienger
+	 */
 	public function critic_details()
 	{
-			$objCriticModel       				= new Critic_model();
+			$objCriticModel       							 = new Critic_model();
 			//Données de la page
-			$this->_data['arrCritics']   	= $objCriticModel->findAllWithCat();
-
-			//$this->_data['title']         = $this->_data['arrCritics']['title'];
+			$this->_data['arrCriticsInfo']       = $objCriticModel->where('critic_id',$_GET['art'])->findAllWithCat();
+		//	echo "<pre>";var_dump($this->_data['arrCriticsInfo']);die();echo "</pre>";
+			$this->_data['objCriticsInfo']			 = $this->_data['arrCriticsInfo'][0];
 
 			$this->display('critic_details.tpl');
-
+			// echo "<pre>";var_dump($this->_data['objCriticsInfo']);echo "</pre>";
 	}
 
 
-//PAGE DE CREATION DE CRITIC
+
+	/**
+	 * Page qui affiche le details d'une critics
+	 * @return display
+	 * @author Julie Dienger
+	 */
 	public function critic_create()
 	{
 			//instancier l'objet category
@@ -90,10 +110,10 @@ class Critic extends BaseController
 			$objCriticModel  	= new Critic_model();
 
 			// Création du formulaire de création de critic
-			$this->_data['form_open']    			= form_open('critic/critic_create');
+			$this->_data['form_open']    			= form_open('critic/critic_create',array('enctype' => 'multipart/form-data'));
 			$this->_data['form_img']					=	form_input(array('type'  => 'file',
-																														'name' => 'fileToUpload',
-																														'id'	 => 'fileToUpload'));
+																													 'name'  => 'fileToUpload',
+																													 'id'    => 'fileToUpload',));
 			$this->_data['label_title']				= form_label('Titre');
 			$this->_data['form_title'] 				= form_input('title', set_value('title'));
 			$this->_data['label_cat']					= form_label('Catégories');
@@ -115,7 +135,7 @@ class Critic extends BaseController
                 ],
 
 								'cat' => [
-										'rules'  => 'greater_than[1]',
+										'rules'  => 'greater_than[0]',
 										'errors' => [
 												'greater_than' => 'Veuillez renseigner une catégorie valide.',
 										],
@@ -129,10 +149,23 @@ class Critic extends BaseController
 								],
             ];
 
+				$file = $this->request->getFile('fileToUpload');
+
+				if ($file->getName() != "" || $file->isValid() && !$file->hasMoved()) {
+					$arrRules['fileToUpload'] = [
+						'rules' => 'is_image[fileToUpload]|max_size[fileToUpload, 200]|ext_in[fileToUpload,jpg]|max_dims[fileToUpload,500,500]',
+						'label' => 'The File',
+						'errors' => [
+							'is_image' => 'Vous devez envoyer une image.',
+							'max_size' => 'Votre image est trop volumineuse (200ko max).',
+							'ext_in' => 'Votre image doit être au format jpg.',
+							'max_dims' => 'Votre image doit être d\'une dimension maximale de 500px par 500px.'
+						],
+					];
+				}
             if($this->validate($rules)) {
                 //Il faudra insérer dans la BDD ici
 								//Ajout d'une critic dans le BDD on utilise la method insert
-
 								if($this->request->getVar('fileToUpload') == ""){
 									$imageDefault = "img-default.jpg";
 								}
@@ -147,35 +180,36 @@ class Critic extends BaseController
 								'critic_content'	=> $this->request->getVar('content'),
 								'critic_cat'			=> $this->request->getVar('cat'),
 								//Fonction php qui affiche la date du jour
-								'critic_date'			=> date("Y-m-d"),
+								'critic_createdate'			=> date("Y-m-d"),
 								//A modifier plus tard => une fois que la session sera ok
 								'critic_creator'	=> 1,
 								'critic_status'		=> 1
 							];
-
-								//var_dump($arrData);
+							//echo "<pre>";var_dump($arrData);die;
 								$objCriticModel->insert($arrData);
 
-								//Modification de l'article
-								$arrData = [
-								'critic_img'			=> $imageDefault,
-								'critic_title'		=> $this->request->getVar('title'),
-								'critic_content'	=> $this->request->getVar('content'),
-								'critic_cat'			=> $this->request->getVar('cat'),
-								//Fonction php qui affiche la date du jour
-								'critic_date'			=> date("Y-m-d"),
-								//A modifier plus tard => une fois que la session sera ok
-								'critic_creator'	=> 1,
-								'critic_status'		=> 1
-							];
-
-							$objCriticModel->update(critic_id, $arrData);
+							// 	//Modification de l'article
+							// 	$arrData = [
+							// 	'critic_img'			=> $imageDefault,
+							// 	'critic_title'		=> $this->request->getVar('title'),
+							// 	'critic_content'	=> $this->request->getVar('content'),
+							// 	'critic_cat'			=> $this->request->getVar('cat'),
+							// 	//Fonction php qui affiche la date du jour
+							// 	'critic_date'			=> date("Y-m-d"),
+							// 	//A modifier plus tard => une fois que la session sera ok
+							// 	'critic_creator'	=> 1,
+							// 	'critic_status'		=> 1
+							// ];
+							//
+							// $objCriticModel->update('critic_id', $arrData);
+							// //return redirect()->to('critic/home');
             }
 
 
 						else {
                 $this->_data['validation'] = $this->validator;
             }
+
         };
 
 			//Données de la page
