@@ -333,8 +333,9 @@ class User extends BaseController
 					if($file->getName() == ""){
 						$strAvatarDefault = session()->get('user_avatar');
 					}else {
-						$strAvatarDefault = 'avatar'. session()->get('user_name'). "." . $file->getExtension();
-						$file->move('./assets/images', 'avatar'. session()->get('user_name'). "." . $file->getExtension());
+						
+						$strAvatarDefault = 'avatar'. session()->get('user_name') . session()->get('loggedUser') . "." . $file->getExtension();
+						$file->move('./assets/images', $strAvatarDefault);
 					}
 
 				} else {
@@ -386,7 +387,6 @@ class User extends BaseController
 
 		$this->display('edit_profile.tpl');
 
-		var_dump($this->request->getFile('fileToUpload'));
 	}
 
 	public function admin_user()
