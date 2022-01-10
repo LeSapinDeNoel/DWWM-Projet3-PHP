@@ -152,30 +152,52 @@ class Critic extends BaseController
 				$file = $this->request->getFile('fileToUpload');
 
 				if ($file->getName() != "" || $file->isValid() && !$file->hasMoved()) {
-					$arrRules['fileToUpload'] = [
-						'rules' => 'is_image[fileToUpload]|max_size[fileToUpload, 200]|ext_in[fileToUpload,jpg]|max_dims[fileToUpload,500,500]',
+					$rules['fileToUpload'] = [
+						'rules' => 'required|is_image[fileToUpload]|max_size[fileToUpload, 200]|ext_in[fileToUpload,jpg]|max_dims[fileToUpload,500,500]',
 						'label' => 'The File',
 						'errors' => [
-							'is_image' => 'Vous devez envoyer une image.',
-							'max_size' => 'Votre image est trop volumineuse (200ko max).',
-							'ext_in' => 'Votre image doit être au format jpg.',
-							'max_dims' => 'Votre image doit être d\'une dimension maximale de 500px par 500px.'
+							'required'	=> 'Vous devez importer une image',
+							'is_image' 	=> 'Vous devez envoyer une image.',
+							'max_size' 	=> 'Votre image est trop volumineuse (200ko max).',
+							'ext_in' 		=> 'Votre image doit être au format jpg.',
+							'max_dims' 	=> 'Votre image doit être d\'une dimension maximale de 500px par 500px.'
 						],
 					];
 				}
+
+
             if($this->validate($rules)) {
                 //Il faudra insérer dans la BDD ici
 								//Ajout d'une critic dans le BDD on utilise la method insert
-								if($this->request->getVar('fileToUpload') == ""){
-									$imageDefault = "img-default.jpg";
+
+								if($file->isValid() && !$file->hasMoved()) {
+
+									if($file->getName() == ""){
+										$banniereCritic = 'banniere_default.jpg';
+									}else {
+
+										$banniereCritic = 'premiere_banniere'. $file->getRandomName() . "." . $file->getExtension();
+											$image = \Config\Services::image()
+												->withFile($file)
+												->fit(320, 165, 'center')
+												->save('./assets/images/'. $banniereCritic);
+									}
+
+								} else {
+									$banniereCritic = 'banniere_default.jpg';
 								}
-								else{
-									$imageDefault = $this->request->getVar('fileToUpload');
-								}
+								// if($this->request->getVar('fileToUpload') == ""){
+								//
+								// 	$banniereCritic = 'premiere_banniere'. $file->getRandomName() . "." . $file->getExtension();
+								// 	$image = \Config\Services::image()
+								// 		->withFile($file)
+								// 		->fit(150, 150, 'center')
+								// 		->save('./assets/images/'. $banniereCritic);
+								// }
 
 
 								$arrData = [
-								'critic_img'			=> $imageDefault,
+								'critic_img'			=> $banniereCritic,
 								'critic_title'		=> $this->request->getVar('title'),
 								'critic_content'	=> $this->request->getVar('content'),
 								'critic_cat'			=> $this->request->getVar('cat'),
