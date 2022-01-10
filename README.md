@@ -1,6 +1,6 @@
 # DWWM-Projet3-PHP
 
-Aled : Page d'une critique / create_critic 
+Aled : Page d'une critique / create_critic
 # Listes des URL
 - Infos --> Page/info
 - Help --> Page
@@ -21,12 +21,12 @@ Aled : Page d'une critique / create_critic
 
 - User_class : fonction Hydratation - Getters / Setters
 
-- Login
+- Login --> ok
   - find_user / verif_user / maj_session
-- logout (session_destroy)
-- create_account
+- logout (session_destroy) --> ok
+- create_account--> ok
   - save_user / verif_mail
-- edit_profile
+- edit_profile--> ok
   - update_user / find_user / get_user
 - delete_user
   - drop_user
@@ -37,23 +37,23 @@ Aled : Page d'une critique / create_critic
 
 - Critic_class : fonction Hydratation - Getters / Setters
 
-- home (affichage des dernières critiques limité 8)
+- home (affichage des dernières critiques limité 8) --> ok
   - find_critics
-- critics (affichage des dernières critiques 12)
+- critics (affichage des dernières critiques 12) --> ok
   - find_critics
 - my_critics
   - delete_critic / edit_critic
 !FindCritic affiche visibilé!
-- create_critic
+- create_critic --> ok
   - add_critic
 - moderate_critic
   - find_critics / visibilty_critic
 
 ## Page controller
 
-- Help
+- Help --> ok
 - Contact (mail réponse auto)
-- Mentions légales
+- Mentions légales --> ok
 - Errors
 
 
