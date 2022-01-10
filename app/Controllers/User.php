@@ -67,9 +67,10 @@ class User extends BaseController
 				$strEmail = $this->request->getVar('email');
 				$strPwd = $this->request->getVar('pwd');
 
-				$arrUserInfo = json_decode(json_encode($objUser_model->where('user_mail', $strEmail)->first()), true);
+				$arrUserInfo = $objUser_model->where('user_mail', $strEmail)->get()->getResult();
+				$objUserInfo = $arrUserInfo[0];
 			
-				$boolCheckpwd = Hash::check($strPwd, $arrUserInfo['user_pwd']);
+				$boolCheckpwd = Hash::check($strPwd, $objUserInfo->user_pwd);
 
 				if(!$boolCheckpwd) {
 					$session = session();
@@ -80,16 +81,16 @@ class User extends BaseController
 				}else {
 					$session = session();
 
-					$strUserfullname = $arrUserInfo['user_firstname'] . " ". $arrUserInfo['user_name'];
+					$strUserfullname = $objUserInfo->user_firstname . " ". $objUserInfo->user_name;
 
 					$session->set([
-						'loggedUser' 		=> 	$arrUserInfo['user_id'],
+						'loggedUser' 		=> 	$objUserInfo->user_id,
 						'user' 				=> 	$strUserfullname,
-						'user_name' 		=> 	$arrUserInfo['user_name'],
-						'user_firstname'	=> 	$arrUserInfo['user_firstname'],
-						'user_mail' 		=> 	$arrUserInfo['user_mail'],
-						'user_avatar' 		=> 	$arrUserInfo['user_avatar'],
-						'user_role' 		=> 	$arrUserInfo['user_role']
+						'user_name' 		=> 	$objUserInfo->user_name,
+						'user_firstname'	=> 	$objUserInfo->user_firstname,
+						'user_mail' 		=> 	$objUserInfo->user_mail,
+						'user_avatar' 		=> 	$objUserInfo->user_avatar,
+						'user_role' 		=> 	$objUserInfo->user_role
 					]);
 
 					$session->setFlashdata('success', 'Vous êtes connecté.');
