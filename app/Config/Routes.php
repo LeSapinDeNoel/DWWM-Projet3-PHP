@@ -20,17 +20,7 @@ $routes->setDefaultNamespace('App\Controllers');
 $routes->setDefaultController('Critic');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
-$routes->set404Override(
-  function()
-  {
-
-    require_once(APPPATH.'ThirdParty/smarty/Smarty.class.php');
-      $smarty = new Smarty();
-      $smarty->setTemplateDir(APPPATH.'/Views/');
-      $this->_data['title']         = "ERROR 404";
-      $this->display('error_404.tpl');
-  }
-);
+$routes->set404Override();
 $routes->setAutoRoute(true);
 
 /*
