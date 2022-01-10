@@ -22,7 +22,9 @@
 
       <div id="image_profil">
         <label for="fileToUpload">
+        {nocache}
           <div class="profile-pic" style="background-image: url('{base_url("assets/images")}/{session('user_avatar')}')">
+        {/nocache}
             <span></span>
             <span>Modifier votre avatar</span>
           </div>

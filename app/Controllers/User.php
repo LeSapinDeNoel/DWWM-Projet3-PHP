@@ -239,9 +239,17 @@ class User extends BaseController
 	public function edit_profile()
 	{
 
+			// On vérifie que l'utilisateur est connecté
 		if(session()->get('loggedUser') == '') {
 			return redirect()->to('user/login');
 		}
+
+			// régler la durée de vie individuellement
+		$smarty->caching = 2;
+
+			// règle la durée de vie du cache a 15 minutes pour index.tpl
+		$smarty->cache_lifetime = 0;
+
 
 			// Création du formulaire_inscription
 		$this->_data['form_open']    		= form_open('user/edit_profile',array('enctype' => 'multipart/form-data'));
@@ -306,20 +314,20 @@ class User extends BaseController
 			
 			if ($file->getName() != "" || $file->isValid() && !$file->hasMoved()) {
 				$arrRules['fileToUpload'] = [
-					'rules' => 'is_image[fileToUpload]|max_size[fileToUpload, 200]|ext_in[fileToUpload,jpg]|max_dims[fileToUpload,500,500]',
+					'rules' => 'is_image[fileToUpload]|max_size[fileToUpload, 200]|ext_in[fileToUpload,jpg]|max_dims[fileToUpload,600,600]',
 					'label' => 'The File',
 					'errors' => [
 						'is_image' => 'Vous devez envoyer une image.',
 						'max_size' => 'Votre image est trop volumineuse (200ko max).',
 						'ext_in' => 'Votre image doit être au format jpg.',
-						'max_dims' => 'Votre image doit être d\'une dimension maximale de 500px par 500px.'
+						'max_dims' => 'Votre image doit être d\'une dimension maximale de 600px par 600px.'
 					],
 				];
 			}
-
+			
 			if(!$this->validate($arrRules)) {
-
-					// permet d'afficher les erreurs.
+				
+				// permet d'afficher les erreurs.
 				$this->_data['validation'] = $this->validator;
 
 			}else {
@@ -337,7 +345,7 @@ class User extends BaseController
 						$strAvatarName = 'avatar'. session()->get('user_name') . session()->get('loggedUser') . "." . $file->getExtension();
 						$image = \Config\Services::image()
 							->withFile($file)
-							->fit(150, 150, 'center')
+							->fit(300, 300, 'center')
 							->save('./assets/images/'. $strAvatarName);
 					}
 
@@ -376,7 +384,7 @@ class User extends BaseController
 						'user' 				=> 	$strUserfullname,
 						'user_name' 		=> 	$newData['user_name'],
 						'user_firstname'	=> 	$newData['user_firstname'],
-						'user_avatar'	=> 	$newData['user_avatar'],
+						'user_avatar'		=> 	$newData['user_avatar'],
 				]);
 
 				session()->setFlashdata('success', 'Modification réussie');
@@ -392,8 +400,47 @@ class User extends BaseController
 
 	}
 
+	/**
+	 * Permet de gérer les utilisateurs si l'on est connecté en tant qu'administrateur.
+	 * @return display
+	 * @author Quentin Felbinger
+	 */
 	public function admin_user()
 	{
+
+			// On vérifie que l'utilisateur est connecté
+		if(session()->get('loggedUser') == '') {
+			return redirect()->to('user/login');
+		}
+
+			// On instancie l'objet.
+		$objUser_model = new User_model();
+
+			//Données de la page.
+		$this->_data['arrUsersInfo']	= $objUser_model->findAll();
+
+			// Création du formulaire_connexion.
+		$this->_data['form_open']    		= form_open('user/admin_user');
+
+		$this->_data['label_cat']			= form_label('');
+
+		$this->_data['form_submit']    		= form_submit('envoyer', 'Mettre à jour','class = "button"');
+		$this->_data['form_close']    		= form_close();
+		
+		if($this->request->getMethod() == 'post') {
+			foreach($this->_data['arrUsersInfo'] as $objUserInfo) {
+				$newData = [
+					'user_role' => $this->request->getVar('role' . $objUserInfo->user_id)
+				];
+				$objUser_model->set($newData);
+				$objUser_model->where('user_id', $objUserInfo->user_id);
+				$objUser_model->update();
+			}
+			return redirect()->to('user/admin_user');
+		}
+
+		$this->_data['title']			= "Listes des utilisateurs";
+
         $this->display('admin_user.tpl');
 	}
 

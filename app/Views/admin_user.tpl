@@ -4,18 +4,18 @@
 <main>
 
   <div class="justify-content-center">
-    <h1>Listes des utilisateurs</h1>
+    <h1>{$title}</h1>
     <hr />
   </div>
 
   <div class="row" style="margin-right: 0; margin-left: 5px;">
     <div class="col-md-12">
 
+      {$form_open}
       {* <table class="table table-reflow"> *}
       <table id="admin" class=" table table-bordered table-hover dt-responsive" style="width:100%">
         <thead>
           <tr>
-            <th>#</th>
             <th>Nom</th>
             <th>Prenom</th>
             <th>E-mail</th>
@@ -23,62 +23,47 @@
           </tr>
         </thead> 
             <tbody>
-              {foreach from=$arrCritics item=$objCritic}
+
+              {foreach from=$arrUsersInfo item=$objUserInfo}
                 <tr>
-                  <td>1</td>
-                  <td>Felbinger</td>
-                  <td>Quentin</td>
-                  <td>quentin.felbinger@gmail.com</td>
-                  <td>administrateur</td>
+                  <td>{$objUserInfo->user_name}</td>
+                  <td>{$objUserInfo->user_firstname}</td>
+                  <td>{$objUserInfo->user_mail}</td>
+
+                  <td>
+                    {$label_cat}
+                    <select name="role{$objUserInfo->user_id}" id="role{$objUserInfo->user_id}">
+                        <option 
+                        {if $objUserInfo->user_role == 1}
+                          selected
+                        {/if} 
+                        value="1">Administrateur</option>
+                        <option 
+                        {if $objUserInfo->user_role == 2}
+                          selected
+                        {/if}
+                        value="2">Modérateur</option>
+                        <option 
+                        {if $objUserInfo->user_role == 3}
+                          selected
+                        {/if}
+                        value="3">Utilisateur</option>
+                    </select>
+                  </td>
+
                 </tr>
               {/foreach}
-              <tr>
-                <td>1</td>
-                <td>Felbinger</td>
-                <td>Quentin</td>
-                <td>quentin.felbinger@gmail.com</td>
-                <td>administrateur</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Dienger</td>
-                <td>Julie</td>
-                <td>julie.dienger@gmail.com</td>
-                <td>moderateur</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Antoine</td>
-                <td>Yoan</td>
-                <td>yoan.antoine@gmail.com</td>
-                <td>utilisateur</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Adam</td>
-                <td>Francis</td>
-                <td>francis.adam@gmail.com</td>
-                <td>utilisateur</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>Thomas</td>
-                <td>Meg</td>
-                <td>meg.thomas@gmail.com</td>
-                <td>moderateur</td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td>Dwight</td>
-                <td>Fairfield</td>
-                <td>fairfield.dwight@gmail.com</td>
-                <td>administrateur</td>
-              </tr>
+              
             </tbody>
           
       </table>
+      {$form_submit}
+      {$form_close}
+
     </div>
   </div>
+  
+  
 
 </main>
 
