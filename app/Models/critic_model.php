@@ -15,6 +15,8 @@ class Critic_model extends Model
     public function findAllWithCat(){
 
         $this->join('category', 'cat_id = critic_cat');
+        $this->join('users', 'critic_creator = user_id');
+
         //Recherche de formulaire
         //TODO Faire la recherche avec des where
         //var_dump(count($this->request->getPost('envoyer')));
@@ -50,8 +52,6 @@ class Critic_model extends Model
             }
 
           }
-
-          //$this->where('critic_id', 2)->find();
 
         return $this->findAll();
 
