@@ -117,7 +117,7 @@ CREATE TABLE `users` (
   `user_name` varchar(50) NOT NULL,
   `user_firstname` varchar(20) NOT NULL,
   `user_mail` varchar(100) NOT NULL,
-  `user_pwd` varchar(50) NOT NULL,
+  `user_pwd` varchar(250) NOT NULL,
   `user_avatar` varchar(100) NOT NULL,
   `user_role` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

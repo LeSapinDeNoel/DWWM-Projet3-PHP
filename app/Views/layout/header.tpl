@@ -25,7 +25,7 @@
 
     <div class="text-center d-flex flex-direction-row justify-content-around align-items-center">
 
-      <a href="#" class="mb-2 mt-4" title="Accueil">
+      <a href="{site_url()}" class="mb-2 mt-4" title="Accueil">
         <img src="{base_url("assets/images/logo.svg")}" alt="REC" height="45">
       </a>
       <a href="#" id="burger"> <i class="fas fa-bars"></i></a>
@@ -35,44 +35,75 @@
     <hr class="hr_header" />
     <!-- L'affichage profil si connecté -->
     <section class="deroule cache" >
+
+    {if isset(session('loggedUser'))}
+
       <div class="d-flex p-2 profil">
 
-        <img src="https://oasys.ch/wp-content/uploads/2019/03/photo-avatar-profil.png" alt="profil" height="70">
+        <img src="{base_url("assets/images")}/{session('user_avatar')}" alt="profil" height="70">
 
         <div class="d-flex flex-column p-2">
 
-          <p><a href="#">{*$smarty.session.user.user_name*}</a><br>
-            <span>Administrateur</span>
+          <p><a href="{base_url('user/edit_profile')}">{session('user')}</a><br>
+            <span>
+              {if session('user_role') == 1}
+                Administrateur
+              {elseif session('user_role') == 2}
+                Modérateur
+              {else}
+                Utilisateur
+              {/if}
+            </span>
           </p>
 
         </div>
 
       </div>
 
+    <nav>  
+      <ul>
+        <li> <a href="{base_url('user/logout')}"> <i class="fas fa-sign-out-alt"></i> Se déconnecter</a></li>
+      </ul>
+    </nav>
+
+    {else}
+      <nav>
+        <ul>
+          <li> <a href="{base_url('user/login')}"> <i class="fas fa-user"></i> Se connecter</a></li>            
+          <li> <a href="{base_url('user/create_account')}"> <i class="fas fa-sign-in-alt"></i> S'inscrire</a></li>
+        </ul>
+      </nav>
+    {/if}
+
       <hr class="hr_header" />
+
+
 
       <!-- la navigation entière -->
 
-      <nav class="">
+      <nav>
         <ul>
 
           <li> <a href="#"> <i class="far fa-newspaper"></i> Les critiques</a></li>
+          
 
-          <li> <a href="#"> <i class="fas fa-user"></i> Se connecter</a></li>
+          {if isset(session('loggedUser'))}
+          
+            <li> <a href="{base_url('critic/user_critic')}"> <i class="far fa-sticky-note"></i> Mes critiques</a></li>
+            
+            <li> <a href="#"><i class="far fa-sticky-note"></i> Ecrire une critique</a></li>
 
-          <li> <a href="#"> <i class="fas fa-sign-in-alt"></i> S'inscrire</a></li>
+            {if session('user_role') == 1}
+              <li> <a href="{base_url('user/admin_user')}"> <i class="fas fa-users"></i> Les utilisateurs</a></li>
+            {elseif session('user_role') == 2}
+              <li> <a href="{base_url('critic/critic_moderate')}"> <i class="fas fa-toggle-on"></i> Modération</a></li>
+            {/if}
 
-          <li> <a href="#"> <i class="far fa-sticky-note"></i> Mes critiques</a></li>
+          {/if}
+          
+          <li> <a href="{base_url('page/contact')}"> <i class="fas fa-users"></i> Nous contacter</a></li>
 
-          <li> <a href="#"> <i class="fas fa-toggle-on"></i> Modération</a></li>
 
-          <li> <a href="#"> <i class="fas fa-users"></i> Les utilisateurs</a></li>
-
-          <li> <a href="#"> <i class="fas fa-sign-out-alt"></i> Se déconnecter</a></li>
-
-          <li> <a href="#"> <i class="fas fa-users"></i> Nous contacter</a></li>
-
-          <li> <a href="#"><i class="far fa-sticky-note"></i> Ecrire une critique</a></li>
         </ul>
       </nav>
     </div>
