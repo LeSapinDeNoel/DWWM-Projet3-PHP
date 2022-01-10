@@ -23,7 +23,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'http://localhost/DWWM-Projet3-PHP/public/';
+    public $baseURL = 'http://localhost:8888/DWWM-Projet3-PHP/public/';
 
     /**
      * --------------------------------------------------------------------------
