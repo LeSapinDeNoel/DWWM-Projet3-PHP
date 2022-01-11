@@ -192,16 +192,6 @@ class Critic extends BaseController
 								} else {
 									$banniereCritic = 'banniere_default.jpg';
 								}
-								// if($this->request->getVar('fileToUpload') == ""){
-								//
-								// 	$banniereCritic = 'premiere_banniere'. $file->getRandomName() . "." . $file->getExtension();
-								// 	$image = \Config\Services::image()
-								// 		->withFile($file)
-								// 		->fit(150, 150, 'center')
-								// 		->save('./assets/images/'. $banniereCritic);
-								// }
-
-
 								$arrData = [
 								'critic_img'			=> $banniereCritic,
 								'critic_title'		=> $this->request->getVar('title'),
@@ -215,25 +205,7 @@ class Critic extends BaseController
 							];
 							//echo "<pre>";var_dump($arrData);die;
 								$objCriticModel->insert($arrData);
-
-							// 	//Modification de l'article
-							// 	$arrData = [
-							// 	'critic_img'			=> $imageDefault,
-							// 	'critic_title'		=> $this->request->getVar('title'),
-							// 	'critic_content'	=> $this->request->getVar('content'),
-							// 	'critic_cat'			=> $this->request->getVar('cat'),
-							// 	//Fonction php qui affiche la date du jour
-							// 	'critic_date'			=> date("Y-m-d"),
-							// 	//A modifier plus tard => une fois que la session sera ok
-							// 	'critic_creator'	=> 1,
-							// 	'critic_status'		=> 1
-							// ];
-							//
-							// $objCriticModel->update('critic_id', $arrData);
-							// //return redirect()->to('critic/home');
             }
-
-
 						else {
                 $this->_data['validation'] = $this->validator;
             }
@@ -243,5 +215,119 @@ class Critic extends BaseController
 			//Données de la page
 			$this->_data['title']  = "Nouvelle Critique";
 			$this->display('critic_create.tpl');
+	}
+	/**
+	 * Page de modification des critics
+	 * @return redirect
+	 * @author Julie Dienger
+	 */
+	public function critic_edit(){
+		//Mettre un if si utilisateur connecté faire ...
+
+		//instancier l'objet category
+		$objCatModel			= new Category_model();
+		$arrCatList 			= $objCatModel->findAllCatForSelect();
+		//instancier l'objet critic
+		$objCriticModel  	= new Critic_model();
+
+		// Création du formulaire de création de critic
+		$this->_data['form_open']    			= form_open('critic/critic_create',array('enctype' => 'multipart/form-data'));
+		$this->_data['form_img']					=	form_input(array('type'  => 'file',
+																												 'name'  => 'fileToUpload',
+																												 'id'    => 'fileToUpload',));
+		$this->_data['label_title']				= form_label('Titre');
+		$this->_data['form_title'] 				= form_input('title', set_value('title'));
+		$this->_data['label_cat']					= form_label('Catégories');
+		$this->_data['form_cat'] 					= form_dropdown('cat', $arrCatList, set_value('cat'));
+		$this->_data['label_content']			=	form_label('Contenu');
+		$this->_data['form_content']			=	form_textarea('content', set_value('content'));
+		$this->_data['form_submit']    		= form_submit('envoyer', 'envoyer', "class = 'button mb-5 mr-5'");
+		$this->_data['form_close']    		= form_close();
+
+		if($this->request->getMethod() == 'post') {
+							// Initialisation des règles et de la personnalisation des erreur.
+					$rules = [
+							'title' => [
+									'rules'  => 'required|max_length[200]',
+									'errors' => [
+											'required' => 'Veuillez renseigner votre titre.',
+											'max_length' => 'Votre titre est trop long :).',
+									],
+							],
+
+							'cat' => [
+									'rules'  => 'greater_than[0]',
+									'errors' => [
+											'greater_than' => 'Veuillez renseigner une catégorie valide.',
+									],
+							],
+							'content' => [
+									'rules'  => 'required|max_length[1200]',
+									'errors' => [
+										'required' => 'Veuillez renseigner votre contenu.',
+										'max_length' => 'Votre contenu est trop long :).',
+									],
+							],
+					];
+
+			$file = $this->request->getFile('fileToUpload');
+
+			if ($file->getName() != "" || $file->isValid() && !$file->hasMoved()) {
+				$rules['fileToUpload'] = [
+					'rules' => 'required|is_image[fileToUpload]|max_size[fileToUpload, 200]|ext_in[fileToUpload,jpg]|max_dims[fileToUpload,500,500]',
+					'label' => 'The File',
+					'errors' => [
+						'required'	=> 'Vous devez importer une image',
+						'is_image' 	=> 'Vous devez envoyer une image.',
+						'max_size' 	=> 'Votre image est trop volumineuse (200ko max).',
+						'ext_in' 		=> 'Votre image doit être au format jpg.',
+						'max_dims' 	=> 'Votre image doit être d\'une dimension maximale de 500px par 500px.'
+					],
+				];
+			}
+
+
+					if($this->validate($rules)) {
+							//Il faudra insérer dans la BDD ici
+							//Ajout d'une critic dans le BDD on utilise la method insert
+
+							if($file->isValid() && !$file->hasMoved()) {
+
+								if($file->getName() == ""){
+									$banniereCritic = 'banniere_default.jpg';
+								}
+								else {
+
+									$banniereCritic = 'premiere_banniere'. $file->getRandomName() . "." . $file->getExtension();
+										$image = \Config\Services::image()
+											->withFile($file)
+											->fit(320, 165, 'center')
+											->save('./assets/images/'. $banniereCritic);
+								}
+							}
+									$arrData = [
+									'critic_img'			=> $banniereCritic,
+									'critic_title'		=> $this->request->getVar('title'),
+									'critic_content'	=> $this->request->getVar('content'),
+									'critic_cat'			=> $this->request->getVar('cat'),
+									//Fonction php qui affiche la date du jour
+									'critic_createdate'			=> date("Y-m-d"),
+									//A modifier plus tard => une fois que la session sera ok
+									'critic_creator'	=> 1,
+									'critic_status'		=> 1
+								];
+								$objCriticModel->update('critic_id', $arrData);
+								return redirect()->to('critic/home');
+
+							}
+							else {
+								$this->_data['validation'] = $this->validator;
+							}
+
+	 }
+						//Données de la page
+						$this->_data['title']  = "Modifier la Critique";
+						$this->display('critic_edit.tpl');
+
 	}
 }
