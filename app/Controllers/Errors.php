@@ -3,11 +3,11 @@
 namespace App\Controllers;
 
 
-class Page extends BaseController
+class Errors extends BaseController
 {
-	public function show404 ()
+	public function show404()
 	{
 		$this->_data['title']         = "ERROR 404";
-		$this->display('error_404.tpl');
+		$this->display('show404.tpl');
 	}
 }

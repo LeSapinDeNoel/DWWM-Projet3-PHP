@@ -7,7 +7,9 @@
   <h1 class="display-1 ">404</h1>
   <p class="text-center">Cette page n'éxiste pas</p>
   <div class="PositionVbutton ">
+    <a href="{site_url('Critic/home')}">
     <button id="Vbutton">Accueil</button>
+    </a>
   </div>
 </div>
 </main>
