@@ -34,7 +34,7 @@ class User extends BaseController
 		$this->_data['form_close']    		= form_close();
 
 		if($this->request->getMethod() == 'post') {
-			
+
 			// Initialisation des règles et de la personnalisation des erreur.
 			$arrRulesLogin = [
 				'email' => [
@@ -52,12 +52,12 @@ class User extends BaseController
 					]
 				]
 			];
-	
+
 			if(!$this->validate($arrRulesLogin)) {
-	
+
 					// permet d'afficher les erreurs.
 				$this->_data['validation'] = $this->validator;
-	
+
 			}else {
 
 					// On instancie l'objet
@@ -69,14 +69,14 @@ class User extends BaseController
 
 				$arrUserInfo = $objUser_model->where('user_mail', $strEmail)->get()->getResult();
 				$objUserInfo = $arrUserInfo[0];
-			
+
 				$boolCheckpwd = Hash::check($strPwd, $objUserInfo->user_pwd);
 
 				if(!$boolCheckpwd) {
 					$session = session();
-					
+
 					session()->setFlashdata('fail', 'Mot de passe incorrect');
-					
+
 					return redirect()->to('user/login')->withInput();
 				}else {
 					$session = session();
@@ -195,7 +195,7 @@ class User extends BaseController
 
 					// On instancie l'objet
 				$objUser_model = new User_model();
-				
+
 				// On prend les informations à sauvegarder
 					//Image par défault si aucune ajoutée
 
@@ -228,7 +228,7 @@ class User extends BaseController
 		$this->_data['title']	= "Créer un compte";
 
         $this->display('create_account.tpl');
-		
+
 	}
 
 	/**
@@ -241,7 +241,7 @@ class User extends BaseController
 
 			// On vérifie que l'utilisateur est connecté
 		if(session()->get('loggedUser') == '') {
-			return redirect()->to('user/login');
+			return redirect()->to('Errors/show403');
 		}
 
 			// régler la durée de vie individuellement
@@ -311,7 +311,7 @@ class User extends BaseController
 			];
 
 			$file = $this->request->getFile('fileToUpload');
-			
+
 			if ($file->getName() != "" || $file->isValid() && !$file->hasMoved()) {
 				$arrRules['fileToUpload'] = [
 					'rules' => 'is_image[fileToUpload]|max_size[fileToUpload, 200]|ext_in[fileToUpload,jpg]|max_dims[fileToUpload,600,600]',
@@ -324,9 +324,9 @@ class User extends BaseController
 					],
 				];
 			}
-			
+
 			if(!$this->validate($arrRules)) {
-				
+
 				// permet d'afficher les erreurs.
 				$this->_data['validation'] = $this->validator;
 
@@ -334,14 +334,14 @@ class User extends BaseController
 
 					// On instancie l'objet.
 				$objUser_model = new User_model();
-				
+
 					//Image par défault si aucune ajoutée
 				if($file->isValid() && !$file->hasMoved()) {
 
 					if($file->getName() == ""){
 						$strAvatarName = session()->get('user_avatar');
 					}else {
-						
+
 						$strAvatarName = 'avatar'. session()->get('user_name') . session()->get('loggedUser') . "." . $file->getExtension();
 						$image = \Config\Services::image()
 							->withFile($file)
@@ -355,7 +355,7 @@ class User extends BaseController
 
 					// On vérifie si l'utilisateur souhaite modifier son mdp ou non.
 				if($this->request->getVar('pwd') == "") {
-	
+
 					$newData = [
 						'user_avatar' => $strAvatarName,
 						'user_name' => $this->request->getVar('name'),
@@ -363,7 +363,7 @@ class User extends BaseController
 					];
 
 				}else {
-	
+
 					$newData = [
 						'user_avatar' => $strAvatarName,
 						'user_name' => $this->request->getVar('name'),
@@ -376,7 +376,7 @@ class User extends BaseController
 				$objUser_model->set($newData);
 				$objUser_model->where('user_id', session()->get('loggedUser'));
 				$objUser_model->update();
-				
+
 
 					// On met à jour la session avec les informations modifiées.
 				$strUserfullname = $this->request->getVar('first_name') . " ". $this->request->getVar('name');
@@ -410,7 +410,7 @@ class User extends BaseController
 
 			// On vérifie que l'utilisateur est connecté
 		if(session()->get('loggedUser') == '') {
-			return redirect()->to('user/login');
+			return redirect()->to('Errors/show403');
 		}
 
 			// On instancie l'objet.
@@ -426,7 +426,7 @@ class User extends BaseController
 
 		$this->_data['form_submit']    		= form_submit('envoyer', 'Mettre à jour','class = "button"');
 		$this->_data['form_close']    		= form_close();
-		
+
 		if($this->request->getMethod() == 'post') {
 			foreach($this->_data['arrUsersInfo'] as $objUserInfo) {
 				$newData = [
@@ -456,7 +456,7 @@ class User extends BaseController
 			$session->destroy();
 
 			$session->setFlashdata('deco', 'Vous êtes déconnecté.');
-			
+
 			return redirect()->to('user/login');
 		}
 
