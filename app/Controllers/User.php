@@ -245,10 +245,10 @@ class User extends BaseController
 		}
 
 			// régler la durée de vie individuellement
-		$smarty->caching = 2;
+	//	$smarty->caching = 2;
 
 			// règle la durée de vie du cache a 15 minutes pour index.tpl
-		$smarty->cache_lifetime = 0;
+	//	$smarty->cache_lifetime = 1;
 
 
 			// Création du formulaire_inscription

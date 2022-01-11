@@ -5,7 +5,7 @@
         <a href="{base_url('page/')}">Aide</a>
         <a href="{base_url('page/infos')}">Mentions légales</a>
     </nav>
-    <span>@copyright 2021 REC</span>
+    <span>@copyright 2022 REC</span>
 </footer>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 

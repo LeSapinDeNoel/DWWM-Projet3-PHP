@@ -18,8 +18,6 @@ class Critic_model extends Model
         $this->join('users', 'critic_creator = user_id');
 
         //Recherche de formulaire
-        //TODO Faire la recherche avec des where
-        //var_dump(count($this->request->getPost('envoyer')));
         $request  = service('request');
         //quand event déclancher entre dans if
         if ($request->getPost('envoyer')){
@@ -38,7 +36,7 @@ class Critic_model extends Model
             }
             if($request->getPost('creator')){
               //recherche par créateur
-              return $this->join('users', 'critics.critic_creator=users.user_id')->like('user_name', $objCritic->creator)->orLike('user_firstname', $objCritic->creator)->find();
+              return $this->where('critic_creator', $request->getPost('creator'))->find();
             }
 
             //recherche par date

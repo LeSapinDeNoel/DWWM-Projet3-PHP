@@ -5,6 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\Critic_model;
 use App\Models\Category_model;
+use App\Models\User_model;
 
 class Critic extends BaseController
 {
@@ -28,10 +29,6 @@ class Critic extends BaseController
 
 	}
 
-
-
-
-
 	/**
 	 * Page qui affiche toutes les critics
 	 * @return display
@@ -41,24 +38,27 @@ class Critic extends BaseController
 	{
 			//instancier l'objet category
 			$objCatModel			= new Category_model();
-			$options 					= $objCatModel->findAllCatForSelect();
+			//Instancier l'objet
+			$objCriticModel   = new Critic_model();
+			$objUserModel    = new User_model();
 
+			$arrCatList 			= $objCatModel->findAllCatForSelect();
+			$arrUsersList			=	$objUserModel->findAllUsersForSelect();
 
 			// Création du formulaire_search
 			$this->_data['form_open']    			= form_open('critic/index');
 			$this->_data['label_keyword']			= form_label('Mot clé');
 	    $this->_data['form_keyword'] 			= form_input('keyword', set_value('keyword'));
 			$this->_data['label_creator']			= form_label('Créateur');
-			$this->_data['form_creator'] 			= form_input('creator' , set_value('creator'));
+			$this->_data['form_creator'] 			= form_dropdown('creator' ,$arrUsersList, 	set_value('creator'));
 			$this->_data['label_cat']					= form_label('Catégories');
-			$this->_data['form_cat'] 					= form_dropdown('cat', $options, set_value('cat'));
-			$this->_data['label_date']					= form_label('Date exact');
+			$this->_data['form_cat'] 					= form_dropdown('cat', $arrCatList, set_value('cat'));
+			$this->_data['label_date']				= form_label('Date exact');
 			$this->_data['form_date'] 				= form_input(array('name'=>'date','type'=>'date'), set_value('date'));
 			$this->_data['form_submit']    		= form_submit('envoyer', 'envoyer');
 			$this->_data['form_close']    		= form_close();
 
-			//Instancier l'objet
-			$objCriticModel       				= new Critic_model();
+
 
 			//Données de la page
 			$this->_data['title']         = "Les critiques";
@@ -108,10 +108,10 @@ class Critic extends BaseController
 
 			// règle la durée de vie du cache a 15 minutes pour index.tpl
 			$smarty->cache_lifetime = 0;
-			
+
 			//instancier l'objet category
 			$objCatModel			= new Category_model();
-			$options 					= $objCatModel->findAllCatForSelect();
+			$arrCatList 					= $objCatModel->findAllCatForSelect();
 			//instancier l'objet critic
 			$objCriticModel  	= new Critic_model();
 
@@ -123,7 +123,7 @@ class Critic extends BaseController
 			$this->_data['label_title']				= form_label('Titre');
 			$this->_data['form_title'] 				= form_input('title', set_value('title'));
 			$this->_data['label_cat']					= form_label('Catégories');
-			$this->_data['form_cat'] 					= form_dropdown('cat', $options, set_value('cat'));
+			$this->_data['form_cat'] 					= form_dropdown('cat', $arrCatList, set_value('cat'));
 			$this->_data['label_content']			=	form_label('Contenu');
 			$this->_data['form_content']			=	form_textarea('content', set_value('content'));
 			$this->_data['form_submit']    		= form_submit('envoyer', 'envoyer', "class = 'button mb-5 mr-5'");
