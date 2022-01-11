@@ -30,7 +30,7 @@ Aled : Page d'une critique / create_critic
   - update_user / find_user / get_user
 - delete_user
   - drop_user
-- admin_user
+- admin_user --> ok
   - find_user
 
 ## Critic controller
@@ -54,7 +54,7 @@ Aled : Page d'une critique / create_critic
 - Help --> ok
 - Contact (mail réponse auto)
 - Mentions légales --> ok
-- Errors
+- Errors --> ok
 
 
 - Javascript Drag&Drop
