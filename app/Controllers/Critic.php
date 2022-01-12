@@ -178,14 +178,14 @@ class Critic extends BaseController
 
 				if ($file->getName() != "" || $file->isValid() && !$file->hasMoved()) {
 					$rules['fileToUpload'] = [
-						'rules' => 'required|is_image[fileToUpload]|max_size[fileToUpload, 200]|ext_in[fileToUpload,jpg]|max_dims[fileToUpload,500,500]',
+						'rules' => 'is_image[fileToUpload]|max_size[fileToUpload, 200]|ext_in[fileToUpload,jpg]|max_dims[fileToUpload,1920,1080]',
 						'label' => 'The File',
 						'errors' => [
-							'required'	=> 'Vous devez importer une image',
+
 							'is_image' 	=> 'Vous devez envoyer une image.',
 							'max_size' 	=> 'Votre image est trop volumineuse (200ko max).',
 							'ext_in' 		=> 'Votre image doit être au format jpg.',
-							'max_dims' 	=> 'Votre image doit être d\'une dimension maximale de 500px par 500px.'
+							'max_dims' 	=> 'Votre image doit être d\'une dimension maximale de 500px par 500px.',
 						],
 					];
 				}
