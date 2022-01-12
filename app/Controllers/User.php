@@ -244,11 +244,6 @@ class User extends BaseController
 			return redirect()->to('Errors/show403');
 		}
 
-			// régler la durée de vie individuellement
-	//	$smarty->caching = 2;
-
-			// règle la durée de vie du cache a 15 minutes pour index.tpl
-	//	$smarty->cache_lifetime = 1;
 
 
 			// Création du formulaire_inscription
