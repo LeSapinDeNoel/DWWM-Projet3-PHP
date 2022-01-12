@@ -11,8 +11,7 @@
   <div class="row" style="margin-right: 0; margin-left: 5px;">
     <div class="col-md-12">
 
-      {$form_open}
-      {* <table class="table table-reflow"> *}
+      {$form_open}      
       <table id="admin" class=" table table-bordered table-hover dt-responsive" style="width:100%">
         <thead>
           <tr>
@@ -81,10 +80,12 @@
 
   {literal}
     <script> 
-      $('table').DataTable({
-        language: {
-            url: 'dataTables.french.json'
-        }
+      $(document).ready(function() {
+        $('#admin').DataTable({
+          language: {
+              url: 'dataTables.french.json'
+          }
+        });
       });
     </script>
   {/literal}
