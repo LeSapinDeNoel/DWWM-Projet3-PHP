@@ -55,7 +55,7 @@ class Critic extends BaseController
 			$this->_data['form_cat'] 					= form_dropdown('cat', $arrCatList, set_value('cat'));
 			$this->_data['label_date']				= form_label('Date exact');
 			$this->_data['form_date'] 				= form_input(array('name'=>'date','type'=>'date'), set_value('date'));
-			$this->_data['form_submit']    		= form_submit('envoyer', 'envoyer');
+			$this->_data['form_submit']    		= form_submit('envoyer', 'envoyer', "class = 'button mb-5 mr-5 text-center d-block mx-auto'");
 			$this->_data['form_close']    		= form_close();
 
 
@@ -226,7 +226,7 @@ class Critic extends BaseController
 		//instancier l'objet critic
 		$objCriticModel  	= new Critic_model();
 
-		// Création du formulaire de création de critic
+		// Création du formulaire de modif de critic
 		$this->_data['form_open']    			= form_open('critic/critic_create',array('enctype' => 'multipart/form-data'));
 		$this->_data['form_img']					=	form_input(array('type'  => 'file',
 																												 'name'  => 'fileToUpload',
@@ -237,7 +237,7 @@ class Critic extends BaseController
 		$this->_data['form_cat'] 					= form_dropdown('cat', $arrCatList, set_value('cat'));
 		$this->_data['label_content']			=	form_label('Contenu');
 		$this->_data['form_content']			=	form_textarea('content', set_value('content'));
-		$this->_data['form_submit']    		= form_submit('envoyer', 'envoyer', "class = 'button mb-5 mr-5'");
+		$this->_data['form_submit']    		= form_submit('modifier', 'modifier', "class = 'button mb-5 mr-5'");
 		$this->_data['form_close']    		= form_close();
 
 		if($this->request->getMethod() == 'post') {
