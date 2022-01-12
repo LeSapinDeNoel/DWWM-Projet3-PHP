@@ -72,6 +72,29 @@ class Critic extends BaseController
 	}
 	public function user_critic()
 	{
+			//Données de la page
+			$this->_data['title']         = "Mes critiques";
+			//instancier l'objet category
+			$objCatModel			= new Category_model();
+			//Instancier l'objet
+			$objCriticModel   = new Critic_model();
+			$objUserModel    = new User_model();
+
+			$arrCatList 			= $objCatModel->findAllCatForSelect();
+			$arrUsersList			=	$objUserModel->findAllUsersForSelect();
+			// Création du formulaire_search
+			$this->_data['form_open']    			= form_open('critic/user_critic');
+			$this->_data['label_keyword']			= form_label('Mot clé');
+			$this->_data['form_keyword'] 			= form_input('keyword', set_value('keyword'));
+			$this->_data['label_cat']					= form_label('Catégories');
+			$this->_data['form_cat'] 					= form_dropdown('cat', $arrCatList, set_value('cat'));
+			$this->_data['label_date']				= form_label('Date exact');
+			$this->_data['form_date'] 				= form_input(array('name'=>'date','type'=>'date'), set_value('date'));
+			$this->_data['form_submit']    		= form_submit('envoyer', 'envoyer', "class = 'button mb-5 mr-5 text-center d-block mx-auto'");
+			$this->_data['form_close']    		= form_close();
+
+
+			$this->_data['arrCritics']   	= $objCriticModel->findAllWithCat();
       $this->display('user_critic.tpl');
 	}
 
