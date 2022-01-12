@@ -9,7 +9,7 @@
 
   <section class="">
     <article class="">
-        <img src="https://fakeimg.pl/320x220/?text=oui" alt="Image de mises en avant" class="mb-5 w-25 d-block mx-auto text-center">
+        <img src="{base_url("assets/images")}/{$objCriticsInfo->critic_img}" alt="Image de mises en avant" class="mb-5 w-25 d-block mx-auto text-center">
         <p class="mb-2 w-50  d-block mx-auto text-left">{$objCriticsInfo->critic_content}</p>
         <ul class="d-flex justify-content-center text-secondary" style="list-style-type:none">
           <li class="m-3">{$objCriticsInfo->critic_createdate}</li>
