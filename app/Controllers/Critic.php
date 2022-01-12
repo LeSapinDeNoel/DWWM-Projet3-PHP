@@ -107,7 +107,7 @@ class Critic extends BaseController
 			$this->_data['form_close']    		= form_close();
 
 
-			$this->_data['arrCritics']   	= $objCriticModel->findAllWithCat();
+			$this->_data['arrCritics']   	= $objCriticModel->where('critic_creator', session()->get('loggedUser'))->findAllWithCat();
       $this->display('user_critic.tpl');
 	}
 
