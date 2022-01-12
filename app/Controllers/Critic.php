@@ -148,6 +148,11 @@ class Critic extends BaseController
 	 */
 	public function critic_create()
 	{
+			//Page accéssible uniquement si utilisateur connecté
+			if(session()->get('loggedUser') == '') {
+				return redirect()->to('Errors/show403');
+			}
+
 			//instancier l'objet category
 			$objCatModel			= new Category_model();
 			$arrCatList 			= $objCatModel->findAllCatForSelect();
@@ -237,8 +242,8 @@ class Critic extends BaseController
 								'critic_cat'					=> $this->request->getVar('cat'),
 								//Fonction php qui affiche la date du jour
 								'critic_createdate'		=> date("Y-m-d"),
-								//A modifier plus tard => une fois que la session sera ok
-								'critic_creator'			=> 1,
+								'critic_creator'			=> session()->get('loggedUser'),
+								//TODO A modifier plus tard => une fois qu'on auras fait le publié/dépublié
 								'critic_status'				=> 1
 							];
 
@@ -264,7 +269,12 @@ class Critic extends BaseController
 	 * @author Julie Dienger
 	 */
 	public function critic_edit(){
-		//Mettre un if si utilisateur connecté faire ...
+
+		//Page accéssible uniquement si utilisateur connecté
+		if(session()->get('loggedUser') == '') {
+			return redirect()->to('Errors/show403');
+		}
+
 
 		//instancier l'objet category
 		$objCatModel			= new Category_model();
@@ -354,9 +364,9 @@ class Critic extends BaseController
 									'critic_cat'			=> $this->request->getVar('cat'),
 									//Fonction php qui affiche la date du jour
 									'critic_createdate'			=> date("Y-m-d"),
-									//A modifier plus tard => une fois que la session sera ok
-									'critic_creator'	=> 1,
-									'critic_status'		=> 1
+									'critic_creator'			=> session()->get('loggedUser'),
+									//TODO A modifier plus tard => une fois qu'on auras fait le publié/dépublié
+									'critic_status'				=> 1
 								];
 								$objCriticModel->update('critic_id', $arrData);
 								return redirect()->to('critic/home');
