@@ -36,11 +36,10 @@ class Critic extends BaseController
 	 */
 	public function index()
 	{
-			//instancier l'objet category
+			//instancier objets
 			$objCatModel			= new Category_model();
-			//Instancier l'objet
 			$objCriticModel   = new Critic_model();
-			$objUserModel    = new User_model();
+			$objUserModel     = new User_model();
 
 			$arrCatList 			= $objCatModel->findAllCatForSelect();
 			$arrUsersList			=	$objUserModel->findAllUsersForSelect();
@@ -58,18 +57,25 @@ class Critic extends BaseController
 			$this->_data['form_submit']    		= form_submit('envoyer', 'envoyer', "class = 'button mb-5 mr-5 text-center d-block mx-auto'");
 			$this->_data['form_close']    		= form_close();
 
-
-
 			//Données de la page
 			$this->_data['title']         = "Les critiques";
 			$this->_data['arrCritics']   	= $objCriticModel->findAllWithCat();
 			$this->display('critic.tpl');
 	}
 
+
+
+
+
+
 	public function critic_moderate()
 	{
       $this->display('critic_moderate.tpl');
 	}
+
+
+
+
 
 
 	/**
@@ -80,22 +86,21 @@ class Critic extends BaseController
 	public function user_critic()
 	{
 
+		//Page accéssible uniquement si utilisateur connecté
 		if(session()->get('loggedUser') == '') {
 			return redirect()->to('Errors/show403');
 		}
 
 
-			//Données de la page
-			$this->_data['title']         = "Mes critiques";
-			//instancier l'objet category
+			//instancier objets
 			$objCatModel			= new Category_model();
-			//Instancier l'objet
 			$objCriticModel   = new Critic_model();
-			$objUserModel    = new User_model();
+			$objUserModel     = new User_model();
 
 			$arrCatList 			= $objCatModel->findAllCatForSelect();
 			$arrUsersList			=	$objUserModel->findAllUsersForSelect();
-			// Création du formulaire_search
+
+			// Création du formulaire_search cette fois sans le créator
 			$this->_data['form_open']    			= form_open('critic/user_critic');
 			$this->_data['label_keyword']			= form_label('Mot clé');
 			$this->_data['form_keyword'] 			= form_input('keyword', set_value('keyword'));
@@ -106,28 +111,32 @@ class Critic extends BaseController
 			$this->_data['form_submit']    		= form_submit('envoyer', 'envoyer', "class = 'button mb-5 mr-5 text-center d-block mx-auto'");
 			$this->_data['form_close']    		= form_close();
 
+			//On affiche uniquement les critics qui appartiennet au critic_creator
+			$this->_data['arrCritics']   			= $objCriticModel->where('critic_creator', session()->get('loggedUser'))->findAllWithCat();
 
-			$this->_data['arrCritics']   	= $objCriticModel->where('critic_creator', session()->get('loggedUser'))->findAllWithCat();
+			//Données de la page
+			$this->_data['title']         		= "Mes critiques";
       $this->display('user_critic.tpl');
 	}
 
 
 
+
 	/**
-	 * Page qui affiche le details d'une critics
+	 * Page qui affiche le details d'une critique
 	 * @return display
 	 * @author Julie Dienger
 	 */
 	public function critic_details()
 	{
+			//instancier objets
 			$objCriticModel       							 = new Critic_model();
-			//Données de la page
+
 			$this->_data['arrCriticsInfo']       = $objCriticModel->where('critic_id',$_GET['art'])->findAllWithCat();
-		//	echo "<pre>";var_dump($this->_data['arrCriticsInfo']);die();echo "</pre>";
 			$this->_data['objCriticsInfo']			 = $this->_data['arrCriticsInfo'][0];
 
+			//Données de la page
 			$this->display('critic_details.tpl');
-			// echo "<pre>";var_dump($this->_data['objCriticsInfo']);echo "</pre>";
 	}
 
 
@@ -139,12 +148,9 @@ class Critic extends BaseController
 	 */
 	public function critic_create()
 	{
-
-
 			//instancier l'objet category
 			$objCatModel			= new Category_model();
-			$arrCatList 					= $objCatModel->findAllCatForSelect();
-			//instancier l'objet critic
+			$arrCatList 			= $objCatModel->findAllCatForSelect();
 			$objCriticModel  	= new Critic_model();
 
 			// Création du formulaire de création de critic
@@ -162,7 +168,7 @@ class Critic extends BaseController
 			$this->_data['form_close']    		= form_close();
 
 			if($this->request->getMethod() == 'post') {
-                // Initialisation des règles et de la personnalisation des erreur.
+            // Initialisation des règles et des erreur.
             $rules = [
                 'title' => [
                     'rules'  => 'required|max_length[200]',
@@ -203,7 +209,6 @@ class Critic extends BaseController
 					];
 				}
 
-
             if($this->validate($rules)) {
                 //Il faudra insérer dans la BDD ici
 								//Ajout d'une critic dans le BDD on utilise la method insert
@@ -212,7 +217,8 @@ class Critic extends BaseController
 
 									if($file->getName() == ""){
 										$banniereCritic = 'banniere_default.jpg';
-									}else {
+								}
+									else {
 
 										$banniereCritic = 'premiere_banniere'. $file->getRandomName() . "." . $file->getExtension();
 											$image = \Config\Services::image()
@@ -220,34 +226,38 @@ class Critic extends BaseController
 												->fit(320, 165, 'center')
 												->save('./assets/images/'. $banniereCritic);
 									}
-
-								} else {
+								}
+								else {
 									$banniereCritic = 'banniere_default.jpg';
 								}
 								$arrData = [
-								'critic_img'			=> $banniereCritic,
-								'critic_title'		=> $this->request->getVar('title'),
-								'critic_content'	=> $this->request->getVar('content'),
-								'critic_cat'			=> $this->request->getVar('cat'),
+								'critic_img'					=> $banniereCritic,
+								'critic_title'				=> $this->request->getVar('title'),
+								'critic_content'			=> $this->request->getVar('content'),
+								'critic_cat'					=> $this->request->getVar('cat'),
 								//Fonction php qui affiche la date du jour
-								'critic_createdate'			=> date("Y-m-d"),
+								'critic_createdate'		=> date("Y-m-d"),
 								//A modifier plus tard => une fois que la session sera ok
-								'critic_creator'	=> 1,
-								'critic_status'		=> 1
+								'critic_creator'			=> 1,
+								'critic_status'				=> 1
 							];
-							//echo "<pre>";var_dump($arrData);die;
+
 								$objCriticModel->insert($arrData);
             }
 						else {
                 $this->_data['validation'] = $this->validator;
             }
-
         };
 
 			//Données de la page
 			$this->_data['title']  = "Ajouter Critique";
 			$this->display('critic_create.tpl');
 	}
+
+
+
+
+
 	/**
 	 * Page de modification des critics
 	 * @return redirect
@@ -262,7 +272,7 @@ class Critic extends BaseController
 		//instancier l'objet critic
 		$objCriticModel  	= new Critic_model();
 
-		// Création du formulaire de modif de critic
+		// Création du formulaire de modification de critic
 		$this->_data['form_open']    			= form_open('critic/critic_create',array('enctype' => 'multipart/form-data'));
 		$this->_data['form_img']					=	form_input(array('type'  => 'file',
 																												 'name'  => 'fileToUpload',
