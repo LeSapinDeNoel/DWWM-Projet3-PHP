@@ -103,11 +103,7 @@ class Critic extends BaseController
 	 */
 	public function critic_create()
 	{
-			// régler la durée de vie individuellement
-			$smarty->caching = 2;
 
-			// règle la durée de vie du cache a 15 minutes pour index.tpl
-			$smarty->cache_lifetime = 0;
 
 			//instancier l'objet category
 			$objCatModel			= new Category_model();
@@ -213,7 +209,7 @@ class Critic extends BaseController
         };
 
 			//Données de la page
-			$this->_data['title']  = "Nouvelle Critique";
+			$this->_data['title']  = "Ajouter Critique";
 			$this->display('critic_create.tpl');
 	}
 	/**
