@@ -70,8 +70,21 @@ class Critic extends BaseController
 	{
       $this->display('critic_moderate.tpl');
 	}
+
+
+	/**
+	 * Page qui affiche les critics de l'utilisateur
+	 * @return display
+	 * @author Julie Dienger
+	 */
 	public function user_critic()
 	{
+
+		if(session()->get('loggedUser') == '') {
+			return redirect()->to('Errors/show403');
+		}
+
+
 			//Données de la page
 			$this->_data['title']         = "Mes critiques";
 			//instancier l'objet category
