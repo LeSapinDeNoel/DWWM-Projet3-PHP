@@ -20,12 +20,12 @@ class Critic extends BaseController
 	 */
 	public function home()
 	{
-		//Instancier l'objet
-			$objCriticModel       		= new Critic_model();
-		//Données de la page
-			$this->_data['title']     	= "Accueil";
-			$this->_data['arrCritics']	= $objCriticModel->where('critic_status', '1')->limit(2)->findAllWithCat();
-      $this->display('home.tpl');
+			//Instancier l'objet
+		$objCriticModel       		= new Critic_model();
+			//Données de la page
+		$this->_data['title']     	= "Accueil";
+		$this->_data['arrCritics']	= $objCriticModel->where('critic_status', '1')->findAllWithCat(1);
+    	$this->display('home.tpl');
 
 	}
 

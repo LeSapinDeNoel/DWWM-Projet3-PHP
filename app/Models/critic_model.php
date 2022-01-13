@@ -49,6 +49,11 @@ class Critic_model extends Model
               return $this->where('critic_cat', $request->getPost('cat'))->find();
             }
 
+            
+          }
+          
+          if($intLimit == 1){
+            return $this->limit(8)->find();
           }
 
         return $this->findAll();
