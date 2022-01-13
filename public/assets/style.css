@@ -150,13 +150,17 @@ header section.show {
   transform: scale(1.02);
 }
 
-/* particles js */
-.backgroundH {
+/* Ecrito */
+/* .backgroundH {
   width: 100%;
   height: 300px;
-  background-color: black;
+  background-color: #171926;
 }
-/* Fin particles js */
+
+.ecris-dyn {
+  text-align: center;
+} */
+/* Fin Ecrito */
 
 /* Fin PAGE home */
 

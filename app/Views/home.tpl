@@ -4,7 +4,12 @@
 
 <main>
 
-<div id="particles-js" class="backgroundH"></div>
+<div class="backgroundH">
+
+{* <p>VOUS ETES LA POUR :</p>
+<p class="ecris-dyn"></p> *}
+
+</div>
 
 <h1>Les dernières critiques</h1>
 <hr>
