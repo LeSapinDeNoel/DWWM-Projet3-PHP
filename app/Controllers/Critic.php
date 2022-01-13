@@ -97,9 +97,11 @@ class Critic extends BaseController
 				$newData = [
 					'critic_status' => $this->request->getVar('visibilite' . $objCriticInfo->critic_id)
 				];
-				$objCriticModel->set($newData);
-				$objCriticModel->where('critic_id', $objCriticInfo->critic_id);
-				$objCriticModel->update();
+				if($newData['critic_status'] != "") {
+					$objCriticModel->set($newData);
+					$objCriticModel->where('critic_id', $objCriticInfo->critic_id);
+					$objCriticModel->update();
+				}
 			}
 			return redirect()->to('critic/critic_moderate');
 		}

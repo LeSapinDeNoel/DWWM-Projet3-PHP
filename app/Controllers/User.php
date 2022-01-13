@@ -425,9 +425,11 @@ class User extends BaseController
 				$newData = [
 					'user_role' => $this->request->getVar('role' . $objUserInfo->user_id)
 				];
-				$objUser_model->set($newData);
-				$objUser_model->where('user_id', $objUserInfo->user_id);
-				$objUser_model->update();
+				if($newData['user_role'] != "") {
+					$objUser_model->set($newData);
+					$objUser_model->where('user_id', $objUserInfo->user_id);
+					$objUser_model->update();
+				}
 			}
 			return redirect()->to('user/admin_user');
 		}
