@@ -39,15 +39,14 @@ class Page extends BaseController
 
 		if($this->request->getMethod() == 'post') {
 
-			$to 	 = 'recprojet3@gmail.com';
-
+			$to 	 = 'juliedienger17@gmail.com';
+			$todo	 = 'recprojet3@gmail.com';
 			$email = \Config\Services::email();
 
 			$email->setTo($to);
-			$email->setFrom($this->request->getVar('email'), $this->request->getVar('name'));
-			$email->setSubject('Contact de'.' '.$this->request->getVar('name').' '.$this->request->getVar('firstname'));			$email->setMessage($this->request->getVar('message'));
+			$email->setFrom($todo, 'Julie');
+			$email->setSubject('Contact de'.' '.$this->request->getVar('name').' '.$this->request->getVar('firstname'));
 			$email->setMessage($this->request->getVar('message'));
-
 			$email->send();
 
 		if ($email->send())
@@ -58,7 +57,25 @@ class Page extends BaseController
 			echo "pas ok";
 		}
 
-	}
+		// $to = 'juliedienger17@gmail.com';
+    //     $subject = 'test';
+    //     $message = 'test';
+		//
+    //     $email = \Config\Services::email();
+    //     $email->setTo($to);
+    //     $email->setFrom('recprojet3@gmail.com', 'test');
+    //     $email->setSubject($subject);
+    //     $email->setMessage($message);
+		// 		$email->send();
+    //     if($email->send()){
+    //         echo "Mail envoyer";
+    //     }else{
+    //         $email->printDebugger(['headers']);
+    //         echo "No";
+    //     }
+    // }
+
+	 }
 
 		//Données de la page
 		$this->_data['title']         = "Contactez nous";
