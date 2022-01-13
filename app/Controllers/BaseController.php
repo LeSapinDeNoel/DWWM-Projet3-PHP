@@ -58,6 +58,8 @@ class BaseController extends Controller
           $this->_smarty->setCompileDir(WRITEPATH.'/cache/templates_c/');
           $this->_smarty->setConfigDir(WRITEPATH.'/cache/configs/');
           $this->_smarty->setCacheDir(WRITEPATH.'/cache/cache/');
+          $this->_smarty->caching = 0;
+          $this->_smarty->compile_check = false;
     }
 
     public function display($strTemplate = 'default.tpl'){
