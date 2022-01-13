@@ -15,6 +15,7 @@
         </div>
     {/if}
     {$form_open}
+    {csrf_field()}
       <div id="image_critic">
 
         <label for="fileToUpload">

@@ -248,6 +248,8 @@ class Critic extends BaseController
 							];
 
 								$objCriticModel->insert($arrData);
+								return redirect()->to('critic/user_critic');
+
             }
 						else {
                 $this->_data['validation'] = $this->validator;
@@ -287,7 +289,7 @@ class Critic extends BaseController
 
 
 		// Création du formulaire de modification de critic
-		$this->_data['form_open']    			= form_open('critic/critic_create',array('enctype' => 'multipart/form-data'));
+		$this->_data['form_open']    			= form_open('critic/user_critic',array('enctype' => 'multipart/form-data'));
 		$this->_data['form_img']					=	form_input(array('type'  => 'file',
 																												 'name'  => 'fileToUpload',
 																												 'id'    => 'fileToUpload',
@@ -304,10 +306,12 @@ class Critic extends BaseController
 																												  	'name'  => 'content',
 																												  	'id'    => 'content',
 																												  	'value' => $objCriticInfoRapid->critic_content));
-		$this->_data['form_submit']    		= form_submit('modifier', 'modifier', "class = 'button mb-5 mr-5'");
+		$this->_data['form_submit']    		= form_submit('envoyer', 'modifier', "class = 'button mb-5 mr-5'");
 		$this->_data['form_close']    		= form_close();
 
 		if($this->request->getMethod() == 'post') {
+
+			echo "coucou";die;
 							// Initialisation des règles et de la personnalisation des erreur.
 					$rules = [
 							'title' => [
@@ -348,8 +352,6 @@ class Critic extends BaseController
 
 
 					if($this->validate($rules)) {
-							//Il faudra insérer dans la BDD ici
-							//Ajout d'une critic dans le BDD on utilise la method insert
 
 							if($file->isValid() && !$file->hasMoved()) {
 
@@ -365,6 +367,9 @@ class Critic extends BaseController
 											->save('./assets/images/'. $banniereCritic);
 								}
 							}
+							else {
+								$banniereCritic = 'banniere_default.jpg';
+							}
 									$arrNewData = [
 									'critic_img'			=> $banniereCritic,
 									'critic_title'		=> $this->request->getVar('title'),
@@ -372,13 +377,15 @@ class Critic extends BaseController
 									'critic_cat'			=> $this->request->getVar('cat'),
 									//Fonction php qui affiche la date du jour
 									'critic_createdate'			=> date("Y-m-d"),
-									'critic_creator'			=> session()->get('loggedUser'),
+
+									'critic_creator'				=> session()->get('loggedUser'),
 									//TODO A modifier plus tard => une fois qu'on auras fait le publié/dépublié
-									'critic_status'				=> 1
+									'critic_status'					=> 1
 								];
-								$objUser_model->set($arrNewData);
-								$objUser_model->where($objCriticInfoRapid->critic_id);
-								$objCriticModel->update($arrNewData);
+								echo "<pre>";var_dump($arrNewData);die;
+								$objCriticModel->set($arrNewData);
+								$objCriticModel->where('critic_id' ,$objCriticInfoRapid->critic_id);
+								$objCriticModel->update();
 								return redirect()->to('critic/user_critic');
 
 							}

@@ -18,7 +18,7 @@
       <div id="image_critic">
 
         <label for="fileToUpload">
-          <div class="profile-pic-critic" style="background-image: url('https://fakeimg.pl/150x150/')">
+          <div class="profile-pic-critic" style="background-image: url('{base_url("assets/images/banniere_default.jpg")}')">
             <span></span>
             <span>Modifier votre image</span>
           </div>
