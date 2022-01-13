@@ -402,7 +402,7 @@ class User extends BaseController
 	{
 
 			// On vérifie que l'utilisateur est connecté
-		if(session()->get('loggedUser') == '') {
+		if(session()->get('loggedUser') == '' && session()->get('user_role') !== 1) {
 			return redirect()->to('Errors/show403');
 		}
 
@@ -435,6 +435,29 @@ class User extends BaseController
 		$this->_data['title']			= "Listes des utilisateurs";
 
         $this->display('admin_user.tpl');
+	}
+
+	/**
+	 * Permet de se déconnecter lorsque l'on est connecté...
+	 * @return redirect
+	 * @author Quentin Felbinger
+	 */
+	public function user_delete()
+	{
+			// On vérifie que l'utilisateur est connecté et qu'il est administrateur
+		if(session()->get('loggedUser') == '' && session()->get('user_role') !== 1) {
+			return redirect()->to('Errors/show403');
+		}
+
+			// On instancie l'objet.
+		$objUser_model = new User_model();
+
+		$strId = $_GET["use"];
+		$objUser_model->where('user_id', $strId);
+		$objUser_model->delete();
+
+		return redirect()->to('user/admin_user');
+
 	}
 
 	/**

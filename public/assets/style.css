@@ -96,16 +96,6 @@ header section.show {
   display: none;
 }
 
-/* PAGE home */
-
-#carouselExampleIndicators {
-  /* height: 500px; */
-  overflow: hidden;
-}
-
-#carouselExampleIndicators {
-  display: none;
-}
 
 #galerie {
   display: flex;
@@ -642,11 +632,7 @@ table.dataTable td {
     font-size: 12px;
   }
 
-  /* SLIDER Page Home */
 
-  #carouselExampleIndicators {
-    display: block;
-  }
 
   /* Formulaire */
 

@@ -11,7 +11,7 @@
   <div class="row" style="margin-right: 0; margin-left: 5px;">
     <div class="col-md-12">
 
-      {$form_open}      
+      {$form_open}
       <table id="admin" class="display" style="width:100%">
         <thead>
           <tr>
@@ -25,7 +25,7 @@
 
           {foreach from=$arrUsersInfo item=$objUserInfo}
             <tr>
-              <td>{$objUserInfo->user_name}</td>
+              <td><a href="{base_url('user/user_delete')}?use={$objUserInfo->user_id}" class="DeleteCritic"><i class="fas fa-minus-square"></i></a>&nbsp;{$objUserInfo->user_name}</td>
               <td>{$objUserInfo->user_firstname}</td>
               <td>{$objUserInfo->user_mail}</td>
 
