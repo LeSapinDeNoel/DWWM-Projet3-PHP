@@ -23,7 +23,6 @@ class Page extends BaseController
 
 	public function contact()
 	{
-
 		//Formulaire de contact
 		$this->_data['form_open']    				= form_open('page/contact');
 		$this->_data['label_name']					= form_label('Nom');
@@ -37,12 +36,19 @@ class Page extends BaseController
 		$this->_data['form_submit']    			= form_submit('envoyer', 'envoyer', "class = 'button mb-5 mr-5 text-center d-block mx-auto'");
 		$this->_data['form_close']    			= form_close();
 
-		$email = \Config\Services::email();
-		$email->setFrom($this->request->getVar('email'), $this->request->getVar('name'));
-		$email->setTo('recprojet3@gmail.com');
-		$email->setSubject('Contact de'.' '.$this->request->getVar('name').' '.$this->request->getVar('firstname'));
-		$email->setMessage($this->request->getVar('message'));
-		$email->send();
+
+		if($this->request->getMethod() == 'post') {
+
+			$to 	 = 'recprojet3@gmail.com';
+
+			$email = \Config\Services::email();
+
+			$email->setTo($to);
+			$email->setFrom($this->request->getVar('email'), $this->request->getVar('name'));
+			$email->setSubject('Contact de'.' '.$this->request->getVar('name').' '.$this->request->getVar('firstname'));			$email->setMessage($this->request->getVar('message'));
+			$email->setMessage($this->request->getVar('message'));
+
+			$email->send();
 
 		if ($email->send())
 		{
@@ -51,10 +57,11 @@ class Page extends BaseController
 		else {
 			echo "pas ok";
 		}
+
 	}
 
 		//Données de la page
-		$this->_data['title']     = "Contactez nous";
+		$this->_data['title']         = "Contactez nous";
 		$this->display('contact.tpl');
 	}
 }
