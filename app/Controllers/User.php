@@ -421,10 +421,13 @@ class User extends BaseController
 		$this->_data['form_close']    	= form_close();
 
 		if($this->request->getMethod() == 'post') {
+
 			foreach($this->_data['arrUsersInfo'] as $objUserInfo) {
+
 				$newData = [
 					'user_role' => $this->request->getVar('role' . $objUserInfo->user_id)
 				];
+				
 				if($newData['user_role'] != "") {
 					$objUser_model->set($newData);
 					$objUser_model->where('user_id', $objUserInfo->user_id);
