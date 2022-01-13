@@ -44,7 +44,7 @@ class Page extends BaseController
 			$email = \Config\Services::email();
 
 			$email->setTo($to);
-			$email->setFrom($todo, 'Julie');
+			$email->setFrom($todo, 'Rec');
 			$email->setSubject('Contact de'.' '.$this->request->getVar('name').' '.$this->request->getVar('firstname'));
 			$email->setMessage('Vous avez reçu un email de : '$this->request->getVar('email').'Voici sont message : '. $this->request->getVar('message'));
 			$email->send();
