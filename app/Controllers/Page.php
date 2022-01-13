@@ -1,27 +1,39 @@
 <?php
 
 namespace App\Controllers;
-
+use CodeIgniter\Controller;
 
 class Page extends BaseController
 {
-	public function index()
-	{
-    $this->display('help.tpl');
-	}
 
+	/**
+	 * Page de mentions légales
+	 * @return display
+	 * @author Quentin Felbinger
+	 */
 	public function info()
 	{
 		$this->display('infos.tpl');
 	}
 
+	/**
+	 * Page qui atteste que le mail à bien été envoyé
+	 * @return display
+	 * @author Julie Dienger
+	 */
+	public function envoi_ok()
+	{
+		$this->display('envoi_ok.tpl');
+	}
+
+	/**
+	 * Page de contact qui envoie les info du formulaire à recprojet3@gmail.com
+	 * @return redirect
+	 * @author Julie Dienger
+	 */
 	public function contact()
 	{
-		$email = \Config\Services::email();
-
 		//Formulaire de contact
-		// Création du formulaire_search
-
 		$this->_data['form_open']    				= form_open('page/contact');
 		$this->_data['label_name']					= form_label('Nom');
 		$this->_data['form_name'] 					= form_input('name');
@@ -35,22 +47,26 @@ class Page extends BaseController
 		$this->_data['form_close']    			= form_close();
 
 
-		//var_dump($_POST);die;
 		if($this->request->getMethod() == 'post') {
-		$email->setFrom('recprojet3@gmail.com', 'rec');
-		$email->setTo($this->request->getVar('email'));
-		$email->setSubject($this->request->getVar('name').' '.$this->request->getVar('firstname'));
-		$email->setMessage($this->request->getVar('message'));
-		//echo "<pre>";var_dump($email);
-		$email->send();
+
+			$to 	 = 'juliedienger17@gmail.com';
+			$todo	 = 'recprojet3@gmail.com';
+			$email = \Config\Services::email();
+
+			$email->setTo($to);
+			$email->setFrom($todo, 'Rec');
+			$email->setSubject('Contact de'.' '.$this->request->getVar('name').' '.$this->request->getVar('firstname'));
+			$email->setMessage('Vous avez reçu un email de : '$this->request->getVar('email').'Voici sont message : '. $this->request->getVar('message'));
+			$email->send();
 
 		if ($email->send())
 		{
-				echo 'ok';
+			return redirect()->to('page/envoi_ok');
 		}
 		else {
 			echo "pas ok";
 		}
+
 	}
 
 		//Données de la page

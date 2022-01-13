@@ -1,4 +1,5 @@
 {extends file="layout/content.tpl"}
+{block name=title append}{$title}{/block}
 {block name="content"}
 
 <main>
@@ -27,7 +28,7 @@
             <th>E-mail</th>
             <th>Role</th>
           </tr>
-        </thead> 
+        </thead>
         <tbody>
 
           {foreach from=$arrUsersInfo item=$objUserInfo}
@@ -50,14 +51,14 @@
                     <option 
                     {if $objUserInfo->user_role == 1}
                       selected
-                    {/if} 
+                    {/if}
                     value="1">Administrateur</option>
-                    <option 
+                    <option
                     {if $objUserInfo->user_role == 2}
                       selected
                     {/if}
                     value="2">Modérateur</option>
-                    <option 
+                    <option
                     {if $objUserInfo->user_role == 3}
                       selected
                     {/if}
@@ -67,7 +68,7 @@
 
             </tr>
           {/foreach}
-          
+
         </tbody>
         <tfoot>
           <tr>
@@ -83,8 +84,8 @@
 
     </div>
   </div>
-  
-  
+
+
 
 </main>
 
@@ -92,9 +93,9 @@
 
 {block name="js_footer"} *}
 
-  
+
   {literal}
-    <script> 
+    <script>
       $(document).ready(function() {
         $('#admin').DataTable({
           language: {
