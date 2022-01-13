@@ -25,13 +25,21 @@
 
           {foreach from=$arrUsersInfo item=$objUserInfo}
             <tr>
-              <td><a href="{base_url('user/user_delete')}?use={$objUserInfo->user_id}" class="DeleteCritic"><i class="fas fa-minus-square"></i></a>&nbsp;{$objUserInfo->user_name}</td>
+              <td>
+
+                // Affiche la suppression d'utilisateur sauf pour l'utilisateur connecté.
+              {if session('loggedUser') != $objUserInfo->user_id}
+                <a href="{base_url('user/user_delete')}?use={$objUserInfo->user_id}" class="DeleteCritic"><i class="fas fa-minus-square"></i></a>&nbsp;
+              {/if}
+              
+              {$objUserInfo->user_name}</td>
               <td>{$objUserInfo->user_firstname}</td>
               <td>{$objUserInfo->user_mail}</td>
 
               <td>
                 {$label_cat}
-                <select name="role{$objUserInfo->user_id}" id="role{$objUserInfo->user_id}">
+                  // Affiche le role et la modification d'utilisateur sauf pour l'utilisateur connecté.
+                <select name="role{$objUserInfo->user_id}" id="role{$objUserInfo->user_id}"{if session('loggedUser') == $objUserInfo->user_id}disabled{/if}>
                     <option 
                     {if $objUserInfo->user_role == 1}
                       selected
