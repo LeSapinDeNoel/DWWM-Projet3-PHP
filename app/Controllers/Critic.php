@@ -67,7 +67,11 @@ class Critic extends BaseController
 
 
 
-
+	/**
+	 * Page qui permet de modérer les critiques
+	 * @return display
+	 * @author Quentin Felbinger
+	 */
 	public function critic_moderate()
 	{
 			// On vérifie que l'utilisateur est connecté
