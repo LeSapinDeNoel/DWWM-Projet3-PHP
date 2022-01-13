@@ -4,10 +4,12 @@
 
 <main>
 
-<div class="backgroundH">
+<div class="backgroundH text-white " style="background-color:#171926; padding-top:40px; padding-bottom:40px;">
 
-{* <p>VOUS ETES LA POUR :</p>
-<p class="ecris-dyn"></p> *}
+<p class="display-4 text-center mx-auto" style="width:80%;">
+  Le premier site de critiques de films
+  entièrement collaboratif
+</p>
 
 </div>
 
