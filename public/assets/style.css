@@ -177,6 +177,18 @@ header section.show {
 
 /* Fin PAGE user critic */
 
+
+/* Styliser les select  */
+
+select {
+  height: 58px;
+  border: solid 1px #D2D6DA;
+  border-radius: 5px;
+}
+
+/* Fin style select */
+
+
 /* Formulaire page critic */
 #formulaire_search{
   width: 100%;

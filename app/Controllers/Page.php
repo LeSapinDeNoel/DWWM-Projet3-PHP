@@ -5,6 +5,16 @@ use CodeIgniter\Controller;
 
 class Page extends BaseController
 {
+	/**
+	 * Page d'aide
+	 * @return display
+	 * @author Quentin Felbinger
+	 */
+	public function index()
+	{
+		$this->_data['title']         = "Mentions légales";
+    $this->display('help.tpl');
+	}
 
 	/**
 	 * Page de mentions légales
@@ -59,7 +69,7 @@ class Page extends BaseController
 			$email->setTo($to);
 			$email->setFrom($todo, 'Rec');
 			$email->setSubject('Contact de'.' '.$this->request->getVar('name').' '.$this->request->getVar('firstname'));
-			$email->setMessage('Vous avez reçu un email de : '$this->request->getVar('email').'Voici sont message : '. $this->request->getVar('message'));
+			$email->setMessage('Vous avez reçu un email de : '.$this->request->getVar('email').'Voici sont message : '. $this->request->getVar('message'));
 			$email->send();
 
 		if ($email->send())
