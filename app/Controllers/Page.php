@@ -17,6 +17,8 @@ class Page extends BaseController
 
 	public function contact()
 	{
+		$email = \Config\Services::email();
+
 		//Formulaire de contact
 		// Création du formulaire_search
 
@@ -35,8 +37,7 @@ class Page extends BaseController
 
 		//var_dump($_POST);die;
 		if($this->request->getMethod() == 'post') {
-		$email = \Config\Services::email();
-		$email->setFrom('recprojet3@gmail.com');
+		$email->setFrom('recprojet3@gmail.com', 'rec');
 		$email->setTo($this->request->getVar('email'));
 		$email->setSubject($this->request->getVar('name').' '.$this->request->getVar('firstname'));
 		$email->setMessage($this->request->getVar('message'));
