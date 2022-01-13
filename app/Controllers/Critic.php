@@ -24,7 +24,7 @@ class Critic extends BaseController
 			$objCriticModel       				= new Critic_model();
 		//Données de la page
 			$this->_data['title']         = "Accueil";
-			$this->_data['arrCritics']   	= $objCriticModel->findAllWithCat();
+			$this->_data['arrCritics']   	= $objCriticModel->where('critic_status', '1')->limit(2)->findAllWithCat();
       $this->display('home.tpl');
 
 	}
@@ -59,7 +59,7 @@ class Critic extends BaseController
 
 			//Données de la page
 			$this->_data['title']         = "Les critiques";
-			$this->_data['arrCritics']   	= $objCriticModel->findAllWithCat();
+			$this->_data['arrCritics']   	= $objCriticModel->where('critic_status', '1')->findAllWithCat();
 			$this->display('critic.tpl');
 	}
 
@@ -71,14 +71,34 @@ class Critic extends BaseController
 	public function critic_moderate()
 	{
 			// On vérifie que l'utilisateur est connecté
-		if(session()->get('loggedUser') == '') {
+		if(session()->get('loggedUser') == '' && session()->get('user_role') != '2') {
 			return redirect()->to('Errors/show403');
 		}
 
 		//Instancier l'objet
 		$objCriticModel       				= new Critic_model();
 		//Données de la page.
-		$this->_data['arrCritics']   	= $objCriticModel->findAllWithCat();
+		$this->_data['arrCriticsInfo']   	= $objCriticModel->findAllWithCat();
+
+		// Création du formulaire_connexion.
+		$this->_data['form_open']    		= form_open('critic/critic_moderate');
+
+		$this->_data['label_visi']			= form_label('');
+
+		$this->_data['form_submit']    		= form_submit('envoyer', 'Mettre à jour','class = "button"');
+		$this->_data['form_close']    		= form_close();
+
+		if($this->request->getMethod() == 'post') {
+			foreach($this->_data['arrCriticsInfo'] as $objCriticInfo) {
+				$newData = [
+					'critic_status' => $this->request->getVar('visibilite' . $objCriticInfo->critic_id)
+				];
+				$objCriticModel->set($newData);
+				$objCriticModel->where('critic_id', $objCriticInfo->critic_id);
+				$objCriticModel->update();
+			}
+			return redirect()->to('critic/critic_moderate');
+		}
 
 
     $this->display('critic_moderate.tpl');
@@ -284,7 +304,7 @@ class Critic extends BaseController
 								'critic_createdate'		=> date("Y-m-d"),
 								'critic_creator'			=> session()->get('loggedUser'),
 								//TODO A modifier plus tard => une fois qu'on auras fait le publié/dépublié
-								'critic_status'				=> 1
+								'critic_status'				=> 2
 							];
 
 								$objCriticModel->insert($arrData);
@@ -327,7 +347,6 @@ class Critic extends BaseController
 		//var_dump($arrCriticInfo);die;
 
 		$this->_data['objCriticInfo'] 		= $arrCriticInfo[0];
-		//var_dump($this->_data['objCriticInfo']);die;
 		$objCriticInfoRapid 							= $this->_data['objCriticInfo'];//$arrCriticInfo[0];
 
 		// Création du formulaire de modification de critic
@@ -398,7 +417,7 @@ class Critic extends BaseController
 							if($file->isValid() && !$file->hasMoved()) {
 
 								if($file->getName() == ""){
-									$banniereCritic = 'banniere_default.jpg';
+									$banniereCritic = $this->request->getVar('fileToUpload');
 								}
 								else {
 
@@ -410,7 +429,7 @@ class Critic extends BaseController
 								}
 							}
 							else {
-								$banniereCritic = 'banniere_default.jpg';
+								$banniereCritic = $this->request->getVar('fileToUpload');
 							}
 									$arrNewData = [
 									'critic_img'			=> $banniereCritic,
@@ -426,7 +445,7 @@ class Critic extends BaseController
 								];
 								//echo "<pre>";var_dump($arrNewData);die;
 								$objCriticModel->set($arrNewData);
-								$objCriticModel->where('critic_id' ,$objCriticInfoRapid->critic_id);
+								$objCriticModel->where('critic_id' ,$_GET['art']);
 								$objCriticModel->update();
 								return redirect()->to('critic/user_critic');
 
