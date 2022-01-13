@@ -15,10 +15,11 @@
         </div>
     {/if}
     {$form_open}
+    {csrf_field()}
       <div id="image_critic">
 
         <label for="fileToUpload">
-          <div class="profile-pic-critic" style="background-image: url('https://fakeimg.pl/150x150/')">
+          <div class="profile-pic-critic" style="background-image: url('{base_url("assets/images")}/{$objCriticInfo->critic_img}')">
             <span></span>
             <span>Modifier votre image</span>
           </div>

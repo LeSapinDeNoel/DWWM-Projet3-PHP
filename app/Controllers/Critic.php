@@ -248,6 +248,8 @@ class Critic extends BaseController
 							];
 
 								$objCriticModel->insert($arrData);
+								return redirect()->to('critic/user_critic');
+
             }
 						else {
                 $this->_data['validation'] = $this->validator;
@@ -281,28 +283,40 @@ class Critic extends BaseController
 		$arrCatList 			= $objCatModel->findAllCatForSelect();
 		//instancier l'objet critic
 		$objCriticModel  	= new Critic_model();
+		$arrCriticInfo 		= $objCriticModel->where('critic_id',$_GET['art'])->findAllWithCat();
+		$this->_data['objCriticInfo'] 		= $arrCriticInfo[0];
+		$objCriticInfoRapid 							= $this->_data['objCriticInfo'];
+
 
 		// Création du formulaire de modification de critic
-		$this->_data['form_open']    			= form_open('critic/critic_create',array('enctype' => 'multipart/form-data'));
+		$this->_data['form_open']    			= form_open('critic/user_critic',array('enctype' => 'multipart/form-data'));
 		$this->_data['form_img']					=	form_input(array('type'  => 'file',
 																												 'name'  => 'fileToUpload',
-																												 'id'    => 'fileToUpload',));
+																												 'id'    => 'fileToUpload',
+																												 'value' => $objCriticInfoRapid->critic_img,));
 		$this->_data['label_title']				= form_label('Titre');
-		$this->_data['form_title'] 				= form_input('title', set_value('title'));
+		$this->_data['form_title'] 				= form_input(array('type'  => 'text',
+																												 'name'	 => 'title',
+																												 'id'    => 'title',
+																												 'value' => $objCriticInfoRapid->critic_title));
 		$this->_data['label_cat']					= form_label('Catégories');
-		$this->_data['form_cat'] 					= form_dropdown('cat', $arrCatList, set_value('cat'));
+		$this->_data['form_cat'] 					= form_dropdown('cat', $arrCatList, set_value($objCriticInfoRapid->critic_cat));
 		$this->_data['label_content']			=	form_label('Contenu');
-		$this->_data['form_content']			=	form_textarea('content', set_value('content'));
-		$this->_data['form_submit']    		= form_submit('modifier', 'modifier', "class = 'button mb-5 mr-5'");
+		$this->_data['form_content']			=	form_textarea(array('type'   => 'text',
+																												  	'name'  => 'content',
+																												  	'id'    => 'content',
+																												  	'value' => $objCriticInfoRapid->critic_content));
+		$this->_data['form_submit']    		= form_submit('envoyer', 'modifier', "class = 'button mb-5 mr-5'");
 		$this->_data['form_close']    		= form_close();
 
 		if($this->request->getMethod() == 'post') {
+
+			echo "coucou";die;
 							// Initialisation des règles et de la personnalisation des erreur.
 					$rules = [
 							'title' => [
-									'rules'  => 'required|max_length[200]',
+									'rules'  => 'max_length[200]',
 									'errors' => [
-											'required' => 'Veuillez renseigner votre titre.',
 											'max_length' => 'Votre titre est trop long :).',
 									],
 							],
@@ -314,9 +328,8 @@ class Critic extends BaseController
 									],
 							],
 							'content' => [
-									'rules'  => 'required|max_length[1200]',
+									'rules'  => 'max_length[1200]',
 									'errors' => [
-										'required' => 'Veuillez renseigner votre contenu.',
 										'max_length' => 'Votre contenu est trop long :).',
 									],
 							],
@@ -326,10 +339,9 @@ class Critic extends BaseController
 
 			if ($file->getName() != "" || $file->isValid() && !$file->hasMoved()) {
 				$rules['fileToUpload'] = [
-					'rules' => 'required|is_image[fileToUpload]|max_size[fileToUpload, 200]|ext_in[fileToUpload,jpg]|max_dims[fileToUpload,500,500]',
+					'rules' => 'is_image[fileToUpload]|max_size[fileToUpload, 200]|ext_in[fileToUpload,jpg]|max_dims[fileToUpload,1920,1080]',
 					'label' => 'The File',
 					'errors' => [
-						'required'	=> 'Vous devez importer une image',
 						'is_image' 	=> 'Vous devez envoyer une image.',
 						'max_size' 	=> 'Votre image est trop volumineuse (200ko max).',
 						'ext_in' 		=> 'Votre image doit être au format jpg.',
@@ -340,8 +352,6 @@ class Critic extends BaseController
 
 
 					if($this->validate($rules)) {
-							//Il faudra insérer dans la BDD ici
-							//Ajout d'une critic dans le BDD on utilise la method insert
 
 							if($file->isValid() && !$file->hasMoved()) {
 
@@ -357,19 +367,26 @@ class Critic extends BaseController
 											->save('./assets/images/'. $banniereCritic);
 								}
 							}
-									$arrData = [
+							else {
+								$banniereCritic = 'banniere_default.jpg';
+							}
+									$arrNewData = [
 									'critic_img'			=> $banniereCritic,
 									'critic_title'		=> $this->request->getVar('title'),
 									'critic_content'	=> $this->request->getVar('content'),
 									'critic_cat'			=> $this->request->getVar('cat'),
 									//Fonction php qui affiche la date du jour
 									'critic_createdate'			=> date("Y-m-d"),
-									'critic_creator'			=> session()->get('loggedUser'),
+
+									'critic_creator'				=> session()->get('loggedUser'),
 									//TODO A modifier plus tard => une fois qu'on auras fait le publié/dépublié
-									'critic_status'				=> 1
+									'critic_status'					=> 1
 								];
-								$objCriticModel->update('critic_id', $arrData);
-								return redirect()->to('critic/home');
+								echo "<pre>";var_dump($arrNewData);die;
+								$objCriticModel->set($arrNewData);
+								$objCriticModel->where('critic_id' ,$objCriticInfoRapid->critic_id);
+								$objCriticModel->update();
+								return redirect()->to('critic/user_critic');
 
 							}
 							else {
@@ -378,7 +395,7 @@ class Critic extends BaseController
 
 	 }
 						//Données de la page
-						$this->_data['title']  = "Modifier la Critique";
+						$this->_data['title']  = "Modifier ma Critique";
 						$this->display('critic_edit.tpl');
 
 	}
