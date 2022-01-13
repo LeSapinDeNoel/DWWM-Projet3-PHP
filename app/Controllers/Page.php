@@ -13,6 +13,7 @@ class Page extends BaseController
 	 */
 	public function info()
 	{
+		$this->_data['title']         = "Mentions légales";
 		$this->display('infos.tpl');
 	}
 
@@ -23,6 +24,8 @@ class Page extends BaseController
 	 */
 	public function envoi_ok()
 	{
+
+		$this->_data['title']         = "Envoi mail ok";
 		$this->display('envoi_ok.tpl');
 	}
 
