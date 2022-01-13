@@ -17,6 +17,21 @@ class Page extends BaseController
 
 	public function contact()
 	{
+		//Formulaire de contact
+		// Création du formulaire_search
+		$this->_data['form_open']    				= form_open('page/contact');
+		$this->_data['label_name']					= form_label('Nom');
+		$this->_data['form_name'] 					= form_input('name', set_value('name'));
+		$this->_data['label_firstname']			= form_label('Prénom');
+		$this->_data['form_firstname'] 			= form_input('firstname' ,	set_value('firstname'));
+		$this->_data['label_email']					= form_label('E-mail');
+		$this->_data['form_email'] 					= form_input('email', set_value('email'));
+		$this->_data['label_message']				= form_label('Votre message');
+		$this->_data['form_message'] 				= form_textarea('message', set_value('message'));
+		$this->_data['form_submit']    			= form_submit('envoyer', 'envoyer', "class = 'button mb-5 mr-5 text-center d-block mx-auto'");
+		$this->_data['form_close']    			= form_close();
+
+
 
 
 		$email = \Config\Services::email();
@@ -25,14 +40,15 @@ class Page extends BaseController
 		$email->setSubject('sujet');
 		$email->setMessage('message');
 
-		if ($email->send())
-		{
-				echo 'ok';
-		}
-		else {
-			echo "pas ok";
-		}
-
+		// if ($email->send())
+		// {
+		// 		echo 'ok';
+		// }
+		// else {
+		// 	echo "pas ok";
+		// }
+		//Données de la page
+		$this->_data['title']         = "Contactez nous";
 		$this->display('contact.tpl');
 	}
 }
