@@ -427,10 +427,11 @@ class Critic extends BaseController
 
 					if($this->validate($rules)) {
 
+
 							if($file->isValid() && !$file->hasMoved()) {
 
 								if($file->getName() == ""){
-									$banniereCritic = $this->request->getVar('fileToUpload');
+									$banniereCritic = $objCriticInfoRapid->critic_img;
 								}
 								else {
 
@@ -442,7 +443,7 @@ class Critic extends BaseController
 								}
 							}
 							else {
-								$banniereCritic = $this->request->getVar('fileToUpload');
+								$banniereCritic = $objCriticInfoRapid->critic_img;
 							}
 									$arrNewData = [
 									'critic_img'			=> $banniereCritic,
@@ -456,6 +457,7 @@ class Critic extends BaseController
 									//TODO A modifier plus tard => une fois qu'on auras fait le publié/dépublié
 									'critic_status'					=> 1
 								];
+
 								//echo "<pre>";var_dump($arrNewData);die;
 								$objCriticModel->set($arrNewData);
 								$objCriticModel->where('critic_id' ,$_GET['art']);
