@@ -11,6 +11,11 @@ class Category_model extends Model
 
     protected $useTimestamps = true;
 
+    /**
+     * Permet de créer un tableau de toutes les catégorie.
+     * @return array
+     * @author Julie
+     */
     public function findAllCatForSelect(){
 
       $arrAllCat = $this->findAll();
