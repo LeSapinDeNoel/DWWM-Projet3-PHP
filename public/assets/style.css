@@ -150,6 +150,14 @@ header section.show {
   transform: scale(1.02);
 }
 
+/* particles js */
+.backgroundH {
+  width: 100%;
+  height: 300px;
+  background-color: black;
+}
+/* Fin particles js */
+
 /* Fin PAGE home */
 
 /* PAGE user critic */

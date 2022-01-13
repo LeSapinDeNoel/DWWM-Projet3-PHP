@@ -4,6 +4,7 @@
 
 <main>
 
+<div id="particles-js" class="backgroundH"></div>
 
 <h1>Les dernières critiques</h1>
 <hr>
@@ -19,5 +20,21 @@
 </section>
 
 </main>
+
+{/block}
+<script src="{base_url("assets/particle_js/particles.js")}"></script>
+<script src="{base_url("assets/particle_js/particles_config.js")}"></script>
+<script src="{base_url("assets/particle_js/particles.min.js")}"></script>
+{block name="js_footer"}
+
+{literal}
+    <script>
+    
+    particlesJS.load('particles-js', 'particles.json', function() {
+      console.log('particles.js loaded - callback');
+    });
+
+    </script>
+{/literal}
 
 {/block}
