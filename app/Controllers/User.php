@@ -453,6 +453,11 @@ class User extends BaseController
 		$objUser_model = new User_model();
 
 		$strId = $_GET["use"];
+		
+		if (session('loggedUser') == $_GET["use"]) {
+			session()->setFlashdata('error', 'Vous essayez de vous supprimer...');
+			return redirect()->to('user/admin_user');
+		}
 		$objUser_model->where('user_id', $strId);
 		$objUser_model->delete();
 
