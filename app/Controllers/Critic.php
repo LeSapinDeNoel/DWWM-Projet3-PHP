@@ -398,7 +398,7 @@ class Critic extends BaseController
 							if($file->isValid() && !$file->hasMoved()) {
 
 								if($file->getName() == ""){
-									$banniereCritic = 'banniere_default.jpg';
+									$banniereCritic = $this->request->getVar('fileToUpload');
 								}
 								else {
 
@@ -410,7 +410,7 @@ class Critic extends BaseController
 								}
 							}
 							else {
-								$banniereCritic = 'banniere_default.jpg';
+								$banniereCritic = $this->request->getVar('fileToUpload');
 							}
 									$arrNewData = [
 									'critic_img'			=> $banniereCritic,
