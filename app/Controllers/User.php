@@ -75,7 +75,7 @@ class User extends BaseController
 				if(!$boolCheckpwd) {
 					$session = session();
 
-					session()->setFlashdata('fail', 'Mot de passe incorrect');
+					session()->setFlashdata('fail', 'Veuillez renseigner des identifiants valides.');
 
 					return redirect()->to('user/login')->withInput();
 				}else {
