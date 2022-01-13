@@ -4,39 +4,41 @@
 
 <main>
   <div class="justify-content-center">
-    <h1>Nous contacter</h1>
+    <h1>{$title}</h1>
     <hr>
-    <form action="#" method="post">
-      <div id="formulaire_contact">
 
-        <div class="form-group a">
-          <label for="name">Nom</label>
-          <input id="name" type="text">
-        </div>
+    {$form_open}
+    <div id="formulaire_contact">
 
-        <div class="form-group b">
-          <label for="first-name">Prénom</label>
-          <input id="first-name" type="text">
-        </div>
-
-        <div class="form-group email-group">
-          <label for="email">Email</label>
-          <input id="email" type="text">
-        </div>
-
-        <div class="form-group email-group">
-          <label for="message">Message</label>
-          <textarea id="message" type="text"></textarea>
-        </div>
-
-        <div class="button-container">
-          <button class="button">Envoyer</button>
-        </div>
+      <div class="form-group a">
+        {$label_name}
+        {$form_name}
       </div>
-    </form>
+
+      <div class="form-group b">
+        {$label_firstname}
+        {$form_firstname}
+      </div>
+
+      <div class="form-group email-group">
+        {$label_email}
+        {$form_email}
+      </div>
+
+      <div class="form-group email-group">
+        {$label_message}
+        {$form_message}
+      </div>
+
+      <!-- <div class="button-container">
+          <button class="button">Envoyer</button>
+        </div> -->
+      {$form_submit}
+
+    </div>
+    {$form_close}
   </div>
 
 </main>
 
 {/block}
-

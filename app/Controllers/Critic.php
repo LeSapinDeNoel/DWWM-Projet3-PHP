@@ -70,10 +70,50 @@ class Critic extends BaseController
 
 	public function critic_moderate()
 	{
-      $this->display('critic_moderate.tpl');
+			// On vérifie que l'utilisateur est connecté
+		if(session()->get('loggedUser') == '') {
+			return redirect()->to('Errors/show403');
+		}
+
+		//Instancier l'objet
+		$objCriticModel       				= new Critic_model();
+		//Données de la page.
+		$this->_data['arrCritics']   	= $objCriticModel->findAllWithCat();
+
+
+    $this->display('critic_moderate.tpl');
 	}
 
 
+
+
+
+	/**
+	 * Page qui permet de supprimer une critiques
+	 * @return redirect
+	 * @author Julie Dienger
+	 */
+	public function critic_delete(){
+
+		// On vérifie que l'utilisateur est connecté
+		if(session()->get('loggedUser') == '') {
+			return redirect()->to('Errors/show403');
+		}
+
+		// On instancie l'objet.
+		$objCriticModel      = new Critic_model();
+		$strId = $_GET["art"];
+		$arrCriticASuppr		 = $objCriticModel->where('critic_id', $strId)->findAllWithCat();
+		//var_dump($arrCriticASuppr[0]->critic_creator);var_dump(session()->get('loggedUser'));die;
+		//On vérifier que la critique appartient à l'utilisateur
+		if(session()->get('loggedUser') != $arrCriticASuppr[0]->critic_creator) {
+			return redirect()->to('Errors/show403');
+		}
+		$objCriticModel->where('critic_id', $strId);
+		$objCriticModel->delete();
+
+		return redirect()->to('critic/user_critic');
+	}
 
 
 
@@ -142,7 +182,7 @@ class Critic extends BaseController
 
 
 	/**
-	 * Page qui affiche le details d'une critics
+	 * Page qui permet de créer une critic
 	 * @return display
 	 * @author Julie Dienger
 	 */
@@ -284,12 +324,14 @@ class Critic extends BaseController
 		//instancier l'objet critic
 		$objCriticModel  	= new Critic_model();
 		$arrCriticInfo 		= $objCriticModel->where('critic_id',$_GET['art'])->findAllWithCat();
-		$this->_data['objCriticInfo'] 		= $arrCriticInfo[0];
-		$objCriticInfoRapid 							= $this->_data['objCriticInfo'];
+		//var_dump($arrCriticInfo);die;
 
+		$this->_data['objCriticInfo'] 		= $arrCriticInfo[0];
+		//var_dump($this->_data['objCriticInfo']);die;
+		$objCriticInfoRapid 							= $this->_data['objCriticInfo'];//$arrCriticInfo[0];
 
 		// Création du formulaire de modification de critic
-		$this->_data['form_open']    			= form_open('critic/user_critic',array('enctype' => 'multipart/form-data'));
+		$this->_data['form_open']    			= form_open('critic/critic_edit?art='.$_GET['art'],array('enctype' => 'multipart/form-data'));
 		$this->_data['form_img']					=	form_input(array('type'  => 'file',
 																												 'name'  => 'fileToUpload',
 																												 'id'    => 'fileToUpload',
@@ -311,7 +353,7 @@ class Critic extends BaseController
 
 		if($this->request->getMethod() == 'post') {
 
-			echo "coucou";die;
+			//echo "coucou";die;
 							// Initialisation des règles et de la personnalisation des erreur.
 					$rules = [
 							'title' => [
@@ -382,7 +424,7 @@ class Critic extends BaseController
 									//TODO A modifier plus tard => une fois qu'on auras fait le publié/dépublié
 									'critic_status'					=> 1
 								];
-								echo "<pre>";var_dump($arrNewData);die;
+								//echo "<pre>";var_dump($arrNewData);die;
 								$objCriticModel->set($arrNewData);
 								$objCriticModel->where('critic_id' ,$objCriticInfoRapid->critic_id);
 								$objCriticModel->update();
