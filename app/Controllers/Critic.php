@@ -88,6 +88,35 @@ class Critic extends BaseController
 
 
 
+	/**
+	 * Page qui permet de supprimer une critiques
+	 * @return redirect
+	 * @author Julie Dienger
+	 */
+	public function critic_delete(){
+
+		// On vérifie que l'utilisateur est connecté
+		if(session()->get('loggedUser') == '') {
+			return redirect()->to('Errors/show403');
+		}
+
+		// On instancie l'objet.
+		$objCriticModel      = new Critic_model();
+		$strId = $_GET["art"];
+		$arrCriticASuppr		 = $objCriticModel->where('critic_id', $strId)->findAllWithCat();
+		//var_dump($arrCriticASuppr[0]->critic_creator);var_dump(session()->get('loggedUser'));die;
+		//On vérifier que la critique appartient à l'utilisateur
+		if(session()->get('loggedUser') != $arrCriticASuppr[0]->critic_creator) {
+			return redirect()->to('Errors/show403');
+		}
+		$objCriticModel->where('critic_id', $strId);
+		$objCriticModel->delete();
+
+		return redirect()->to('critic/user_critic');
+	}
+
+
+
 
 	/**
 	 * Page qui affiche les critics de l'utilisateur
