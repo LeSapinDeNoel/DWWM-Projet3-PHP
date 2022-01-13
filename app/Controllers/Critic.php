@@ -335,14 +335,14 @@ class Critic extends BaseController
 		$this->_data['form_img']					=	form_input(array('type'  => 'file',
 																												 'name'  => 'fileToUpload',
 																												 'id'    => 'fileToUpload',
-																												 'value' => $objCriticInfoRapid->critic_img,));
+																												 'value' => $objCriticInfoRapid->critic_img));
 		$this->_data['label_title']				= form_label('Titre');
 		$this->_data['form_title'] 				= form_input(array('type'  => 'text',
 																												 'name'	 => 'title',
 																												 'id'    => 'title',
 																												 'value' => $objCriticInfoRapid->critic_title));
-		$this->_data['label_cat']					= form_label('Catégories');
-		$this->_data['form_cat'] 					= form_dropdown('cat', $arrCatList, set_value($objCriticInfoRapid->critic_cat));
+	  $this->_data['label_cat']					= form_label('Catégories');
+ 		$this->_data['form_cat'] 					= form_dropdown('cat', $arrCatList, $objCriticInfoRapid->critic_cat);
 		$this->_data['label_content']			=	form_label('Contenu');
 		$this->_data['form_content']			=	form_textarea(array('type'   => 'text',
 																												  	'name'  => 'content',
