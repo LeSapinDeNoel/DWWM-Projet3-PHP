@@ -1,5 +1,5 @@
 {extends file="layout/content.tpl"}
-
+{block name=title append}{$title}{/block}
 {block name="content"}
 
 <main>

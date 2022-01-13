@@ -1,5 +1,5 @@
 {extends file="layout/content.tpl"}
-
+{block name=title append}{$title}{/block}
 {block name="content"}
 
 <main>
@@ -102,7 +102,7 @@
 	      {$form_close}
 
   </div>
-  
+
 </main>
 
 {/block}

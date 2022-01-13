@@ -1,5 +1,5 @@
 {extends file="layout/content.tpl"}
-
+{block name=title append}{$title}{/block}
 {block name="content"}
 
 <main>
@@ -18,7 +18,7 @@
       non amet, DNA, réchime Carola auctor, tellus blottkopf, consectetur hop placerat hopla aliquam hopla quam. gravida condimentum mamsell lacus Yo dû. tristique Chulien salu id wie knepfle lotto-owe in, rhoncus turpis, Mauris gal bissame
     </p>
   </div>
-  
+
 </main>
 
 {/block}
