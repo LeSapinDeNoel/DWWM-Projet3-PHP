@@ -75,7 +75,7 @@ class Critic extends BaseController
 	public function critic_moderate()
 	{
 			// On vérifie que l'utilisateur est connecté
-		if(session()->get('loggedUser') == '' && session()->get('user_role') != '2') {
+		if(session()->get('loggedUser') == '' || session()->get('user_role') != '2') {
 			return redirect()->to('Errors/show403');
 		}
 
@@ -104,7 +104,8 @@ class Critic extends BaseController
 			return redirect()->to('critic/critic_moderate');
 		}
 
-
+	//Données de la page
+	$this->_data['title']        = "Modération";
     $this->display('critic_moderate.tpl');
 	}
 
@@ -340,8 +341,8 @@ class Critic extends BaseController
 		if(session()->get('loggedUser') == '') {
 			return redirect()->to('Errors/show403');
 		}
-
-
+		
+		
 		//instancier l'objet category
 		$objCatModel			= new Category_model();
 		$arrCatList 			= $objCatModel->findAllCatForSelect();
@@ -352,6 +353,12 @@ class Critic extends BaseController
 
 		$this->_data['objCriticInfo'] 		= $arrCriticInfo[0];
 		$objCriticInfoRapid 							= $this->_data['objCriticInfo'];//$arrCriticInfo[0];
+
+		//Page accéssible uniquement si utilisateur connecté
+		if(session()->get('loggedUser') != $objCriticInfoRapid->critic_creator ) {
+			return redirect()->to('Errors/show403');
+		}
+
 
 		// Création du formulaire de modification de critic
 		$this->_data['form_open']    			= form_open('critic/critic_edit?art='.$_GET['art'],array('enctype' => 'multipart/form-data'));

@@ -402,7 +402,7 @@ class User extends BaseController
 	{
 
 			// On vérifie que l'utilisateur est connecté
-		if(session()->get('loggedUser') == '' && session()->get('user_role') !== 1) {
+		if(session()->get('loggedUser') == '' || session()->get('user_role') != 1) {
 			return redirect()->to('Errors/show403');
 		}
 
@@ -413,12 +413,12 @@ class User extends BaseController
 		$this->_data['arrUsersInfo']	= $objUser_model->findAll();
 
 			// Création du formulaire_connexion.
-		$this->_data['form_open']    		= form_open('user/admin_user');
+		$this->_data['form_open']    	= form_open('user/admin_user');
 
-		$this->_data['label_cat']			= form_label('');
+		$this->_data['label_cat']		= form_label('');
 
-		$this->_data['form_submit']    		= form_submit('envoyer', 'Mettre à jour','class = "button"');
-		$this->_data['form_close']    		= form_close();
+		$this->_data['form_submit']    	= form_submit('envoyer', 'Mettre à jour','class = "button"');
+		$this->_data['form_close']    	= form_close();
 
 		if($this->request->getMethod() == 'post') {
 			foreach($this->_data['arrUsersInfo'] as $objUserInfo) {

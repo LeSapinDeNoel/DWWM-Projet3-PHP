@@ -12,7 +12,7 @@ class Critic_model extends Model
     protected $returnType    = 'App\Entities\critic_entity';
     protected $useTimestamps = false;
 
-    public function findAllWithCat(){
+    public function findAllWithCat($intLimit = 0){
 
         $this->join('category', 'cat_id = critic_cat');
         $this->join('users', 'critic_creator = user_id');
