@@ -5,22 +5,32 @@ use CodeIgniter\Controller;
 
 class Page extends BaseController
 {
-	public function index()
-	{
-    $this->display('help.tpl');
-	}
 
+	/**
+	 * Page de mentions légales
+	 * @return display
+	 * @author Quentin Felbinger
+	 */
 	public function info()
 	{
 		$this->display('infos.tpl');
 	}
 
+	/**
+	 * Page qui atteste que le mail à bien été envoyé
+	 * @return display
+	 * @author Julie Dienger
+	 */
 	public function envoi_ok()
 	{
 		$this->display('envoi_ok.tpl');
 	}
 
-
+	/**
+	 * Page de contact qui envoie les info du formulaire à recprojet3@gmail.com
+	 * @return redirect
+	 * @author Julie Dienger
+	 */
 	public function contact()
 	{
 		//Formulaire de contact
