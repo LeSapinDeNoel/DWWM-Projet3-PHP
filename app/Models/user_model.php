@@ -14,6 +14,11 @@ class User_model extends Model
 
     protected $returnType       = 'App\Entities\user_entity';
 
+    /**
+     * Permet de créer un tableau de tout les utilisateurs avec leurs noms, prénoms et leurs id en indice du tableau.
+     * @return array
+     * @author Quentin Felbinger
+     */
     public function findAllUsersForSelect(){
 
       $arrAllUsers = $this->findAll();

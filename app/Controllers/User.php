@@ -438,7 +438,7 @@ class User extends BaseController
 	}
 
 	/**
-	 * Permet de se déconnecter lorsque l'on est connecté...
+	 * Permet de supprimer un utilisateur en tant qu'administrateur.
 	 * @return redirect
 	 * @author Quentin Felbinger
 	 */
