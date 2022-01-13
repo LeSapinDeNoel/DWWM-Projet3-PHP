@@ -46,7 +46,7 @@ class Email extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $SMTPHost = 'smtp.googlemail.com';
+	public $SMTPHost = 'smtp.gmail.com';
 
 	/**
 	 * SMTP Username
@@ -77,7 +77,7 @@ class Email extends BaseConfig
 	 *
 	 * @var integer
 	 */
-	public $SMTPTimeout = 60;
+	public $SMTPTimeout = 20;
 
 	/**
 	 * Enable persistent SMTP connections
