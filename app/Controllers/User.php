@@ -243,7 +243,7 @@ class User extends BaseController
 		if(session()->get('loggedUser') == '') {
 			return redirect()->to('Errors/show403');
 		}
-		
+
 			// Création du formulaire_inscription
 		$this->_data['form_open']    		= form_open('user/edit_profile',array('enctype' => 'multipart/form-data'));
 
