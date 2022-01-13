@@ -182,7 +182,7 @@ class Critic extends BaseController
 
 
 	/**
-	 * Page qui affiche le details d'une critics
+	 * Page qui permet de créer une critic
 	 * @return display
 	 * @author Julie Dienger
 	 */
@@ -328,7 +328,7 @@ class Critic extends BaseController
 
 		$this->_data['objCriticInfo'] 		= $arrCriticInfo[0];
 		//var_dump($this->_data['objCriticInfo']);die;
-		$objCriticInfoRapid 							= $arrCriticInfo[0];//$this->_data['objCriticInfo'];
+		$objCriticInfoRapid 							= $this->_data['objCriticInfo'];//$arrCriticInfo[0];
 
 		// Création du formulaire de modification de critic
 		$this->_data['form_open']    			= form_open('critic/critic_edit?art='.$_GET['art'],array('enctype' => 'multipart/form-data'));
