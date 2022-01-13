@@ -69,7 +69,7 @@ class Critic extends BaseController
 
 	/**
 	 * Page qui permet de modérer les critiques
-	 * @return display
+	 * @return redirect
 	 * @author Quentin Felbinger
 	 */
 	public function critic_moderate()
@@ -128,9 +128,9 @@ class Critic extends BaseController
 		$objCriticModel      = new Critic_model();
 		$strId = $_GET["art"];
 		$arrCriticASuppr		 = $objCriticModel->where('critic_id', $strId)->findAllWithCat();
-		
+
 		//var_dump($arrCriticASuppr[0]->critic_creator);var_dump(session()->get('loggedUser'));die;
-		
+
 			//On vérifier que la critique appartient à l'utilisateur
 		if(session()->get('loggedUser') != $arrCriticASuppr[0]->critic_creator) {
 			return redirect()->to('Errors/show403');
