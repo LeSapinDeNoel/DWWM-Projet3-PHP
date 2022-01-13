@@ -21,20 +21,9 @@
 
 </main>
 
-{/block}
-<script src="{base_url("assets/particle_js/particles.js")}"></script>
-<script src="{base_url("assets/particle_js/particles_config.js")}"></script>
-<script src="{base_url("assets/particle_js/particles.min.js")}"></script>
-{block name="js_footer"}
+{* {/block}
 
-{literal}
-    <script>
-    
-    particlesJS.load('particles-js', 'particles.json', function() {
-      console.log('particles.js loaded - callback');
-    });
+{block name="js_footer"} *}
 
-    </script>
-{/literal}
 
 {/block}
