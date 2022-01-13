@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-
+use CodeIgniter\Controller;
 
 class Page extends BaseController
 {
@@ -15,13 +15,16 @@ class Page extends BaseController
 		$this->display('infos.tpl');
 	}
 
+	public function envoi_ok()
+	{
+		$this->display('envoi_ok.tpl');
+	}
+
+
 	public function contact()
 	{
-		$email = \Config\Services::email();
 
 		//Formulaire de contact
-		// Création du formulaire_search
-
 		$this->_data['form_open']    				= form_open('page/contact');
 		$this->_data['label_name']					= form_label('Nom');
 		$this->_data['form_name'] 					= form_input('name');
@@ -34,19 +37,16 @@ class Page extends BaseController
 		$this->_data['form_submit']    			= form_submit('envoyer', 'envoyer', "class = 'button mb-5 mr-5 text-center d-block mx-auto'");
 		$this->_data['form_close']    			= form_close();
 
-
-		//var_dump($_POST);die;
-		if($this->request->getMethod() == 'post') {
-		$email->setFrom('recprojet3@gmail.com', 'rec');
-		$email->setTo($this->request->getVar('email'));
-		$email->setSubject($this->request->getVar('name').' '.$this->request->getVar('firstname'));
+		$email = \Config\Services::email();
+		$email->setFrom($this->request->getVar('email'), $this->request->getVar('name'));
+		$email->setTo('recprojet3@gmail.com');
+		$email->setSubject('Contact de'.' '.$this->request->getVar('name').' '.$this->request->getVar('firstname'));
 		$email->setMessage($this->request->getVar('message'));
-		//echo "<pre>";var_dump($email);
 		$email->send();
 
 		if ($email->send())
 		{
-				echo 'ok';
+			return redirect()->to('page/envoi_ok');
 		}
 		else {
 			echo "pas ok";
@@ -54,7 +54,7 @@ class Page extends BaseController
 	}
 
 		//Données de la page
-		$this->_data['title']         = "Contactez nous";
+		$this->_data['title']     = "Contactez nous";
 		$this->display('contact.tpl');
 	}
 }
