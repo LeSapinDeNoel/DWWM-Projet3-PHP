@@ -36,9 +36,9 @@ class Page extends BaseController
 
 		$email = \Config\Services::email();
 		$email->setFrom('recprojet3@gmail.com');
-		$email->setTo('expéditrice');
-		$email->setSubject('sujet');
-		$email->setMessage('message');
+		$email->setTo($this->request->getVar('email'));
+		$email->setSubject($this->request->getVar('name').' '.$this->request->getVar('firstname'));
+		$email->setMessage($this->request->getVar('message'));
 
 		// if ($email->send())
 		// {
