@@ -205,7 +205,8 @@ class Critic extends BaseController
 			$this->_data['objCriticsInfo']	= $this->_data['arrCriticsInfo'][0];
 
 			//Données de la page
-			$this->display('critic_details.tpl');
+		$this->_data['title']         		= "Détails de la critique";
+		$this->display('critic_details.tpl');
 	}
 
 
@@ -231,7 +232,8 @@ class Critic extends BaseController
 			$this->_data['form_open']    	= form_open('critic/critic_create',array('enctype' => 'multipart/form-data'));
 			$this->_data['form_img']		=	form_input(array('type'  => 'file',
 															'name'  => 'fileToUpload',
-															'id'    => 'fileToUpload',));
+															'id'    => 'fileToUpload',
+															'accept' => '.jpg'));
 			$this->_data['label_title']		= form_label('Titre');
 			$this->_data['form_title'] 		= form_input('title', set_value('title'));
 			$this->_data['label_cat']		= form_label('Catégories');
@@ -367,7 +369,8 @@ class Critic extends BaseController
 		$this->_data['form_img']					=	form_input(array('type'  => 'file',
 																												 'name'  => 'fileToUpload',
 																												 'id'    => 'fileToUpload',
-																												 'value' => $objCriticInfoRapid->critic_img));
+																												 'value' => $objCriticInfoRapid->critic_img,
+																												 'accept' => '.jpg'));
 		$this->_data['label_title']				= form_label('Titre');
 		$this->_data['form_title'] 				= form_input(array('type'  => 'text',
 																												 'name'	 => 'title',

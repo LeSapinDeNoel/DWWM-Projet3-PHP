@@ -118,7 +118,8 @@ class User extends BaseController
 
 		$this->_data['form_img'] 			= form_input(array('type'  => 'file',
 														 'name'  => 'fileToUpload',
-														 'id'    => 'fileToUpload'));
+														 'id'    => 'fileToUpload',
+														 'accept' => '.jpg'));
 
 		$this->_data['label_nom']			= form_label('Nom');
 		$this->_data['form_nom'] 			= form_input('name',set_value('name'));
@@ -250,7 +251,8 @@ class User extends BaseController
 		$this->_data['form_img'] 			= form_input(array('type'  => 'file',
 														 'name'  => 'fileToUpload',
 														 'id'    => 'fileToUpload',
-														 'value'    => session()->get('user_avatar')));
+														 'value'    => session()->get('user_avatar'),
+														'accept' => '.jpg'));
 
 		$this->_data['label_nom']			= form_label('Nom');
 		$this->_data['form_nom'] 			= form_input(array('type'  => 'text',
@@ -427,7 +429,7 @@ class User extends BaseController
 				$newData = [
 					'user_role' => $this->request->getVar('role' . $objUserInfo->user_id)
 				];
-				
+
 				if($newData['user_role'] != "") {
 					$objUser_model->set($newData);
 					$objUser_model->where('user_id', $objUserInfo->user_id);
