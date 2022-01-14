@@ -92,12 +92,6 @@
 		</div>
 
 	</div>
-
-	{if count($smarty.post) > 0}
-		<pre>
-			{$smarty.post|var_dump}
-		</pre>
-	{/if}
 	
 </main>
 
